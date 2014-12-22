@@ -1,0 +1,41 @@
+name:                kitchensnitch-dl
+version:             1.0
+cabal-version:       >= 1.8
+build-type:          Simple
+license:             BSD3
+license-file:        LICENSE
+copyright:           2014 Dino Morelli
+author:              Dino Morelli
+maintainer:          Dino Morelli <dino@ui3.info>
+stability:           experimental
+homepage:            http://foo/bar/baz.html
+synopsis:            Data downloader and parser for the KitchenSnitch project
+description:         Bar Baz
+category:            Unknown
+tested-with:         GHC >= 7.8.3
+extra-source-files:  changelog.md
+                     doc/dev/notes
+                     README.md
+                     TODO
+                     util/gentags.sh
+--                     [test suite files]
+--                     [things not under vcs]
+
+--source-repository    head
+--   type:             darcs
+--   location:         URL
+
+executable           kitchensnitch-dl
+   main-is:          main.hs
+   hs-source-dirs:   src
+   build-depends:    base >= 3 && < 5,
+                     HTTP,
+                     tagsoup
+   ghc-options:      -Wall
+
+--test-suite           pristine-tests
+--   type:             exitcode-stdio-1.0
+--   main-is:          pristine-tests.hs
+--   hs-source-dirs:   src testsuite
+--   build-depends:    base
+--   ghc-options:      -Wall

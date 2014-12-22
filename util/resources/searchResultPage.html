@@ -1,0 +1,2621 @@
+
+<html>
+<head>
+<title>Wake County Restaurant and Sanitation Inspection Grades</title>
+<meta name="Description" content="Wake County, NC - Digital Health Department">
+<meta name="Keywords" content="wake-county-nc,digital-health-department,department-of-environmental-health">
+<meta name="Author" content="Joshua Miller | jmiller@garrisonenterprisesinc.com">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html;
+ charset=iso-8859-1">
+<style> 
+/*
+=====================================================
+Author: Joshua Miller | josh@joshuasmiller.com
+Date: 02/13/2004
+Update: Changed to use variables from tblThemes
+=====================================================
+*/
+/* Navigation Styles */
+.smallnav{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:11px;
+	color:000033;
+	text-decoration:none;
+	}
+a.smallnav{color:000033;text-decoration:none;}
+a.smallnav:Active{color:000033;text-decoration:none;}
+a.smallnav:Visited{color:000033;text-decoration:none;}
+a.smallnav:Hover{color:945232;text-decoration:none;}
+.leftnav{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: 000033;
+	text-decoration: none;
+	}
+a.leftnav{color: 000033;text-decoration:none;}
+a.leftnav:Active{color: 000033;text-decoration:none;}
+a.leftnav:Visited{color: 000033;text-decoration:none;}
+a.leftnav:Hover{color:945232;text-decoration:underline;}
+.footer{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:10px;
+	color:999999;
+	text-decoration:none;
+	}
+a.footer{color:999999;text-decoration:none;}
+a.footer:Active{color:999999;text-decoration:none;}
+a.footer:Visited{color:999999;text-decoration:none;}
+a.footer:Hover{color:000033;text-decoration:underline;}
+.teaser{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: 333333;
+	text-decoration: none;
+	}
+a.teaser{color: 333333;text-decoration:none;}
+a.teaser:Active{color: 333333;text-decoration:none;}
+a.teaser:Visited{color: 333333;text-decoration:none;}
+a.teaser:Hover{color:000033;text-decoration:underline;}
+.feed{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: 333333;
+	text-decoration: none;
+	}
+a.feed{color: 333333;text-decoration:none;}
+a.feed:Active{color: 333333;text-decoration:none;}
+a.feed:Visited{color: 333333;text-decoration:none;}
+a.feed:Hover{color:000033;text-decoration:underline;}
+.fineprint{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:10px;
+	color:999999;
+	text-decoration:none;
+	}
+a.fineprint{color:999999;text-decoration:none;}
+a.fineprint:Active{color:999999;text-decoration:none;}
+a.fineprint:Visited{color:999999;text-decoration:none;}
+a.fineprint:Hover{color:000033;text-decoration:underline;}
+/* Basic Text Styles */
+.body{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:12px;
+	color:333333;
+	text-decoration:none;
+	}
+.required{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:12px;
+	color:CC0000;
+	text-decoration:none;
+	}
+.header{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size:16px;
+	color:999999;
+	text-decoration:none;
+	}
+.subnavhead {
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: FFFFFF;
+	text-decoration: none;
+	}
+.small{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: 999999;
+	text-decoration: none;
+	}
+.barheader{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	color:333333;
+	font-size:11px;
+	margin-bottom:10px;
+	background-color:efefef;
+	width:100%;
+	}
+/* Form Element Styles */
+.inputtext{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: 333333;
+	text-decoration: none;
+	background-color:FFFFFF;
+	border:1px solid;
+	border-color:999999;
+	}
+.inputbutton{
+	font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: 333333;
+	text-decoration: none;
+	background-color:CCCCCC;
+	border:1px outset; 
+	border-color:none;
+	}
+/* HTML Element Declarations */
+A{color:000033;text-decoration:none;}
+A:Active{color:000033;text-decoration:none;}
+A:Visited{color:000033;text-decoration:none;}
+A:Hover{color:000033;text-decoration:underline;}
+HR{width:100%;color:999999;height:1px;}
+H3{font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;color:1D0C4A;font-size:17px;margin-bottom:0px;margin-top:0px;}
+H2{font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;color:990000;font-size:18px;margin-bottom:6px;margin-top:0px;}
+H1{font-family:Arial,Verdana,Tahoma,MS Sans-Serif,sans-serif;color:990000;font-size:19px;margin-bottom:7px;margin-top:0px;}
+</style>
+<script>/*
+Joshua Miller's Javascript Function Library
+Version 1.6 - 01/27/2003
+(C)Copyright Joshua Miller 2003. All Rights Reserved.
+josh@joshuasmiller.com
+Legal Information:
+This library is Linkware - please send a link to the
+site the scripts are being used on so I can see how
+others are using the scripts. No support is implied or
+guaranteed and the author is not liable for damage or 
+loss of time, money or resources as a result of the
+direct or indirect use of these scripts.
+*/
+// ========================================================
+// Macromedia Common Functions (Dreamweaver UD4)
+// ========================================================
+// All Macromedia Functions (C)Copyright Macromedia, Inc.
+// http://www.macromedia.com
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a && i < a.length && (x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+// ========================================================
+// Frame Functions
+// ========================================================
+function jm_frameBuster() { //v1.0 | Frame Buster Script
+	// Call With: setTimeout ("jm_frameBuster()", 1000);
+	if (self.parent.frames.length != 0){
+		self.parent.location=document.location;
+	}
+}
+// ========================================================
+// Browser Detection / User Info Functions
+// ========================================================
+function jm_whoGoesThere(){ //v0.1 ALPHA | Browser/Platform Detection Script
+	var agt=navigator.userAgent.toLowerCase();
+	// Get Browser	
+	var is_ie = (agt.indexOf('msie')!=-1); // IE Detected
+	var is_gecko = (agt.indexOf('gecko')!=-1); // Mozilla / NS6
+	var is_icab = (agt.indexOf('icab')!=-1);
+	var is_opera = (agt.indexOf('opera')!=-1);
+	var is_ns  = ((agt.indexOf('mozilla')!=-1 || agt.indexOf('netscape')!=-1) && (agt.indexOf('msie')==-1)); // Netscape/Clone Detected
+	// Get OS
+	var is_mac = (agt.indexOf("mac")!=-1); // MAC OS Detected
+	var is_win = (agt.indexOf("windows")!=-1); // true if we're on windows
+	// Loop Over Unix Clones
+	var is_nix=false;
+	var nix="sunos,irix,hp-ux,aix,inux,sco,unix,ncr,inix,ultrix,alpha,bsd,x11,os/2,ibm-webexplorer";
+	var nixOn=false;
+	var nixArray=nix.split(',');
+	for(var i=0;i<=nixArray.length;i++){
+		if(agt.indexOf(nixArray[i])!=-1){
+			is_nix=true;
+			break;
+		}
+	}	
+}
+// ========================================================
+// Window Functions
+// ========================================================
+function jm_popWin(pWin,args){ //v1.0 | Popup Window
+	// usage: jm_popWin('page.html','width=300,height=200')
+	popWin=window.open(pWin,'popWin',args)
+	popWin.focus()
+}
+function jm_popWinU(pWin,popName,args){ //v1.0 | Popup Window - Unique Name
+	// usage: jm_popWinU('page.html','thisWinName','width=300,height=200')
+	popWin=window.open(pWin,popName,args)
+	popWin.focus()
+}
+function jm_goPrint_Frame(frame){ //v1.0 | Print Function (Frames)
+	window.frame.focus();
+	window.print();
+}
+function jm_goPrint(){ //v1.0 | Print Page Function (No-Frames)
+	window.print();
+}
+function jm_alert(alertText){ //v1.0 | Alert Window Function
+	alert(""+alertText+"");
+}
+function jm_closeWin(){ //v1.0 | Close Window
+	window.close();
+}
+function jm_refreshOpener(){ //v1.0 | Reloads the Opening Page
+	window.opener.document.location.reload();
+}
+function jm_refreshOpenerCloseSelf(){ //v1.0 | Refreshes the Opening Page and Closes Self
+	window.opener.document.location.reload();
+	window.self.close();
+}
+// ========================================================
+// Browser Functions
+// ========================================================
+function jm_showStatus(thisText){ //v1.0 | StatusBar Text
+	status=thisText;
+	document.returnValue = true;
+}
+function jm_goBack_Frame(frame){ //v1.0 | Back Function (Frames)
+	parent.frame.document.location.href=history.go(-1);
+}
+function jm_goBack(){ //v1.0 | Back Function (No-Frames)
+	history.go(-1);
+}
+function jm_goNext_Frame(frame){ //v1.0 | Next Function (Frames)
+	parent.frame.document.location.href=history.go(1);
+}
+function jm_goNext(){ //v1.0 | Next Function (No-Frames)
+	history.go(1);
+}
+function jm_reLoad_Frame(frame){ //v1.0 | Reload Function (Frames)
+	parent.frame.document.location.reload()
+}
+function jm_reLoad(){ //v1.0 | Reload Function (No-Frames)
+	document.location.reload()
+}
+function jm_navig8_Frame(here,frame){ //v1.0 | Relocate Function (Frames)
+	parent.frame.document.location.href=''+here;
+}
+function jm_navig8(here){ //v1.0 | Relocate Function (No-Frames)
+	document.location.href=''+here;
+}
+function jm_addBookmark(){ //v1.0 | Bookmark Function
+  if (window.external)
+    external.AddFavorite(location.href)
+  else
+    alert("Your browser doesn't support this feature.");
+}
+function jm_viewSource(){
+	window.location = "view-source:" + window.location.href;
+}
+// ========================================================
+// Validation Functions
+// ========================================================
+function jm_valid8IP(thisObj){ //v1.0 | Check IP Address (First 2 Stacks)
+	if(/([0-2][0-9][0-9]\.)+[0-2][0-9][0-9]/.test(thisObj.value) || thisObj.value == ""){
+		return true;
+	}else{
+		alert("Invalid IP Address! Please re-enter.");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8Url(thisObj){ //v1.0 | Check URL (http://text.text)
+	if(/[^http:\/\/]+([a-zA-Z]|[0-9])+([\.]+[a-zA-Z])/.test(thisObj.value) || thisObj.value == ""){
+		return true;
+	}else{
+		alert("Invalid URL! Please re-enter.");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8Len(thisObj,formObj,maxLen){ //v1.0 | Limits the Number of Characters in a Field
+	if(thisObj.value.length<=maxLen || thisObj.value == ""){
+		return true;
+	}else{
+		alert("This field is limited to "+maxLen+" characters.\nYou entered "+thisObj.value.length+" characters.");
+		jm_highLightField(thisObj,formObj);
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8Email(thisObj){ //v1.6 | Email Validation
+	// Version History:
+	// v1.0 Validation Functions Complete.
+	// v1.5 Updated to handle new TLDs and Subdomain Nesting
+	// v1.6 Fixed CaSe BuG. Now allows any case mix.
+	// ====================================================
+	if(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.(([a-z]{2,3})|(aero|coop|info|museum|name))$/.test(thisObj.value.toLowerCase())  || thisObj.value == ""){
+		return true;
+	}else{
+		alert("Invalid E-mail Address! Please re-enter.");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8SSN(thisObj){ //v1.0 | SSN Validation
+	if(/^(\d{3})-?\d{2}-?\d{4}$/.test(thisObj.value) || thisObj.value == ""){
+		return true;
+	}else{
+		alert("Invalid SSN. Must be 9 digits or in the form 000-00-0000.");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8CCNum(thisObj){ //v1.0 | CCNum Validation. 
+	// Based on CF5 Validation - Altered Return Statement
+	var error=0;
+	var white_space=" -";
+	var creditcard_string="";
+	var check_char;
+	var checkdigit = 0;
+	var tempdigit;
+	var doubledigit="";
+	var i="";
+	for (i = 0; i < thisObj.value.length; i++){
+		check_char = white_space.indexOf(thisObj.value.charAt(i))
+		if (check_char < 0){
+			if(isNaN(thisObj.value.substring(i,(i+1)))){//Added by JM
+				error=1;
+				break;
+			}
+			creditcard_string += thisObj.value.substring(i, (i + 1));
+		}
+	}	
+    if (creditcard_string.length == 0){
+        error=1;
+	}
+	if (creditcard_string.charAt(0) == "+"){
+        error=1;
+	}
+	doubledigit = creditcard_string.length % 2 == 1 ? false : true;
+	for (i = 0; i < creditcard_string.length; i++){
+		tempdigit = eval(creditcard_string.charAt(i))
+		if (doubledigit){
+			tempdigit *= 2;
+			checkdigit += (tempdigit % 10);
+			if ((tempdigit / 10) >= 1.0){
+				checkdigit++;
+			}
+			doubledigit = false;
+		}
+		else{
+			checkdigit += tempdigit;
+			doubledigit = true;
+		}
+	}
+	// Reworked the return statement to match the other script formats.
+	if((checkdigit % 10)!=0){
+		error=1;
+	}
+	if(error>0){
+		alert("Invalid CC Number, please check your entry and try again.");
+		thisObj.focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+function jm_valid8CCExpDate(thisObj) { //v1.0 | CCExp Date Validation
+	if ((thisObj.value.indexOf('/') || thisObj.value.indexOf('-')) && thisObj.value.length>=4){
+		var today= new Date;
+		var error=0;
+		if(thisObj.value.indexOf('/')>0){
+			var dateParts=thisObj.value.split('/');
+		}else if(thisObj.value.indexOf('-')>0){
+			var dateParts=thisObj.value.split('-');
+		}else{
+			error=2;
+		}
+		if(dateParts && dateParts.length>2){
+			var mm=dateParts[0];
+			var dd=dateParts[1];
+			var yy=dateParts[2];
+		}else{
+			var mm=dateParts[0];
+			var dd=01;
+			var yy=dateParts[1];
+		}
+		if(isNaN(parseFloat(mm)) || isNaN(parseFloat(dd)) || isNaN(parseFloat(yy))){
+			error=1;
+		}
+		if(yy.length==3){error=1;}
+		if(yy.length==2){yy="20"+yy;}
+		if(mm.length==1){mm="0"+mm;}
+		if(dd.length==1){dd="0"+dd;}
+		if((yy==today.getYear() && mm<today.getMonth()) || (yy==today.getYear() && mm==today.getMonth() && dd<today.getDay()) || yy<today.getYear()){
+			error=1;
+		}else{
+			return true;
+		}
+	}else{
+		error=2;
+	}
+	if(error==2){
+		alert("Invalid Date Format!\nDate Must Contain '/' or '-' to separate values.\nPlease re-enter.");
+		thisObj.focus();
+		return false;
+	}else if(error==1){
+		alert("This card appears to be expired!\nPlease re-enter the expiration date or try another card.");
+		return false;
+	}else{
+		return true;
+	}
+}
+function jm_valid8Date(thisObj){ //v2.2 | Date Validation	
+	if(/^(\d{2})\/\d{2}\/\d{4}$/.test(thisObj.value)){
+		// Perform Actual Date Validation
+		var y,m,d;
+		var maxdays=31;
+		var dateParts=thisObj.value.split('/');
+		m=parseFloat(dateParts[0]);
+		d=dateParts[1];
+		y=dateParts[2];
+		if(m==4 || m==6 || m==9 || m==11){
+			maxdays=30;
+		}else if((m==2) && (y%4==0) && ((!(y%100==0)) || (y%400==0))){
+			maxdays=29;
+		}else if(m==2){
+			maxdays=28;
+		}else{
+			maxdays=31;
+		}
+		if( (m<1 || m > 12) || (d > maxdays) ){
+			alert("Invalid Date. Please check the date you entered.");
+			thisObj.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}else if(/^\d{2}\d{2}\d{2}$/.test(thisObj.value)){
+		// Perform Actual Date Validation
+		var y,m,d;
+		var dec;
+		var now=new Date();
+		var maxdays=31;
+		var dateParts=thisObj.value;
+		m=parseFloat(dateParts.substring(0,2));
+		d=dateParts.substring(2,4);
+		dec=now.getFullYear();
+		y=dec.toString().substring(0,2) + dateParts.substring(4,6);
+		if(m==4 || m==6 || m==9 || m==11){
+			maxdays=30;
+		}else if((m==2) && (y%4==0) && ((!(y%100==0)) || (y%400==0)) ){
+			maxdays=29;
+		}else if(m==2){
+			maxdays=28;
+		}else{
+			maxdays=31;
+		}
+		if( (m<1 || m > 12) || (d > maxdays) ){
+			alert("Invalid Date. Please check the date you entered.");
+			thisObj.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}else if(thisObj.value != ""){
+		alert("Invalid Date. Must be in the form mm/dd/yyyy");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8Num(thisObj){ //v1.0 | Positive Number Validation
+	if(isNaN(parseFloat(thisObj.value))){
+		alert("You must enter a number.");
+		thisObj.focus();
+		return false;
+	}else{
+		if(parseFloat(thisObj.value) <= 0){
+			alert("You must enter a positive number.");
+			thisObj.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+function jm_valid8Zip(thisObj){ //v2.0 | Zipcode Validation
+	if(/^(\d{5})||^(\d{5})-?\d{4}$/.test(thisObj.value) || thisObj.value == ""){
+		return true;
+	}else{
+		alert("Invalid Zipcode!\nA valid Zipcode is formatted: 000000 or 00000-0000.\nPlease re-enter your zipcode.");
+		thisObj.focus();
+		return false;
+	}
+}
+/*
+function jm_valid8Zip(thisObj){ //v1.0 | Zipcode Validation
+	var error=0;
+	if(thisObj.value.indexOf('-')>0){
+		var zipParts=thisObj.value.split('-');
+		if(isNaN(parseFloat(zipParts[0])) || isNaN(parseFloat(zipParts[1])) || zipParts[1].length!=4){
+			error=1;
+		}
+	}else{
+		if(isNaN(parseFloat(thisObj.value))){
+			error=1;
+		}else{
+			if(thisObj.value.length!=5){
+				error=1;
+			}
+		}
+	}
+	if(error>0){
+		alert("Invalid Zipcode!\nA valid Zipcode is formatted: 000000 or 00000-0000.\nPlease re-enter your zipcode.");
+		return false;
+	}else{
+		return true;
+	}
+}
+*/
+function jm_valid8Pass(thisObj,formObj){ //v1.0 | Re-Enter Password Verification
+	var error=0;
+	var i="";
+	for(i=0;i<formObj.length;i++){
+		var evalObj=formObj.elements[i];
+		if(evalObj.name.toLowerCase().indexOf('password2')>0){
+			if(evalObj.value==thisObj.value && thisObj.value!=''){
+				error=0;
+			}else{
+				error=1;
+			}
+		}
+	}
+	if(error>0){
+		alert("Your passwords do not match. Please re-enter your passwords.");
+		thisObj.focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+function jm_valid8Chars(thisObj){ //v1.0 | Disallow Special Characters
+	if(/[$\\@\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|\<\>\?\,\.]/.test(thisObj.value)){
+		alert("You can not enter punctuation of any kind into this field.\nPlease remove all punctuation.");
+		thisObj.focus();
+		return false;
+	}else{
+		return true;
+	}
+}
+function jm_valid8USPhone(thisObj){ //v1.2 | US Phone Validation
+	//v1.1 Bug-Fix to make () around area code NOT required.
+	//v1.2 Added support for EXT in a phone number
+	var objLen=thisObj.value.length;
+	var testObj=thisObj.value;
+	var extStart="";
+	if(thisObj.value.toLowerCase().indexOf('ext')>0){ //Test for EXT
+		extStart=thisObj.value.toLowerCase().indexOf('ext')-1;
+		testObj=thisObj.value.toLowerCase().substring(0,extStart);
+	}
+	if(/^\(?\d{3}\)?(\-|\s)\d{3}(\-|\s)\d{4}$/.test(testObj) || testObj == ""){
+		return true;
+	}else{
+		alert("Invalid Phone Number. Must be 10 digits or in the format:\n000-000-0000 or (000) 000-0000 ext. 000");
+		thisObj.focus();
+		return false;
+	}
+}
+function jm_valid8Form(formObj){ //v2.3 | Complete Form Validation Script
+	/*
+	Supports: CC,CCEXP,DATE,SSN,EMAIL,INT,ZIP,CHARACTER and US-PHONE 
+	Validation. Other Features: HTML Stripper (v2.4) and Compare 2 
+	Fields for Same Value. Use this script with the [cf_RealFormNames] 
+	tag to strip required_ and valid8_ from fieldnames upon submission.
+	=================================================================
+	                      Browser Test Notes
+	=================================================================
+	Tested OK on:
+	Win2k PRO  - IE6, IE5.0, Mozilla0.9.1, NS4.75, NS6, Opera5, AOL6(MSIE5), Sun HotJava 3.0
+	Win98/se   - IE6, IE5.0, Mozilla0.9.1, NS4.76, NS6, Opera5, AOL6(MSIE5), Sun HotJava 3.0
+	MAC OS 9.2 - IE5, IE4.5, Mozilla0.9.2, NS4.60, NS6, Opera5, AOL5(MSIE4.01), iCAB 2.5.x, Sun HotJava 3.0
+	*Partial Compatability with iCAB 2.5.x on MAC OS 9.2 and HotJava 3.0 on all Platforms
+	 All Validation Functions work properly except jm_stripHTML() - Invalid Char. Error (iCAB)
+	 The CSS Support in iCAB and HotJava appears to be quite limited so the jm_highlightField()
+	 function doesn't work correctly to notify users of incorrect fields.
+	=================================================================
+	                       Version History
+	=================================================================
+	v1.0 Validation Functions Complete.
+	v1.5 Repaired RADIO/CHECKBOX bug.
+	v2.0 Updated Validation Calls with Array Loop Method.
+	v2.1 Added ability to pass custom messages using hidden formfield.
+	v2.2 Fixed Custom Error Messages not displaying on some browsers.
+	v2.3 Notes: Validation Only Option (valid8_)
+		        Bugfix in Select and Multi-Select Fields
+				HTML Stripper Function
+				Browser Compliance and Testing Implemented
+	=================================================================
+	                      v2.4 Release Notes
+	=================================================================
+	1. Updated HTML Stripper Function to accept more tags.
+	   This function is still a little buggy and needs some repair.
+	2. Added URL Validation (Loose validation: http://text.text)
+	3. Added IP Address Validation (2 Stack Validation: 000.000)
+	=================================================================
+	*/
+	var error=0;
+	var i="";j="";
+	for(i=0;i<formObj.length;i++){
+		// Set Object Variables
+		var thisObj=formObj.elements[i];
+		var objName=thisObj.name.toLowerCase();
+		var objType=thisObj.type.toLowerCase();
+		var objLen=thisObj.name.length;
+		//bypass validation if element is hidden by display="none" 3/15/2012 - CG
+		try {
+			if(thisObj.parentNode.parentNode.style.display.toLowerCase()=="none" || thisObj.parentNode.parentNode.parentNode.style.display.toLowerCase()=="none") {
+			var passThrough="no"; 
+			}
+			else {
+			var passThrough="yes";
+			}
+		}
+		catch(err) {
+			alert()
+			var passThrough="yes";
+		}
+		if(passThrough.toLowerCase() == "yes") {
+			// Set Validation Arrays.
+			var v=new Array;
+			var f=new Array;
+			v[0]="email";
+			f[0]="!jm_valid8Email(thisObj)";
+			v[1]="ssn";
+			f[1]="!jm_valid8SSN(thisObj)";
+			v[2]="posint";
+			f[2]="!jm_valid8Num(thisObj)";
+			v[3]="ccexp_";
+			f[3]="!jm_valid8CCExpDate(thisObj)";
+			v[4]="date";
+			f[4]="!jm_valid8Date(thisObj)";
+			v[5]="ccnum";
+			f[5]="!jm_valid8CCNum(thisObj)";
+			v[6]="zipcode";
+			f[6]="!jm_valid8Zip(thisObj)";
+			v[7]="password";
+			f[7]="!jm_valid8Pass(thisObj,formObj)";
+			v[8]="spchars";
+			f[8]="!jm_valid8Chars(thisObj)";
+			v[9]="vphone";
+			f[9]="!jm_valid8USPhone(thisObj)";
+			v[10]="nohtml";
+			f[10]="!jm_stripHTML(thisObj)";
+			v[11]="basichtml";
+			f[11]="!jm_basicHTML(thisObj)";
+			v[12]="vfax";
+			f[12]="!jm_valid8USPhone(thisObj)";
+			v[13]="url";
+			f[13]="!jm_valid8Url(thisObj)";
+			v[14]="ipaddress";
+			f[14]="!jm_valid8IP(thisObj)";
+			// Validate without Require Functionality
+			var required="n";
+			var validate="n";
+			var objName="";
+			if(thisObj && (thisObj.name.toLowerCase().substring(0,9)=="required_")){
+				objName=""+thisObj.name.toLowerCase().substring(9,objLen);
+				required="y";validate="y";
+			}else if(thisObj && (thisObj.name.toLowerCase().substring(0,7)=="valid8_")){
+				objName=""+thisObj.name.toLowerCase().substring(7,objLen);
+				validate="y";
+			}
+			// Field-Test Routine
+			if(required=="y" || validate=="y"){
+				// Begin NULL and CONTENT Validation
+				if((objType=="text" || objType=="textarea" || objType=="hidden")){
+					// Validation Routine
+					for(j=0;j<v.length;j++){
+						if(objName.indexOf(''+v[j]+'')>=0){
+								if(required=="y"){// Require & Validate
+									if(eval(f[j])){// Validate
+										error=2;
+										break;
+									}
+								}else if(validate=="y" && required=="n" && thisObj.value!=""){// Validate Only
+									if(eval(f[j])){// Validate
+										error=2;
+										break;
+									}
+								}
+						}else if(thisObj.value=="" && required=="y"){// Require Only
+							error=1;
+							break;
+						}
+					}
+				// Begin NULL validation on non-text fieldtypes.
+				}else if((((objType=="select-one") && (thisObj.selectedIndex==0)) || ((objType=="select-multiple") && (thisObj.selectedIndex == -1)))){				 
+						error=1;
+				}else if((objType=="checkbox" || objType=="radio")){
+					var tmpName="formObj."+thisObj.name;
+					var tmpObj=eval(tmpName);
+					for(j=0;j<tmpObj.length;j++){
+						if(tmpObj[j].checked == false){
+							error=1;
+						}else{
+						error=0;
+						break;
+						}
+					}
+				}
+				// Error Output.
+				if(error==1){
+					var messName="formObj."+objName+"_mess";
+					if(eval(messName)){
+						alert(eval(messName).value);// Custom Error Message
+					}else{
+						alert("You must fill out the "+objName.toUpperCase()+" field.");// Default Error Message
+					}
+					jm_highLightField(thisObj,formObj);
+					return false;
+					break;
+				}else if(error==2){
+					jm_highLightField(thisObj,formObj);
+					return false;
+					break;
+				}else if(error==0){
+					// Disable Submit Button
+					for(s=0;s<formObj.length;s++){
+						if(formObj.elements[s].type.toLowerCase() == "submit"){
+							jm_toggleDisabled(formObj.elements[s]);
+						}
+					}
+				}
+			}
+		}
+	}
+	return true;
+}
+function jm_compareDrop(formObj){ //v1.0 | Compares select boxes for the same value. Alert on match.
+	var err="n";
+	var thisArray=new Array();
+	for(i=0;i<formObj.elements.length;i++){
+		objSelect=formObj.elements[i];
+		if(objSelect.type.toLowerCase() == "select-one" || objSelect.type.toLowerCase() == "select-multiple"){
+			thisArray[i]=objSelect.options[objSelect.selectedIndex].value;
+		}
+	}
+	for(i=0;i<thisArray.length;i++){
+		for(j=0;j<thisArray.length;j++){
+			if(thisArray[i]==thisArray[j] && i!=j){
+				var err="y";
+			}
+		}
+	}
+	if(err=="y"){
+		alert("You selected the same value twice.");
+	}
+}
+function jm_compareFields(formObjA,formObjB,mess){//v1.0 | Compares text fields for the same value. Alert on Different.
+	if(eval(formObjA).value!=eval(formObjB).value){
+		alert(""+mess+"");
+	}
+}
+// ========================================================
+// User Information
+// ========================================================
+function jm_cookieDetect(form,frame){ //v1.0 | Cookie Detection Function
+	document.cookie = 'killme' + escape('nothing')
+	if (document.cookie == ""){
+		document.form.frame.value ="Disabled";
+	} else {
+		document.form.frame.value ="Enabled";
+	}
+}
+function jm_jsDetect(form,field){ //v1.0 | JavaScript Detection Function
+	document.form.field.value ="Enabled";
+}
+function jm_getStats(){ //v1.0 | Screen Properties Function
+	colorDepth=screen.colorDepth;
+	screenWidth=screen.width;
+	screenHeight=screen.height;
+}
+// ========================================================
+// Style Functions
+// ========================================================
+function jm_highLightField(thisObj,formObj){ //v1.1 | FormField Highlight on Validation Error
+	// v1.1 Repaired RADIO/CHECKBOX visual error.
+	var i=0;
+	var agt=navigator.userAgent.toLowerCase();
+	if(agt.toLowerCase().indexOf('msie') != -1 || 
+	   agt.toLowerCase().indexOf('gecko') != -1 || 
+	   agt.toLowerCase().indexOf('icab') != -1){ 
+	   //Netscape Sucks, iCab isn't much better, but at least it doesn't error.
+		// Loop and remove display for everything but thisObj
+		for(i=0;i<formObj.length;i++){
+			var tmpObj=formObj.elements[i];
+			if(tmpObj!=thisObj && tmpObj.style){
+				tmpObj.style.backgroundColor='';
+				if(tmpObj.type.toLowerCase()=='submit' || tmpObj.type.toLowerCase()=='reset' || tmpObj.type.toLowerCase()=='button'){
+					tmpObj.style.border='2px outset';
+				}else if(tmpObj.type.toLowerCase()=='radio' || tmpObj.type.toLowerCase()=='checkbox'){
+					tmpObj.style.border='';
+				}else{
+					tmpObj.style.border='2px inset';
+				}
+				tmpObj.style.borderColor='';
+				tmpObj.title="";
+			}
+		}
+		if(thisObj.type.toLowerCase()!="hidden"){
+			thisObj.style.backgroundColor='ffffee';
+			thisObj.style.border='2px outset';
+			thisObj.style.borderColor='red';
+			thisObj.title="Form Entries Invalid!";
+			thisObj.focus();
+		}
+		return false;
+	}else{
+		return false;
+	}
+}
+function jm_borderOn(formObj){ //v1.0 | Border-Hover ON/OFF Functions
+	formObj.style.borderColor='666666';
+	formObj.style.backgroundColor='white';
+}
+function jm_borderOff(formObj){ //v1.0 | Border-Hover ON/OFF Functions 
+	formObj.style.borderColor='white';
+	formObj.style.backgroundColor='cccccc';
+}
+function jm_rowHighOn(tableObj){ //v1.0 | Table-Row-Hover ON/OFF Functions
+	eval(tableObj).style.backgroundColor='ffffcc';
+}
+function jm_rowHighOff(tableObj){ //v1.0 | Table-Row-Hover ON/OFF Functions
+	eval(tableObj).style.backgroundColor='white';
+}
+function jm_divTextSwap(div,message){ //v1.0 | Swaps text in a DIV | IE only
+	eval(div).innerText=""+message;
+}
+function jm_showHideLayer(layer){ //v1.0 | Show/Hide Layer Function
+	if(document.all || document.getElementById()){ //Detect IE/Gecko/NS6
+		if(layer.style.visibility=="visible"){
+			layer.style.visibility="hidden";
+		}else{
+			layer.style.visibility="visible";
+		}
+	}else{ //Old Netscape Method
+		if(layer.visibility=="visible"){
+			layer.visibility="hidden";
+		}else{
+			layer.visibility="visible";
+		}
+	}
+}
+// ========================================================
+// FORM Functions
+// ========================================================
+function jm_jumpForm(thisObj){ //v1.0 | Select Navigation
+	document.location.href=thisObj.options[thisObj.selectedIndex].value;
+}
+// v1.0 Toggle Disabled Status for Form Object
+function jm_toggleDisabled(thisObj){
+	if(thisObj.disabled == false){
+		thisObj.disabled = true;
+	}else{
+		thisObj.disabled = false;
+	}
+}
+function jm_confirmSubmit(mess){ //v1.0 | Confirm Delete
+var agree=confirm(mess);
+	if(agree){
+		return true ;
+	}else{
+		return false ;
+	}
+}
+function jm_greyButton(formObj) { //v1.0 | Disables Buttons or other Form Elements
+	// usage: onSubmit="return jm_greyButton(this);"
+	if (document.all || document.getElementById()) {
+		for (i = 0; i < formObj.length; i++) {
+			var tempobj = formObj.elements[i];
+			if (tempobj.type.toLowerCase() == "submit" || tempobj.type.toLowerCase() == "reset" || tempobj.type.toLowerCase() == "button")
+			tempobj.disabled = true;
+		}
+		return true;
+		}
+	else {
+	return false;
+	}
+}
+function jm_onlyValidChars(string,valid) { //v1.0 | Only Allow Valid Characters
+	// usage: jm_onlyValidChars(formObj,'0123456789');
+    for (var i=0, output=''; i<string.length; i++)
+       if (valid.indexOf(string.charAt(i)) != -1)
+          output += string.charAt(i)
+    return output;
+} 
+function jm_fixForms(decNum){ //v1.5 | Automatically Resizes FORM fields from NS to IE sizes.
+	/*
+	usage: jm_fixForms('25');
+	=================================================================
+	                      v1.5 Release Notes
+	=================================================================
+	1. Updated MAC Support - now supports MAC OS - IE4.5 and 5.0
+	2. Fixed Bug in Math Operations using parseInt()
+	=================================================================
+	*/
+	var agt=navigator.userAgent.toLowerCase();
+	var is_major = parseInt(navigator.appVersion);
+	var is_minor = parseFloat(navigator.appVersion);
+	var is_mac = (agt.indexOf("mac")!=-1); // MAC OS Detected
+	var is_ie   = (agt.indexOf("msie") != -1); // Internet Explorer detected
+	var is_ns  = ((agt.indexOf('mozilla')!=-1) && (agt.indexOf('spoofer')==-1) && (agt.indexOf('compatible') == -1) && (agt.indexOf('opera')==-1)); // Netscape Detected
+	if(!(is_ns)){ // Don't touch Netscape Clones
+	var incrVal="."+decNum; // Set Decimal to get % increase
+		for(i=0;i<document.forms.length;i++){ // Loop over all forms
+			for(j=0;j<document.forms[i].elements.length;j++){ // Loop over form elements
+			var formObj=document.forms[i].elements[j];
+				if(formObj.type.toLowerCase() == "text" || formObj.type.toLowerCase() == "password" || formObj.type.toLowerCase() == "file"){
+					formincr=formObj.size*eval(incrVal);
+					formObj.size=parseInt(formObj.size)+parseInt(formincr);
+				}
+				else if(document.forms[i].elements[j].type.toLowerCase() == "textarea"){
+					formincr=formObj.cols*eval(incrVal/5); // Divide incrVal by 5 to allow for COL/SIZE difference.
+					formObj.cols=parseInt(formObj.cols)+parseInt(formincr);
+				}
+			}
+		}
+	}
+}
+function jm_checkBoxes(formObj) { //v1.1 | Checks ALL Form Boxes in a form.
+	// v1.1 Added Uncheck Function
+	if (document.all || document.getElementById()) {
+		for (i = 0; i < formObj.length; i++) {
+			var tempobj = formObj.elements[i];
+			if (tempobj.type.toLowerCase() == "checkbox"){
+				if(tempobj.checked == true){
+					tempobj.checked = false;
+				}else{
+					tempobj.checked = true;
+				}
+			}
+		}
+		return true;
+		}
+	else {
+	return false;
+	}
+}
+function jm_escapeChars(thisObj){ //v1.0 | Encode Special Characters
+	if (/[$\\@\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|\<\>\?\,\.]/.test(thisObj.value)){
+		thisObj.value=escape(thisObj.value);
+		return true;
+	}
+}
+function jm_basicHTML(thisObj){ //v1.1 | Allows Basic HTML Only (b,i,u,p,br,hr)
+	// Need updated RegEX as it allows some "rogue" tags through.
+	if (/(<[\/]?([bpua])|(br|hr)|([i$])[\/]?>)/.test(thisObj.value)){
+		return true;
+	}else{
+		alert("Only <b>, <i>, <u>, <br>, <hr> and <p> tags are allowed in this field.");
+		return false;
+	}
+}
+function jm_stripHTML(thisObj){ //v1.0 | Strip HTML
+	if (/[<[0-9a-z^a-z=.,"\/#%*@!:]+>|&[a-z]+]/.test(thisObj.value)){
+		alert("No HTML is allowed in this field.");
+		return false;
+	}else{
+		return true;
+	}
+}
+function jm_initCaps(thisObj){ //v1.0 | Make initial caps from UPPERCASE
+	var i=0;j=0;
+	var wordList="and,but,or,nor,for,yet,the,to";
+	var wordArray=wordList.split(',');
+	var wordObj=thisObj.value.toLowerCase().split(' ');
+	var ucase="";
+	var lcase="";
+	var tmpSnt="";
+	var pass=0;
+	for(i=0;i<wordObj.length;i++){
+		for(j=0;j<wordArray.length;j++){
+			if(wordArray[j]==wordObj[i]){
+				pass=1;
+			}else{
+				pass=0;
+			}
+		}
+		if(pass==0){
+			ucase=wordObj[i].substring(0,1).toUpperCase();
+			lcase=wordObj[i].substring(1,wordObj[i].length);
+			tmpSnt=""+tmpSnt+" "+ucase+""+lcase+"";
+		}else{
+			tmpSnt=""+tmpSnt+" "+wordObj[i]+"";
+		}
+	}
+	thisObj.value=jm_trim(tmpSnt);
+	// This relies on the jm_trim() function.
+}
+function jm_timedSubmit(formName){ //v1.0 | Auto-Submit a form every X milliseconds
+	// Usage: jm_timedSubmit('myform');
+	formObj=eval(formName);
+	setTimeout("formObj.submit()",6000);
+}
+// =======================================================
+// XML Functions
+// Note: These functions are IE5+ Only and require MSXML3+
+// These are compatible with the W3C XSL Specification
+// =======================================================
+function jm_xslt(xmldoc,xsldoc){ //v1.0 | XSL Transformation
+	var xml = new ActiveXObject("MSXML2.DOMDocument")
+	xml.async = false
+	xml.load(xmldoc)
+	var xsl = new ActiveXObject("MSXML2.DOMDocument")
+	xsl.async = false
+	xsl.load(xsldoc)
+	document.write(xml.transformNode(xsl))
+}
+function jm_xslt_selectSingleNode(xmldoc,xsldoc,nodeArg){ //v1.0 | XSL Transformation - Specific Node
+	var xml = new ActiveXObject("MSXML2.DOMDocument");
+	xml.async = false
+	xml.load(xmldoc);
+	var objNode = xml.selectSingleNode(nodeArg);
+	var xsl = new ActiveXObject("MSXML2.DOMDocument");
+	xsl.async = false
+	xsl.load(xsldoc);
+	document.write(objNode.transformNode(xsl));
+}
+function jm_passXslVar(source,style,variable,value){ //v1.0 | Pass Variable to XSL Template
+	// Call with: jm_passXslVar("doc.xml","style.xsl","variable_name","variable_value");
+	var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+	var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+	var xslProc;
+	xslDoc.async = false;
+	xslDoc.load(style);
+	xslt.stylesheet = xslDoc;
+	var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+	xmlDoc.async = false;
+	xmlDoc.load(source);
+	xslProc = xslt.createProcessor();
+	xslProc.input = xmlDoc;
+	xslProc.addParameter(variable, value);
+	xslProc.transform();
+	document.write(""+xslProc.output+"");
+}
+// =======================================================
+// FLASH Functions
+// =======================================================
+function jm_flashPlug(nsswf,ieswf,params){ //v1.0 | FLASH Embed by Browser
+	//quality=val,wmode=val,bgcolor=val,width=val,height=val
+	var swf="";
+	var agt=navigator.userAgent;
+	// Build Params
+	if(params<=0){
+		params="quality=high,wmode=transparent,bgcolor=#FFFFFF,width=100%,height=100%";
+	}
+	var pA=params.split(',');
+	var quality=pA[0].split('=');
+	var wmode=pA[1].split('=');
+	var bgcolor=pA[2].split('=');
+	var width=pA[3].split('=');
+	var height=pA[4].split('=');
+	// Set SWF File
+	swf = agt.toLowerCase().indexOf('msie') != -1 ? ieswf : nsswf;
+	//Output HTML
+	document.write("<OBJECT classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http:\/\/active.macromedia.com\/flash2\/cabs\/swflash.cab#version=4,0,0,0\" ID=\"reezon\" WIDTH=\""+width[1]+"\" HEIGHT=\""+height[1]+"\">");
+	document.write("<PARAM NAME=\"movie\" VALUE=\""+swf+"\">");
+	document.write("<PARAM NAME=\"quality\" VALUE=\""+quality[1]+"\">");
+	document.write("<PARAM NAME=\"wmode\" VALUE=\""+wmode[1]+"\">");
+	document.write("<PARAM NAME=\"bgcolor\" VALUE=\""+bgcolor[1]+"\">");
+	document.write("<EMBED src=\""+swf+"\" quality=\""+quality[1]+"\" bgcolor=\""+bgcolor[1]+"\" wmode=\""+wmode[1]+"\" WIDTH=\""+width[1]+"\" HEIGHT=\""+height[1]+"\" TYPE=\"application\/x-shockwave-flash\" PLUGINSPAGE=\"http:\/\/www.macromedia.com\/shockwave\/download\/index.cgi?P1_Prod_Version=ShockwaveFlash\"><\/EMBED>");
+	document.write("<\/OBJECT>");
+}
+function jm_vars2Flash(formObj,varList,loadVar){ //v1.0 | Formfields to Flash Variables
+	var i="";
+	var a=varList.split(',');
+	outputString="";
+	for(i=0;i<a.length;i++){
+		outputVar="formObj."+a[i]+"";
+		outputString=""+outputString+"&"+a[i]+"="+eval(outputVar).value+"";
+	}
+	outputString=""+outputString+"&"+loadVar+"=yes";
+	return outputString;
+}
+// =======================================================
+// Math Functions
+// =======================================================
+function jm_dollar2Euro(formObj){ //v1.0 | Dollar to Euro Conversion
+	var f=formObj.value
+	formObj.value=f*.8958;
+}
+function jm_euro2Dollar(formObj){ //v1.0 | Euro to Dollar Conversion
+	var f=formObj.value
+	formObj.value=f*1.1042;
+}
+// =======================================================
+// Miscellaneous Functions
+// =======================================================
+function jm_contextHighlight(divObj,string){ //v1.0 | Highlights Words in a Page
+	var pattern = "/"+string+"/ig";
+	var oldString=divObj.innerHTML;
+	var newString="<span style='background-color:ffffcc'>"+string.toUpperCase()+"</span>";
+	var myText=oldString.replace(eval(pattern),newString);
+	divObj.innerHTML=myText;
+}
+// =======================================================
+// GUI Simulation Functions
+// =======================================================
+function jm_guiButtonHover(formObj,brdr,brdrcolor){ //v1.0 | Button Hover
+	formObj.style.border=brdr;
+	formObj.style.borderColor=brdrcolor;
+}
+// =======================================================
+// String Functions
+// Used for function interaction only. These do NOT alter
+// Form Objects or other elements of the page.
+// =======================================================
+function jm_trim(string){ //v1.0 | TRIM whitespace function.
+	string = string.replace(/^[\s]+/g,"");
+	string = string.replace(/[\s]+$/g,"");
+	return string;
+}
+// =======================================================
+// DHTML Dropdown Type-Ahead Functions
+// Adding the following lines to a <select> tag will enable
+// type-ahead functionality for that dropdown list:
+//  onFocus="populate(event)"
+//  onKeyown="setSelection(event)" 
+//  onKeyPress="javascript:return false"
+// =======================================================
+var keyTime, keyStr = '', allOpts, lastElement;
+var agt = navigator.userAgent.toLowerCase();
+//var is_ie = ((agt.indexOf("msie") != -1) && (agt.indexOf("opera") == -1));
+var is_gecko = (agt.indexOf("gecko") != -1);
+function populate(srcEvent)
+{
+  var element = (srcEvent)? ((srcEvent.target)? srcEvent.target : srcEvent.srcElement) : window.event.srcElement;
+  if(lastElement != element)
+  {
+    allOpts = new Array();
+    for(var i = 0; i < element.options.length; i++)
+      allOpts[i] = element.options[i].text.toLowerCase();
+    lastElement = element;
+  }
+}
+function setSelection(srcEvent)
+{
+  var myEvent = (srcEvent)? srcEvent : window.event;
+  var element = (myEvent.target)? myEvent.target : myEvent.srcElement;
+  var keyCode = myEvent.keyCode;
+  // messy JS keycodes force me to preprocess. Note: I use a US keyboard, other keyboards may vary?
+  if((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91 || keyCode == 32)) ; // space or alphanumerical characters, leave them alone
+  else if(keyCode > 95 && keyCode < 106) keyCode -= 48; // keypad numbers
+  else if(keyCode > 105 && keyCode < 112) keyCode -= 64; // keypad '+', '-', '/', '*', '.'
+  else if(keyCode > 187 && keyCode < 192) keyCode -= 144; // '/', '.', ',', '-'
+  else if(keyCode > 218 && keyCode < 222) keyCode -= 128; // '\', '[', ']'
+  else
+  {
+    switch(keyCode)
+    {
+      case 187: keyCode = 61; break; // '='
+      case 222: keyCode = 39; break; // '''
+      case 192: keyCode = 96; break; // '`'
+      case 186: keyCode = 59; break; // ';'
+      default: return; // do not process non printable characters (unfortunately backspace cannot be supported because browsers like IE interpret backspace as go back a page in history)
+    }
+  }
+  var currentKey = String.fromCharCode(keyCode).toLowerCase();
+  var idx, currentSIdx = element.selectedIndex, useOld = false;
+  var newTime = new Date().getTime();
+  if(keyTime != null && newTime - keyTime < 500) // do type-ahead if two keys were pressed within 500 milliseconds (0.5 second, one can change this value for customization)
+  {
+    keyStr += currentKey;
+    idx = findIdx();
+    if(idx == -1) return; // not found, keep current selection then (leave the incorrect keyStr alone)
+  }
+  else // unfortunately we seem to have to handle default browser behavior too
+  {
+    keyStr = currentKey;
+    // behavior should be: if next option is available and begins with the same character, select the next option
+    // when there is either no more option, or no more option that begins with the same character as the current option,
+    // then select the first option that starts with the currentKey
+    idx = currentSIdx + 1;
+    if(idx >= allOpts.length || allOpts[idx].length == 0 || allOpts[idx].charAt(0) != keyStr)
+      idx = findIdx();
+  }
+  if(idx >= 0) // if keyStr is found in an option, select the option
+  {
+    element.options[currentSIdx].selected = false;
+    // gecko-based browsers have a very strange bug that strikes when user presses
+    // the same character multiple times (like 'AAA', 'BBBB'), which could be "fixed"
+    // in a strange way too (actually the idx > 0 test is not even necessary!)
+    // first make a pattern to check if it's same character multiple times
+    var pattern = new RegExp('^' + keyStr.charAt(0) + '+$', "i");
+    if(is_gecko && pattern.test(keyStr) && idx > 0) element.options[idx-1].selected = true;
+    else element.options[idx].selected = true;
+  }
+  keyTime = newTime;
+}
+function findIdx()
+{
+  // full scan to find the smallest idx that match string keyStr (case-insensitive)
+  var len = keyStr.length;
+  for(var i = 0; i < allOpts.length; i++)
+    if(allOpts[i].length >= len && allOpts[i].substring(0, len) == keyStr)
+      return i;
+  return -1;
+}
+</script>
+<meta http-equiv="Pragma" content="no-cache">
+<style>
+	.textN{font-family:Arial;font-size:9pt;color:blue;text-decoration:none}
+	.buttN{font-family:Arial;font-size:9pt;color:black;background-color:cccccc}
+	
+	.paginationFooter{
+		/*margin-top:3px;*/
+		clear:both;
+		float:left;
+		height:30px;
+	}
+	
+	.paginationFooter UL{
+		margin:0px;
+		padding:0px;
+	}
+	
+	.paginationFooter UL LI{
+		list-style:none;
+		display:inline;
+		padding:3px;
+		padding-left:6px;
+		padding-right:6px;
+		border:1px solid #CCCCCC;
+		margin-right:2px;
+		text-align:center;
+		cursor:pointer;
+		font-weight:bold;
+	}
+	
+	.paginationFooter UL LI:hover{
+		background-color:#CCCCCC;
+		border-bottom:3px solid blue;
+		color:blue;
+	}
+	
+	.paginationFooter UL LI.thisPage{
+		background-color:#CCCCCC;
+		color:blue;
+	}
+	
+</style>
+</HEAD>
+<body bgcolor="FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="body" onLoad="MM_preloadImages('http://www.wakegov.com/wake/images/topnav_home_on.gif','http://www.wakegov.com/wake/images/topnav_directory_on.gif','http://www.wakegov.com/wake/images/topnav_citiestowns_on.gif','http://www.wakegov.com/wake/images/topnav_locations_on.gif','http://www.wakegov.com/wake/images/topnav_calendar_on.gif','http://www.wakegov.com/wake/images/topnav_sitemap_on.gif','http://www.wakegov.com/wake/images/topnav_sitehelp_on.gif','http://www.wakegov.com/wake/images/rolenav_citizens_on.gif','http://www.wakegov.com/wake/images/rolenav_visitors_on.gif','http://www.wakegov.com/wake/images/rolenav_businesses_on.gif','http://www.wakegov.com/wake/images/rolenav_students_on.gif','http://www.wakegov.com/wake/images/rolenav_newarrivals_on.gif','http://www.wakegov.com/wake/images/mainnav_general_on.gif','http://www.wakegov.com/wake/images/mainnav_county_on.gif','http://www.wakegov.com/wake/images/mainnav_useful_on.gif','http://www.wakegov.com/wake/images/footernav_privacy_on.gif','http://www.wakegov.com/wake/images/footernav_accessibility_on.gif','http://www.wakegov.com/wake/images/footernav_disclaimer_on.gif')">
+<table width="750" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr align="left" valign="top">
+		<td colspan="2" height="22" nowrap>
+			<table width="785" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="left" valign="top"><a href="http://www.wakegov.com/"><img src="/images/15/dhd_banner.png" alt="Wake County Restaurant and Sanitation Inspection Grades" border="0" /></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="18" bgcolor="efefef" class="smallnav">
+			<div align="right">
+	<a href="index.cfm" class="smallnav">Health Inspections Home</a> ::
+	<a href="signup.cfm" class="smallnav">Signup</a> :: 
+	<a href="faq.cfm" class="smallnav">FAQ</a> :: 
+	<a href="service.cfm" class="smallnav">Technical Support</a> 
+	&nbsp;
+</div>
+		</td>
+	</tr>
+    <tr>
+		<td height="18" class="smallnav">&nbsp;
+</td>
+	</tr>
+    <tr>
+		<td>
+			<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="140" valign="top">
+<table width="100%" 
+	border="0" 
+	cellspacing="0" 
+	cellpadding="0" 
+	bgcolor="efefef" 
+	style="border:1px solid;border-color:3C5EAA;">
+	<tr>
+		<td height="18" 
+			bgcolor="3C5EAA" 
+			class="subnavhead"
+			background="images/themes/white/bg_menu_header.gif">&nbsp;Main Navigation</td>
+	</tr>
+	<tr>
+		<td class="leftnav">
+			<div style="padding:3px;padding-left:7px;padding-bottom:13px;">
+				<a href="qsearch.cfm#1" class="leftnav" style="">Quick Search by Name</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+				<a href="qsearch.cfm?#2" class="leftnav" style="">Quick Search by Zipcode</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+				<a href="qsearch.cfm?#3" class="leftnav" style="">Browse by First Letter</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+			</div>
+		</td>
+	</tr>
+</table>
+<br>
+<table width="100%" 
+	border="0" 
+	cellspacing="0" 
+	cellpadding="0" 
+	bgcolor="efefef" 
+	style="border:1px solid;border-color:3C5EAA">	
+	<tr>
+		<td height="18" 
+			bgcolor="3C5EAA" 
+			class="subnavhead"
+			background="images/themes/white/bg_menu_header.gif">&nbsp;Site Services</td>
+	</tr>
+	<tr>
+		<td class="leftnav">
+			<div style="padding:3px;padding-left:7px;padding-bottom:13px;">
+				<a href="signup.cfm" class="leftnav" style="">Become a Member</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+				<a href="service.cfm" class="leftnav" style="">Technical Support</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+				<a href="http://www.wakegov.com/food/healthinspections/contacts/" class="leftnav" style="">Contact Us</a><br>
+				<a href="http://www.wakegov.com/food" class="leftnav" style="">Learn More About Wake County Food Safety & Sanitation</a><br>
+				<img src="images/themes/white/dotted_bar.gif" width="130" height="3" alt="" border="0"><br>
+			</div>
+		</td>
+	</tr>
+</table>
+<br>
+						<br>
+		<table width="180" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td height="18" bgcolor="3C5EAA" class="subnavhead">&nbsp;Member Login</td>
+			</tr>
+			<tr>
+				<script type="text/javascript">
+				function valid8ter(form) {
+					if(form.username.value=="" || form.password.value=="") {
+						alert("Please Enter a Username and Password.")
+						return false
+					}
+					else {
+					return true	
+					}
+				}
+				</script>
+				<form action="login.cfm" method="post" onsubmit="return valid8ter(this)">
+				<input type="hidden" name="step" value="2">
+				<td class="body" bgcolor="efefef" align="center">
+					<table width="170" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td class="leftnav" colspan="3"><img src="images/clear.gif" width="170" height="5" alt="" border="0"></td>
+						</tr>
+						<tr>
+							<td class="leftnav" width="30" style="">User</td>
+							<td class="leftnav" colspan="2"><input type="text" name="username" value="" size="15" ></td>
+						</tr>
+						<tr>
+							<td class="leftnav" width="30" style="">Pass</td>
+							<td class="leftnav">
+								<input type="password" name="password" value="" size="9" >
+							</td>
+							<td class="leftnav" align="right">
+								<input type="submit" name="Login" value="Login" >
+							</td>
+						</tr>
+						<tr>
+							<td class="leftnav" colspan="3"><img src="images/clear.gif" width="170" height="10" alt="" border="0"></td>
+						</tr>
+					</table>
+				</td>
+				</form>
+			</tr>
+			<tr>
+				<td colspan="3" height="18" bgcolor="efefef" class="smallnav" align="center">
+					<a href="signup.cfm" class="smallnav">New Account</a> :: 
+					<a href="lost.cfm" class="smallnav">Lost Password?</a>
+				</td>
+			</tr>
+		</table>
+					</td>
+					<td width="10"><img src="images/clear.gif" width="10" height="10"></td>
+					<td width="410" valign="top" bgcolor="fffffe" >
+						<div class="body">
+						<H3>Reports</H3>
+<P><IMG height=9 alt="" src="http://wake.digitalhealthdepartment.com/images/dotted_bar_390.gif" width=385 border=0> For more information on a specific report, or to see the official Health Inspection Report, click on the <STRONG>Facility Heading</STRONG> to expand the list of inspections. <BR><BR>If you're looking for a specific establishment, try the Advanced Report Search function on the right menu, or enter the establishment's name in the search box below.</P><br><br>
+<img src="images/themes/white/dotted_bar_380.gif" width="380" height="7" alt="" border="0"><br> 
+<form action="reports.cfm" method="POST" name="alphaindexform" style="margin:0px;">
+			<input type="hidden" name="F" value="search">
+			<input type="hidden" name="STRSEARCH1" value="">
+			<input type="hidden" name="RELEVANCE1" value="fName">
+			<input type="hidden" name="STRSEARCH2" value="">
+			<input type="hidden" name="RELEVANCE2" value="fName">
+			<input type="hidden" name="STRSEARCH3" value="">
+			<input type="hidden" name="RELEVANCE3" value="fName">
+			<input type="hidden" name="LSCORE" value="">
+			<input type="hidden" name="HSCORE" value="">
+			<input type="hidden" name="FTYPE" value="Restaurant">
+			<input type="hidden" name="FZIPCODE" value="Any">
+			<input type="hidden" name="RCRITICAL" value="Any">
+			<input type="hidden" name="SMONTH" value="8">
+			<input type="hidden" name="SDAY" value="20">
+			<input type="hidden" name="SYEAR" value="2014">
+			<input type="hidden" name="EMONTH" value="12">
+			<input type="hidden" name="EDAY" value="20">
+			<input type="hidden" name="EYEAR" value="2014">
+			<input type="hidden" name="FUNC" value="Search">
+Jump to facility starting with:
+<select name="alphaindex">
+	<option value="">ALL</option>
+	<option value="#" >#</option>
+	<option value="1" >1</option>
+	<option value="2" >2</option>
+	<option value="4" >4</option>
+	<option value="7" >7</option>
+	<option value="A" >A</option>
+	<option value="B" >B</option>
+	<option value="C" >C</option>
+	<option value="D" >D</option>
+	<option value="E" >E</option>
+	<option value="F" >F</option>
+	<option value="G" >G</option>
+	<option value="H" >H</option>
+	<option value="I" >I</option>
+	<option value="J" >J</option>
+	<option value="K" >K</option>
+	<option value="L" >L</option>
+	<option value="M" >M</option>
+	<option value="N" >N</option>
+	<option value="O" >O</option>
+	<option value="P" >P</option>
+	<option value="Q" >Q</option>
+	<option value="R" >R</option>
+	<option value="S" >S</option>
+	<option value="T" >T</option>
+	<option value="U" >U</option>
+	<option value="V" >V</option>
+	<option value="W" >W</option>
+	<option value="Y" >Y</option>
+	<option value="Z" >Z</option>
+</select>
+<input type="submit" name="Filter" value="Filter">
+</form>
+<img src="images/themes/tan/dotted_bar_380.gif"><br>
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" style="border:1px solid;border-color:3C5EAA">
+		<tr bgcolor="3C5EAA">
+			<td class="body"><b><a href="facilities.cfm?facilityID=528014" class="body" style="color:fffffe">#1 CHINA</a></b></td>
+			<td class="body" align="right"><input type="button" name="button" value="Inspection" onclick="jm_popWinU('_templates/NC/Restaurant/_report_full.cfm?reportID=6711515B-C722-184F-314E1A912C99C87B&facilityID=528014&rtype=Restaurant&domainID=15','repWin','width=700,height=400,scrollbars=1,resizable=1')" class="inputbutton"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="body" bgcolor="FFFFFF">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td class="body">
+						<b>Location:</b> 764 W Williams ST APEX, NC 27502<br />
+						<b>Facility Type:</b> Restaurant<br>
+						<b>Inspection Date:</b> 10/28/2014<br>
+						</td>
+						<td class="body" width="42" align="right">
+						&nbsp;
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2">
+					<b>Score:</b> 96 
+				<img src="images/themes/white/dotted_bar_375.gif" width="375" height="9" alt="" border="0"><br>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tr bgcolor="FFFFFF">
+			<td class="body" width="25" align="center">#</td>
+			<td class="body">&nbsp;Comments</td>
+			<td class="body" width="40" align="center">Points</td>
+		</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">4.</td>
+					<td class="body" valign="top">2-401.11; Core; Employee beverages may not be stored on or above food or food contact surfaces. Employees still storing foods/beverages on shelves above prep sink. Also had beverages on prep tables. Provide a designated area for employee foods and beverages.</td>
+					<td class="body" width="40" align="center" valign="top"> 2.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">13.</td>
+					<td class="body" valign="top" style="color:red;">3-302.11; Priority; Store foods in the walk in cooler according to chart provided. Raw shrimp above ready to eat and raw chicken above raw shrimp at the time of inspection.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">47.</td>
+					<td class="body" valign="top">4-602.13; Core;Cleaning needed on dry storage shelving and outsides of dry storage containers.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">53.</td>
+					<td class="body" valign="top">6-501.11; Core; Readhere loose stainless steel on wall behind wok.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">54.</td>
+					<td class="body" valign="top">6-303.11; Core; Replace burned out bulb in hood.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+	<tr bgcolor="FFFFFF">
+		<td class="body" colspan="3">General Comments</td>
+	</tr>
+	<tr>
+		<td class="body" colspan="3"></td>
+	</tr>
+</table>
+				<span style="color:red;font-size:10px;">Red Denotes Critical Violation</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2" bgcolor="FFFFFF">
+				<a href="facilities.cfm?facilityID=528014&v=3">View Last 3 Inspections for this Establishment</a>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" style="border:1px solid;border-color:3C5EAA">
+		<tr bgcolor="3C5EAA">
+			<td class="body"><b><a href="facilities.cfm?facilityID=508972" class="body" style="color:fffffe">115 Midtowne</a></b></td>
+			<td class="body" align="right"><input type="button" name="button" value="Inspection" onclick="jm_popWinU('_templates/NC/Restaurant/_report_full.cfm?reportID=17E819CE-DDF0-6F37-863897B75B35C603&facilityID=508972&rtype=Restaurant&domainID=15','repWin','width=700,height=400,scrollbars=1,resizable=1')" class="inputbutton"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="body" bgcolor="FFFFFF">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td class="body">
+						<b>Location:</b> 4421-115 Six Forks RD RALEIGH, NC 27609<br />
+						<b>Facility Type:</b> Restaurant<br>
+						<b>Inspection Date:</b> 09/30/2014<br>
+						</td>
+						<td class="body" width="42" align="right">
+						&nbsp;
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2">
+					<b>Score:</b> 92 
+				<img src="images/themes/white/dotted_bar_375.gif" width="375" height="9" alt="" border="0"><br>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tr bgcolor="FFFFFF">
+			<td class="body" width="25" align="center">#</td>
+			<td class="body">&nbsp;Comments</td>
+			<td class="body" width="40" align="center">Points</td>
+		</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">2.</td>
+					<td class="body" valign="top" style="color:red;">2-103.11 (M); Priority Foundation; Person in charge unable to provide documentation of an employee health policy that meets the requirements of the Rules.   FOOD EMPLOYEES and CONDITIONAL EMPLOYEES are informed of their responsibility to report in accordance with LAW, to the PERSON IN CHARGE, information about their health and activities as they relate to diseases that are transmissible through FOOD, as specified under Â¶ 2 201.11(A) CDI-Employee Health Policy Form 1-B was given to management.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">12.</td>
+					<td class="body" valign="top">3-402.12;  No documentation that aqua-cultured salmon was feed pellet or formulated parasite free feed. (C) If raw, raw-marinated, partially cooked, or marinated-partially cooked FISH are served or sold in READY-TO-EAT form, and the FISH are raised and fed as specified in Subparagraph 3 402.11(B)(3), a written agreement or statement from the supplier or aqua-culturist stipulating that the FISH were raised and fed as specified in Subparagraph 3 402.11(B)(3) shall be obtained by the PERSON IN CHARGE and retained in the records of the FOOD ESTABLISHMENT for 90 calendar days beyond the time of service or sale of the FISH. CDI-Education</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">14.</td>
+					<td class="body" valign="top" style="color:red;">4-501.114; Priority; Sanitizer shall be 200ppm to 400ppm quat sanitizer when tested with test kits. CDI-fresh sanitizer made. </td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">20.</td>
+					<td class="body" valign="top" style="color:red;">3-501.16 (A)(2) and (B); Priority;Maintain temperature of chicken, oysters, Pork belly and duck at 45F or below.  Temperatures were 48F - 59F. CDI-Food was placed on shallow pan and put in walk-in cooler</td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">26.</td>
+					<td class="body" valign="top" style="color:red;">7-102.11; Priority Foundation; Working containers used for storing POISONOUS OR TOXIC MATERIALS such as cleaners and SANITIZERS taken from bulk supplies shall be clearly and individually identified with the common name of the material. CDI-Bottle of cleaner labeled</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">27.</td>
+					<td class="body" valign="top" style="color:red;">3-502.12; Must follow the below instructions if using ROP without a variance.  Do not use reduced oxygen packaging until approved by this department. 
+(A) Except for a FOOD ESTABLISHMENT that obtains a VARIANCE as specified under Â§ 3502.11, a FOOD ESTABLISHMENT that PACKAGES POTENTIALLY HAZARDOUS FOOD (TIME/TEMPERATURE CONTROL FOR SAFETY FOOD) using a REDUCED OXYGEN PACKAGING method shall control the growth and toxin formation of Clostridium botulinum and the growth of Listeria monocytogenes. P 
+(B) A FOOD ESTABLISHMENT that PACKAGES POTENTIALLY HAZARDOUS FOOD (TIME/TEMPERATURE CONTROL FOR SAFETY FOOD) using a REDUCED OXYGEN PACKAGING method shall have a HACCP PLAN that contains the information specified under Â¶ 8 201.14(D) and that: Pf 
+(1) Identifies the FOOD to be PACKAGED; Pf
+(2) Except as specified under Â¶Â¶ (C) - (E) of this section, requires that the PACKAGED FOOD shall be maintained at 5Â°C (41Â°F) or less and meet at least one of the following criteria: Pf 
+(a) Has an AW of 0.91 or less, Pf
+(b) Has a PH of 4.6 or less, Pf
+(c) Is a MEAT or POULTRY product cured at a FOOD PROCESSING PLANT regulated by the USDA using substances specified in 9 CFR 424.21, Use of food 
+ingredients and sources of radiation, and is received in an intact PACKAGE, Pf or 
+(d) Is a FOOD with a high level of competing organisms such as raw MEAT, raw POULTRY, or raw vegetables; Pf
+(3) Describes how the PACKAGE shall be prominently and conspicuously labeled on the principal display panel in bold type on a contrasting background, with instructions to: Pf 
+(a) Maintain the FOOD at 5oC (41oF) or below, Pf and
+(b) Discard the FOOD if within 14 calendar days of its PACKAGING it is not served for on-PREMISES consumption, or consumed if served or sold for off-PREMISES consumption; Pf
+(4) Limits the refrigerated shelf life to no more than 14 calendar days from PACKAGING to consumption, except the time the product is maintained frozen, or the original manufacturerâs âsell byâ or âuse byâ date, whichever occurs first; P 
+(5) Includes operational procedures that: 
+(a) Prohibit contacting READY-TO-EAT FOOD with bare hands as specified under Â¶ 3-301.11(B), Pf
+(b) Identify a designated work area and the method by which: Pf 
+(i) Physical barriers or methods of separation of raw FOODS and READY-TO-EAT FOODS minimize cross contamination, Pf and
+(ii) Access to the processing EQUIPMENT is limited to responsible trained personnel familiar with the potential HAZARDS of the operation, Pf and
+(c) Delineate cleaning and SANITIZATION procedures for FOOD-CONTACT SURFACES; Pf and
+(6) Describes the training program that ensures that the individual responsible for the REDUCED OXYGEN PACKAGING operation understands the: Pf 
+(a) Concepts required for a safe operation, Pf
+(b) EQUIPMENT and facilities, Pf and
+(c) Procedures specified under Subparagraph (B)(5) of this section and Â¶ 8 201.14(D). Pf 
+(C) Except for FISH that is frozen before, during, and after PACKAGING, a FOOD ESTABLISHMENT may not PACKAGE FISH using a REDUCED OXYGEN PACKAGING method. P "
+(D) Except as specified under Â¶ (C) of this section, a FOOD ESTABLISHMENT that PACKAGES FOOD using a cook-chill or sous vide process shall: 
+(1) Implement a HACCP PLAN that contains the information as specified under Â¶ 8-201.14(D); Pf
+(2) Ensure the FOOD is:
+(a) Prepared and consumed on the PREMISES, or prepared and consumed off the PREMISES but within the same business entity with no distribution or sale of the PACKAGED product to another business entity or the CONSUMER, Pf
+(b) Cooked to heat all parts of the FOOD to a temperature and for a time as specified under Â§ 3-401.11, P
+(c) Protected from contamination before and after cooking as specified under Parts 3-3 and 3-4, P
+(d) Placed in a PACKAGE with an oxygen barrier and sealed before cooking, or placed in a PACKAGE and sealed immediately after cooking and before reaching a temperature below 57Â°C (135Â°F), P
+(e) Cooled to 5Â°C (41Â°F) in the sealed PACKAGE or bag as specified under Â§ 3-501.14 and subsequently: P 
+(i) Cooled to 1Â°C (34Â°F) within 48 hours of reaching 5Â°C (41Â°F) and held at that temperature until consumed or discarded within 30 days after the date of PACKAGING;P 
+(ii) Cooled to 1Â°C (34Â°F) within 48 hours of reaching 5Â°C (41Â°F), removed from refrigeration equipment that maintains a 1Â°C (34Â°F) food temperature and then held at 5Â°C (41Â°F) or less for no more than 72 hours, at which time the FOOD must be consumed or discarded; P 
+(iii) Cooled to 3Â°C (38Â°F) or less within 24 hours of reaching 5Â°C (41Â°F) and held there for no more than 72 hours from PACKAGING, at which time the food must be consumed or discarded; P or
+(iv) Held frozen with no shelf life restriction while
+frozen until consumed or used. P
+(f) Held in a refrigeration unit that is equipped with an electronic system that continuously monitors time and temperature and is visually examined for proper operation twice daily, Pf
+(g) If transported off-site to a satellite location of the same business entity, equipped with verifiable electronic monitoring devices to ensure that times and temperatures are monitored during transportation, Pf and
+(h) Labeled with the product name and the date PACKAGED;Pf and
+(3) Maintain the records required to confirm that cooling and cold holding refrigeration time/temperature parameters are required as part of the HACCP PLAN and: 
+(a) Make such records available to the REGULATORY AUTHORITY upon request, Pf and
+(b) Hold such records for at least 6 months; Pf and
+(4) Implement written operational procedures as specified under Subparagraph (B)(5) of this section and a training program as specified under Subparagraph (B)(6) of this section.Pf
+(E) A FOOD ESTABLISHMENT that PACKAGES cheese using a REDUCED OXYGEN PACKAGING method shall:
+(1) Limit the cheeses PACKAGED to those that are commercially manufactured in a FOOD PROCESSING PLANT with no ingredients added in the FOOD ESTABLISHMENT and that meet the Standards of Identity as specified in 21 CFR 133.150 Hard cheeses, 21 CFR 133.169 Pasteurized process cheese or 21 CFR 133.187 Semisoft cheeses; P
+(2) Have a HACCP PLAN that contains the information specified under Â¶ 8-201.14(D) and as specified under Â¶Â¶ (B)(1), (B)(3)(a), (B)(5) and (B)(6) of this section; Pf
+(3) Labels the PACKAGE on the principal display panel with a âuse byâ date that does not exceed 30 days from its packaging or the original manufacturerâs âsell byâ or âuse byâ date, whichever occurs first; Pf and
+(4) Discards the REDUCED OXYGEN PACKAGED cheese if it is not sold for off-PREMISES consumption or consumed within 30 calendar days of its PACKAGING. Pf"  Priority Foundation;  CDI-Education</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">37.</td>
+					<td class="body" valign="top">3-304.13; Core; Do  not use linens or napkins to contact food.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">53.</td>
+					<td class="body" valign="top">6-501.12; Core; Clean ceiling tile, floors and walls.  </td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">53.</td>
+					<td class="body" valign="top">6-201.16; Core; Replace ceiling tile that is not approved with smooth, easily cleanable ceiling tile.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+	<tr bgcolor="FFFFFF">
+		<td class="body" colspan="3">General Comments</td>
+	</tr>
+	<tr>
+		<td class="body" colspan="3"></td>
+	</tr>
+</table>
+				<span style="color:red;font-size:10px;">Red Denotes Critical Violation</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2" bgcolor="FFFFFF">
+				<a href="facilities.cfm?facilityID=508972&v=3">View Last 3 Inspections for this Establishment</a>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" style="border:1px solid;border-color:3C5EAA">
+		<tr bgcolor="3C5EAA">
+			<td class="body"><b><a href="facilities.cfm?facilityID=614F036B-CA29-1ABB-F894C59F1400B9D4" class="body" style="color:fffffe">18 Seaboard</a></b></td>
+			<td class="body" align="right"><input type="button" name="button" value="Inspection" onclick="jm_popWinU('_templates/NC/Restaurant/_report_full.cfm?reportID=F91F0389-C303-ADCA-0324FE63198AFA04&facilityID=614F036B-CA29-1ABB-F894C59F1400B9D4&rtype=Restaurant&domainID=15','repWin','width=700,height=400,scrollbars=1,resizable=1')" class="inputbutton"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="body" bgcolor="FFFFFF">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td class="body">
+						<b>Location:</b> 18 Seaboard AVE Ste. 100 RALEIGH, NC 27604<br />
+						<b>Facility Type:</b> Restaurant<br>
+						<b>Inspection Date:</b> 08/27/2014<br>
+						</td>
+						<td class="body" width="42" align="right">
+						&nbsp;
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2">
+					<b>Score:</b> 97 
+				<img src="images/themes/white/dotted_bar_375.gif" width="375" height="9" alt="" border="0"><br>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tr bgcolor="FFFFFF">
+			<td class="body" width="25" align="center">#</td>
+			<td class="body">&nbsp;Comments</td>
+			<td class="body" width="40" align="center">Points</td>
+		</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">18.</td>
+					<td class="body" valign="top" style="color:red;">3-501.14; Priority; She crab soup and stock were 60 degrees F. and 56 degrees F. Stock had been prepared and cooled two days prior to inspection. She crab soup had a prior day's date for prep. and cooling. Precooked items must be cooled to 45 degrees F or less within six hours.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">20.</td>
+					<td class="body" valign="top" style="color:red;">3-501.16 (A)(2) and (B); Priority; Items like whipped cream cheese were 48.5 degrees F. in reach in cooler. Reach in cooler had an interior temp. of 50 degrees F. Cold foods must be kept at a temp. of 45 degrees F. Do not store potentially hazardous foods in reach in cooler until it is repaired and is maintaining proper cold food storage temperatures.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+	<tr bgcolor="FFFFFF">
+		<td class="body" colspan="3">General Comments</td>
+	</tr>
+	<tr>
+		<td class="body" colspan="3">Keep bottle top covers on drinks by bar hand wash and dish wash sinks. Dust build up was present on shelves by dishwasher. Store raw meats on bottom shelf of freezer.</td>
+	</tr>
+</table>
+				<span style="color:red;font-size:10px;">Red Denotes Critical Violation</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2" bgcolor="FFFFFF">
+				<a href="facilities.cfm?facilityID=614F036B-CA29-1ABB-F894C59F1400B9D4&v=3">View Last 3 Inspections for this Establishment</a>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%" cellpadding="3" cellspacing="0" border="0" style="border:1px solid;border-color:3C5EAA">
+		<tr bgcolor="3C5EAA">
+			<td class="body"><b><a href="facilities.cfm?facilityID=499719" class="body" style="color:fffffe">1853 Grille</a></b></td>
+			<td class="body" align="right"><input type="button" name="button" value="Inspection" onclick="jm_popWinU('_templates/NC/Restaurant/_report_full.cfm?reportID=F7E7F319-845C-BA24-502499A88A137FC3&facilityID=499719&rtype=Restaurant&domainID=15','repWin','width=700,height=400,scrollbars=1,resizable=1')" class="inputbutton"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="body" bgcolor="FFFFFF">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td class="body">
+						<b>Location:</b> 1025 BLUE RIDGE RD RALEIGH, NC 27607-3902<br />
+						<b>Facility Type:</b> Restaurant<br>
+						<b>Inspection Date:</b> 10/16/2014<br>
+						</td>
+						<td class="body" width="42" align="right">
+						&nbsp;
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2">
+					<b>Score:</b> 93.5 
+				<img src="images/themes/white/dotted_bar_375.gif" width="375" height="9" alt="" border="0"><br>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tr bgcolor="FFFFFF">
+			<td class="body" width="25" align="center">#</td>
+			<td class="body">&nbsp;Comments</td>
+			<td class="body" width="40" align="center">Points</td>
+		</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">8.</td>
+					<td class="body" valign="top" style="color:red;">5-202.12; Priority Foundation - Hot water at kitchen handwash sink did not exceed 85F after running water for several minutes. Hot water of at least 100 degrees F shall be provided at all handwash sinks. CDI by informing PIC of requirement (NOTE: Hot water at bathroom handwash sink was well above 100F). 
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">13.</td>
+					<td class="body" valign="top" style="color:red;">3-304.15 (A); Priority - Observed worker contaminate gloved hands with raw hamburger and then proceeded to handle cooking spatula with contaminated gloves. Single use gloves shall be discarded when soiled with contaminated meat before handling other items in kitchen. CDI by discarding gloves and washing hands (and washing/sanitizing spatula touched). </td>
+					<td class="body" width="40" align="center" valign="top"> 1.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">14.</td>
+					<td class="body" valign="top" style="color:red;">4-501.114; Priority - Chlorine concentration in one sanitizer spray bottle was a little less than 50 ppm. The chlorine concentration shall be at least 50 ppm but should not exceed 200 ppm. CDI by filling bottle with correct sanitizer strength.
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">20.</td>
+					<td class="body" valign="top" style="color:red;">3-501.16 (A)(2) and (B); Priority - Observed cut lettuce at 49-61F on refrigerated make line top. Cut leafy greens are potentially hazardous and shall be kept at 45/41F or less. CDI by informing PIC of requirement. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">21.</td>
+					<td class="body" valign="top" style="color:red;">3-501.17; Priority Foundation - A few ready-to-eat potentially hazardous foods in refrigeration were not date marked. They shall be date marked if kept more than 24 hours. CDI by informing PIC of requirement. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">23.</td>
+					<td class="body" valign="top" style="color:red;">3-603.11; Priority Foundation - Establishment offers at least one raw or undercooked animal-based food (eggs) and has no consumer advisory. Consumer advisory shall be provided for any raw or undercooked animal-based food with the exception of some steaks. Consumer advisory must consist of a DISCLOSURE, where the menu must indicate where specific foods may be served raw or undercooked, such as "Eggs (cooked to order)," and the disclosure must be asterisked to a REMINDER stating the following: "Consuming raw or undercooked eggs may increase your risk of foodborne illness." CDI by educating PIC about requirements. 
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">34.</td>
+					<td class="body" valign="top" style="color:red;">4-502.11(B); Priority Foundation - One metal stemmed food thermometer used in kitchen read 25 degrees F when calibrated using ice-water method. It shall read 32 degrees F, plus or minus 2 degrees F, when calibrated using this method. CDI by properly calibrating this thermometer. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">34.</td>
+					<td class="body" valign="top" style="color:red;">4-302.12; Priority Foundation - No thermometer was available to check temperatures of thin foods. Provide a thermometer with a suitable small diameter probe which is designed to measure the temperature of thin masses such as meat patties and fish fillets. CDI by informing PIC of requirement.
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">36.</td>
+					<td class="body" valign="top">6-202.15; Core - Observed back door to establishment does not have a self-closing device. Outer openings of a food establishment shall be protected against the entry of insects and rodents by providing self-closing doors.
+</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">36.</td>
+					<td class="body" valign="top">6-501.111; Core - Found several live house flies in establishment. Rid the premises of these insects using methods approved for food service establishments. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">36.</td>
+					<td class="body" valign="top">6-501.112; Core - Insect remains observed on kitchen ceiling light shields. Do not allow insect remains to accumulate. When insect remains are found, document for pest control service and immediately remove.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">37.</td>
+					<td class="body" valign="top">3-305.12; Core - Found significant ice accumulation on food boxes and packaging stored under leaking condenser in walk-in freezer. Remove ice from boxes and packaging. Food shall not be stored under lines on which water has condensed, or are leaking or have a potential for leaking. Until leaks are fixed, place a pan under leaking areas.
+</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">43.</td>
+					<td class="body" valign="top">4-903.11(A) and (C); Core - Observed unprotected disposable food containers, cups and plastic forks with food contact sides up. Some containers were soiled. Discard the soiled containers. Store these containers inverted on clean surfaces with food/beverage sides down. Store forks with handles up and presented to the user.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">45.</td>
+					<td class="body" valign="top">4-501.11; Core - Replace the wire shelving that is getting rusty and corroded using shelving that is certified or classified for sanitation by an American National Standards Institute (ANSI) accredited certification program, such as the National Sanitation Foundation (NSF) (4-205.10)...Replace the torn walk-in freezer door gasket.</td>
+					<td class="body" width="40" align="center" valign="top"> 1.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">45.</td>
+					<td class="body" valign="top">4-205.10; Core - Observed several inverted black soda trays being used as "shelving" to elevate items above floor (in kitchen and walk-in freezer). These trays are not approved as shelves and shall be replace with ANSI/NSF certified shelving. 
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">45.</td>
+					<td class="body" valign="top">4-502.11(A) and (C); Core - Discard the few cracked food containers and replace as needed.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">47.</td>
+					<td class="body" valign="top">4-601.11(B) and (C); Core - Clean the following soiled surfaces and areas: backsides/undersides of equipment door handles--interiors of refrigerator/freezer units--undersides of sink drainboards--sink drain pipes--bottoms of front counter cabinets--interiors of dining area trash cabinets...Remove stickers from exteriors of food containers...Remove aluminum foil from counters in front battering areas since foil is not easy to clean and sanitize. Consider using large flat sheet pans on counter surfaces instead to catch drips and spills.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">49.</td>
+					<td class="body" valign="top" style="color:red;">5-203.14; Priority - No backflow preventer observed on water supply lines of at least one beverage dispensing machine and ice machine. The plumbing system must be protected from backflow of a solid, liquid or gas contaminant at each point of use on food service equipment by installing an approved backflow prevention device (dual check valves) on water supply lines. CDI by informing PIC of requirement.
+</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">51.</td>
+					<td class="body" valign="top">6-202.14; Core - Observed toilet room door is not self-closing. Toilet room door shall be self-closing. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">53.</td>
+					<td class="body" valign="top">6-501.11; Core - Repair the condensation leak in walk-in freezer so that ice does not accumulate on food boxes and packages below...Replace/repair the cracked caulk between handwash sinks and walls. Replace any moldy or mildewed caulk. When replaced, ensure caulk is smooth and easy to clean...Seal the small holes in kitchen walls...Resecure the loose metal panel on wall behind cooking line so that it is flat against the wall. Seal any cracks or crevices around panel...Replace the burned out ceiling light bulbs to ensure there is at least 50 foot-candles of light on food preparation surfaces (6-303.11). </td>
+					<td class="body" width="40" align="center" valign="top"> 0.5</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">53.</td>
+					<td class="body" valign="top">6-501.12; Core - Clean the soiled walls and flooring in kitchen (especially under equipment and in corners)...Clean the soiled kitchen ceiling light shields, panels and vent openings...Replace stained or discolored panels and light shields.</td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+				<tr>
+					<td class="body" width="25" align="center" valign="top">54.</td>
+					<td class="body" valign="top">6-305.11; Core - Observed several personal jackets/sweaters stored on or near dry food items or other food contact items in dry storage areas. Store these personal items in designated areas away from food and other dry storage items. </td>
+					<td class="body" width="40" align="center" valign="top"> 0.0</td>
+				</tr>
+	<tr bgcolor="FFFFFF">
+		<td class="body" colspan="3">General Comments</td>
+	</tr>
+	<tr>
+		<td class="body" colspan="3"></td>
+	</tr>
+</table>
+				<span style="color:red;font-size:10px;">Red Denotes Critical Violation</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="body" colspan="2" bgcolor="FFFFFF">
+				<a href="facilities.cfm?facilityID=499719&v=3">View Last 3 Inspections for this Establishment</a>
+			</td>
+		</tr>
+	</table>
+	<br>
+					Result Pages: 
+							<a href="reports.cfm?start=1&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;"><b style='color:red'>(1)</b></a>
+							<a href="reports.cfm?start=5&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">2</a>
+							<a href="reports.cfm?start=9&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">3</a>
+							<a href="reports.cfm?start=13&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">4</a>
+							<a href="reports.cfm?start=17&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">5</a>
+							<a href="reports.cfm?start=21&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">6</a>
+							<a href="reports.cfm?start=25&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">7</a>
+							<a href="reports.cfm?start=29&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">8</a>
+							<a href="reports.cfm?start=33&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">9</a>
+							<a href="reports.cfm?start=37&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">10</a>
+							<a href="reports.cfm?start=41&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">11</a>
+							<a href="reports.cfm?start=45&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">12</a>
+							<a href="reports.cfm?start=49&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">13</a>
+							<a href="reports.cfm?start=53&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">14</a>
+							<a href="reports.cfm?start=57&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">15</a>
+							<a href="reports.cfm?start=61&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">16</a>
+							<a href="reports.cfm?start=65&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">17</a>
+							<a href="reports.cfm?start=69&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">18</a>
+							<a href="reports.cfm?start=73&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">19</a>
+							<a href="reports.cfm?start=77&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">20</a>
+							<a href="reports.cfm?start=81&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">21</a>
+							<a href="reports.cfm?start=85&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">22</a>
+							<a href="reports.cfm?start=89&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">23</a>
+							<a href="reports.cfm?start=93&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">24</a>
+							<a href="reports.cfm?start=97&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">25</a>
+							<a href="reports.cfm?start=101&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">26</a>
+							<a href="reports.cfm?start=105&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">27</a>
+							<a href="reports.cfm?start=109&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">28</a>
+							<a href="reports.cfm?start=113&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">29</a>
+							<a href="reports.cfm?start=117&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">30</a>
+							<a href="reports.cfm?start=121&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">31</a>
+							<a href="reports.cfm?start=125&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">32</a>
+							<a href="reports.cfm?start=129&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">33</a>
+							<a href="reports.cfm?start=133&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">34</a>
+							<a href="reports.cfm?start=137&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">35</a>
+							<a href="reports.cfm?start=141&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">36</a>
+							<a href="reports.cfm?start=145&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">37</a>
+							<a href="reports.cfm?start=149&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">38</a>
+							<a href="reports.cfm?start=153&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">39</a>
+							<a href="reports.cfm?start=157&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">40</a>
+							<a href="reports.cfm?start=161&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">41</a>
+							<a href="reports.cfm?start=165&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">42</a>
+							<a href="reports.cfm?start=169&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">43</a>
+							<a href="reports.cfm?start=173&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">44</a>
+							<a href="reports.cfm?start=177&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">45</a>
+							<a href="reports.cfm?start=181&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">46</a>
+							<a href="reports.cfm?start=185&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">47</a>
+							<a href="reports.cfm?start=189&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">48</a>
+							<a href="reports.cfm?start=193&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">49</a>
+							<a href="reports.cfm?start=197&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">50</a>
+							<a href="reports.cfm?start=201&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">51</a>
+							<a href="reports.cfm?start=205&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">52</a>
+							<a href="reports.cfm?start=209&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">53</a>
+							<a href="reports.cfm?start=213&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">54</a>
+							<a href="reports.cfm?start=217&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">55</a>
+							<a href="reports.cfm?start=221&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">56</a>
+							<a href="reports.cfm?start=225&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">57</a>
+							<a href="reports.cfm?start=229&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">58</a>
+							<a href="reports.cfm?start=233&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">59</a>
+							<a href="reports.cfm?start=237&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">60</a>
+							<a href="reports.cfm?start=241&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">61</a>
+							<a href="reports.cfm?start=245&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">62</a>
+							<a href="reports.cfm?start=249&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">63</a>
+							<a href="reports.cfm?start=253&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">64</a>
+							<a href="reports.cfm?start=257&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">65</a>
+							<a href="reports.cfm?start=261&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">66</a>
+							<a href="reports.cfm?start=265&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">67</a>
+							<a href="reports.cfm?start=269&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">68</a>
+							<a href="reports.cfm?start=273&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">69</a>
+							<a href="reports.cfm?start=277&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">70</a>
+							<a href="reports.cfm?start=281&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">71</a>
+							<a href="reports.cfm?start=285&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">72</a>
+							<a href="reports.cfm?start=289&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">73</a>
+							<a href="reports.cfm?start=293&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">74</a>
+							<a href="reports.cfm?start=297&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">75</a>
+							<a href="reports.cfm?start=301&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">76</a>
+							<a href="reports.cfm?start=305&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">77</a>
+							<a href="reports.cfm?start=309&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">78</a>
+							<a href="reports.cfm?start=313&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">79</a>
+							<a href="reports.cfm?start=317&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">80</a>
+							<a href="reports.cfm?start=321&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">81</a>
+							<a href="reports.cfm?start=325&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">82</a>
+							<a href="reports.cfm?start=329&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">83</a>
+							<a href="reports.cfm?start=333&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">84</a>
+							<a href="reports.cfm?start=337&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">85</a>
+							<a href="reports.cfm?start=341&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">86</a>
+							<a href="reports.cfm?start=345&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">87</a>
+							<a href="reports.cfm?start=349&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">88</a>
+							<a href="reports.cfm?start=353&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">89</a>
+							<a href="reports.cfm?start=357&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">90</a>
+							<a href="reports.cfm?start=361&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">91</a>
+							<a href="reports.cfm?start=365&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">92</a>
+							<a href="reports.cfm?start=369&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">93</a>
+							<a href="reports.cfm?start=373&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">94</a>
+							<a href="reports.cfm?start=377&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">95</a>
+							<a href="reports.cfm?start=381&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">96</a>
+							<a href="reports.cfm?start=385&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">97</a>
+							<a href="reports.cfm?start=389&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">98</a>
+							<a href="reports.cfm?start=393&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">99</a>
+							<a href="reports.cfm?start=397&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">100</a>
+							<a href="reports.cfm?start=401&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">101</a>
+							<a href="reports.cfm?start=405&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">102</a>
+							<a href="reports.cfm?start=409&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">103</a>
+							<a href="reports.cfm?start=413&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">104</a>
+							<a href="reports.cfm?start=417&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">105</a>
+							<a href="reports.cfm?start=421&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">106</a>
+							<a href="reports.cfm?start=425&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">107</a>
+							<a href="reports.cfm?start=429&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">108</a>
+							<a href="reports.cfm?start=433&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">109</a>
+							<a href="reports.cfm?start=437&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">110</a>
+							<a href="reports.cfm?start=441&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">111</a>
+							<a href="reports.cfm?start=445&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">112</a>
+							<a href="reports.cfm?start=449&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">113</a>
+							<a href="reports.cfm?start=453&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">114</a>
+							<a href="reports.cfm?start=457&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">115</a>
+							<a href="reports.cfm?start=461&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">116</a>
+							<a href="reports.cfm?start=465&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">117</a>
+							<a href="reports.cfm?start=469&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">118</a>
+							<a href="reports.cfm?start=473&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">119</a>
+							<a href="reports.cfm?start=477&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">120</a>
+							<a href="reports.cfm?start=481&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">121</a>
+							<a href="reports.cfm?start=485&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">122</a>
+							<a href="reports.cfm?start=489&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">123</a>
+							<a href="reports.cfm?start=493&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">124</a>
+							<a href="reports.cfm?start=497&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">125</a>
+							<a href="reports.cfm?start=501&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">126</a>
+							<a href="reports.cfm?start=505&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">127</a>
+							<a href="reports.cfm?start=509&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">128</a>
+							<a href="reports.cfm?start=513&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">129</a>
+							<a href="reports.cfm?start=517&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">130</a>
+							<a href="reports.cfm?start=521&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">131</a>
+							<a href="reports.cfm?start=525&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">132</a>
+							<a href="reports.cfm?start=529&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">133</a>
+							<a href="reports.cfm?start=533&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">134</a>
+							<a href="reports.cfm?start=537&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">135</a>
+							<a href="reports.cfm?start=541&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">136</a>
+							<a href="reports.cfm?start=545&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">137</a>
+							<a href="reports.cfm?start=549&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">138</a>
+							<a href="reports.cfm?start=553&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">139</a>
+							<a href="reports.cfm?start=557&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">140</a>
+							<a href="reports.cfm?start=561&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">141</a>
+							<a href="reports.cfm?start=565&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">142</a>
+							<a href="reports.cfm?start=569&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">143</a>
+							<a href="reports.cfm?start=573&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">144</a>
+							<a href="reports.cfm?start=577&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">145</a>
+							<a href="reports.cfm?start=581&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">146</a>
+							<a href="reports.cfm?start=585&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">147</a>
+							<a href="reports.cfm?start=589&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">148</a>
+							<a href="reports.cfm?start=593&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">149</a>
+							<a href="reports.cfm?start=597&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">150</a>
+							<a href="reports.cfm?start=601&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">151</a>
+							<a href="reports.cfm?start=605&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">152</a>
+							<a href="reports.cfm?start=609&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">153</a>
+							<a href="reports.cfm?start=613&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">154</a>
+							<a href="reports.cfm?start=617&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">155</a>
+							<a href="reports.cfm?start=621&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">156</a>
+							<a href="reports.cfm?start=625&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">157</a>
+							<a href="reports.cfm?start=629&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">158</a>
+							<a href="reports.cfm?start=633&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">159</a>
+							<a href="reports.cfm?start=637&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">160</a>
+							<a href="reports.cfm?start=641&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">161</a>
+							<a href="reports.cfm?start=645&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">162</a>
+							<a href="reports.cfm?start=649&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">163</a>
+							<a href="reports.cfm?start=653&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">164</a>
+							<a href="reports.cfm?start=657&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">165</a>
+							<a href="reports.cfm?start=661&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">166</a>
+							<a href="reports.cfm?start=665&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">167</a>
+							<a href="reports.cfm?start=669&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">168</a>
+							<a href="reports.cfm?start=673&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">169</a>
+							<a href="reports.cfm?start=677&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">170</a>
+							<a href="reports.cfm?start=681&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">171</a>
+							<a href="reports.cfm?start=685&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">172</a>
+							<a href="reports.cfm?start=689&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">173</a>
+							<a href="reports.cfm?start=693&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">174</a>
+							<a href="reports.cfm?start=697&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">175</a>
+							<a href="reports.cfm?start=701&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">176</a>
+							<a href="reports.cfm?start=705&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">177</a>
+							<a href="reports.cfm?start=709&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">178</a>
+							<a href="reports.cfm?start=713&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">179</a>
+							<a href="reports.cfm?start=717&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">180</a>
+							<a href="reports.cfm?start=721&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">181</a>
+							<a href="reports.cfm?start=725&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">182</a>
+							<a href="reports.cfm?start=729&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">183</a>
+							<a href="reports.cfm?start=733&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">184</a>
+							<a href="reports.cfm?start=737&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">185</a>
+							<a href="reports.cfm?start=741&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">186</a>
+							<a href="reports.cfm?start=745&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">187</a>
+							<a href="reports.cfm?start=749&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">188</a>
+							<a href="reports.cfm?start=753&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">189</a>
+							<a href="reports.cfm?start=757&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">190</a>
+							<a href="reports.cfm?start=761&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">191</a>
+							<a href="reports.cfm?start=765&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">192</a>
+							<a href="reports.cfm?start=769&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">193</a>
+							<a href="reports.cfm?start=773&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">194</a>
+							<a href="reports.cfm?start=777&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">195</a>
+							<a href="reports.cfm?start=781&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">196</a>
+							<a href="reports.cfm?start=785&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">197</a>
+							<a href="reports.cfm?start=789&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">198</a>
+							<a href="reports.cfm?start=793&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">199</a>
+							<a href="reports.cfm?start=797&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">200</a>
+							<a href="reports.cfm?start=801&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">201</a>
+							<a href="reports.cfm?start=805&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">202</a>
+							<a href="reports.cfm?start=809&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">203</a>
+							<a href="reports.cfm?start=813&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">204</a>
+							<a href="reports.cfm?start=817&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">205</a>
+							<a href="reports.cfm?start=821&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">206</a>
+							<a href="reports.cfm?start=825&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">207</a>
+							<a href="reports.cfm?start=829&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">208</a>
+							<a href="reports.cfm?start=833&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">209</a>
+							<a href="reports.cfm?start=837&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">210</a>
+							<a href="reports.cfm?start=841&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">211</a>
+							<a href="reports.cfm?start=845&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">212</a>
+							<a href="reports.cfm?start=849&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">213</a>
+							<a href="reports.cfm?start=853&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">214</a>
+							<a href="reports.cfm?start=857&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">215</a>
+							<a href="reports.cfm?start=861&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">216</a>
+							<a href="reports.cfm?start=865&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">217</a>
+							<a href="reports.cfm?start=869&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">218</a>
+							<a href="reports.cfm?start=873&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">219</a>
+							<a href="reports.cfm?start=877&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">220</a>
+							<a href="reports.cfm?start=881&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">221</a>
+							<a href="reports.cfm?start=885&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">222</a>
+							<a href="reports.cfm?start=889&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">223</a>
+							<a href="reports.cfm?start=893&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">224</a>
+							<a href="reports.cfm?start=897&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">225</a>
+							<a href="reports.cfm?start=901&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">226</a>
+							<a href="reports.cfm?start=905&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">227</a>
+							<a href="reports.cfm?start=909&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">228</a>
+							<a href="reports.cfm?start=913&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">229</a>
+							<a href="reports.cfm?start=917&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">230</a>
+							<a href="reports.cfm?start=921&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">231</a>
+							<a href="reports.cfm?start=925&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">232</a>
+							<a href="reports.cfm?start=929&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">233</a>
+							<a href="reports.cfm?start=933&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">234</a>
+							<a href="reports.cfm?start=937&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">235</a>
+							<a href="reports.cfm?start=941&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">236</a>
+							<a href="reports.cfm?start=945&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">237</a>
+							<a href="reports.cfm?start=949&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">238</a>
+							<a href="reports.cfm?start=953&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">239</a>
+							<a href="reports.cfm?start=957&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">240</a>
+							<a href="reports.cfm?start=961&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">241</a>
+							<a href="reports.cfm?start=965&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">242</a>
+							<a href="reports.cfm?start=969&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">243</a>
+							<a href="reports.cfm?start=973&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">244</a>
+							<a href="reports.cfm?start=977&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">245</a>
+							<a href="reports.cfm?start=981&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">246</a>
+							<a href="reports.cfm?start=985&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">247</a>
+							<a href="reports.cfm?start=989&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">248</a>
+							<a href="reports.cfm?start=993&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">249</a>
+							<a href="reports.cfm?start=997&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">250</a>
+							<a href="reports.cfm?start=1001&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">251</a>
+							<a href="reports.cfm?start=1005&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">252</a>
+							<a href="reports.cfm?start=1009&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">253</a>
+							<a href="reports.cfm?start=1013&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">254</a>
+							<a href="reports.cfm?start=1017&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">255</a>
+							<a href="reports.cfm?start=1021&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">256</a>
+							<a href="reports.cfm?start=1025&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">257</a>
+							<a href="reports.cfm?start=1029&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">258</a>
+							<a href="reports.cfm?start=1033&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">259</a>
+							<a href="reports.cfm?start=1037&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">260</a>
+							<a href="reports.cfm?start=1041&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">261</a>
+							<a href="reports.cfm?start=1045&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">262</a>
+							<a href="reports.cfm?start=1049&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">263</a>
+							<a href="reports.cfm?start=1053&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">264</a>
+							<a href="reports.cfm?start=1057&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">265</a>
+							<a href="reports.cfm?start=1061&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">266</a>
+							<a href="reports.cfm?start=1065&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">267</a>
+							<a href="reports.cfm?start=1069&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">268</a>
+							<a href="reports.cfm?start=1073&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">269</a>
+							<a href="reports.cfm?start=1077&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">270</a>
+							<a href="reports.cfm?start=1081&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">271</a>
+							<a href="reports.cfm?start=1085&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">272</a>
+							<a href="reports.cfm?start=1089&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">273</a>
+							<a href="reports.cfm?start=1093&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">274</a>
+							<a href="reports.cfm?start=1097&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">275</a>
+							<a href="reports.cfm?start=1101&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">276</a>
+							<a href="reports.cfm?start=1105&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">277</a>
+							<a href="reports.cfm?start=1109&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">278</a>
+							<a href="reports.cfm?start=1113&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">279</a>
+							<a href="reports.cfm?start=1117&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">280</a>
+							<a href="reports.cfm?start=1121&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">281</a>
+							<a href="reports.cfm?start=1125&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">282</a>
+							<a href="reports.cfm?start=1129&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">283</a>
+							<a href="reports.cfm?start=1133&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">284</a>
+							<a href="reports.cfm?start=1137&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">285</a>
+							<a href="reports.cfm?start=1141&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">286</a>
+							<a href="reports.cfm?start=1145&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">287</a>
+							<a href="reports.cfm?start=1149&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">288</a>
+							<a href="reports.cfm?start=1153&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">289</a>
+							<a href="reports.cfm?start=1157&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">290</a>
+							<a href="reports.cfm?start=1161&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">291</a>
+							<a href="reports.cfm?start=1165&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">292</a>
+							<a href="reports.cfm?start=1169&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">293</a>
+							<a href="reports.cfm?start=1173&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">294</a>
+							<a href="reports.cfm?start=1177&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">295</a>
+							<a href="reports.cfm?start=1181&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">296</a>
+							<a href="reports.cfm?start=1185&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">297</a>
+							<a href="reports.cfm?start=1189&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">298</a>
+							<a href="reports.cfm?start=1193&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">299</a>
+							<a href="reports.cfm?start=1197&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">300</a>
+							<a href="reports.cfm?start=1201&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">301</a>
+							<a href="reports.cfm?start=1205&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">302</a>
+							<a href="reports.cfm?start=1209&F=search&STRSEARCH1=&RELEVANCE1=fName&STRSEARCH2=&RELEVANCE2=fName&STRSEARCH3=&RELEVANCE3=fName&LSCORE=&HSCORE=&FTYPE=Restaurant&FZIPCODE=Any&RCRITICAL=Any&SMONTH=8&SDAY=20&SYEAR=2014&EMONTH=12&EDAY=20&EYEAR=2014&FUNC=Search" class="teaser" style="padding:1px;">303</a>
+<br><br>
+<div style=" width:100%;padding:5px;border:1px solid;border-color:999999;background-color:ffffef;">
+<b style="color:red">1212 out of 188163 Inspections Matched Your Query:</b><br><br> Restaurant 
+	in any zipcode
+	having any violations
+	between the dates of 08/20/2014 and 12/20/2014<br> 
+</div>
+<br>
+<script language="JavaScript">
+<!--
+  function toggle(target,image){
+     obj=(document.all) ? document.all[target] : document.getElementById(target);
+     obj.style.display=(obj.style.display=='none') ? 'inline' : 'none';
+	 if(obj.style.display=='none'){
+		 document[image].src='icons/download.png';
+	 }else{
+		 document[image].src='icons/upload.png';
+	 }
+  }
+//-->
+</script>
+<br>Query Completed in 0.281 Seconds.<br> 					
+							</div>
+					</td>
+					<td width="10"><img src="images/clear.gif" width="10" height="10"></td>
+					<td width="180" valign="top">
+							<table width="180" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td height="18" bgcolor="3C5EAA" class="subnavhead">&nbsp;Advanced Report Search</td>
+	</tr>
+	<tr>
+		<td class="body" bgcolor="efefef" align="center">
+			<table width="170" cellpadding="0" cellspacing="0" border="0" bgcolor="efefef">
+				<form action="reports.cfm" method="post" onsubmit="return jm_valid8Form(this);" name="myform">
+				<input type="hidden" name="f" value="search">
+				<tr>
+					<td class="leftnav" style="">
+						Keyword (1):<br>
+						<input type="text" name="strSearch1" value="" size="15" >
+					</td>
+				</tr>
+				<tr>
+					<td class="leftnav">
+						<select name="relevance1" >
+							<option value="fName">Establishment Name</option>
+							<option value="fAddress1">Address</option>
+							<option value="fCity">City</option>
+							<option value="icomments">Comments</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Keyword (2):<br>
+						<input type="text" name="strSearch2" value="" size="15" >
+					</td>
+				</tr>
+				<tr>
+					<td class="leftnav">
+						<select name="relevance2" >
+							<option value="fName">Establishment Name</option>
+							<option value="fAddress1">Address</option>
+							<option value="fCity">City</option>
+							<option value="icomments">Comments</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Keyword (3):<br>
+						<input type="text" name="strSearch3" value="" size="15" >
+					</td>
+				</tr>
+				<tr>
+					<td class="leftnav">
+						<select name="relevance3" >
+							<option value="fName">Establishment Name</option>
+							<option value="fAddress1">Address</option>
+							<option value="fCity">City</option>
+							<option value="icomments">Comments</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Score Range:<br>
+						<input type="text" name="lscore" value="" size="10" > - 
+						<input type="text" name="hscore" value="" size="10" >
+					</td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Establishment Type:<br>
+						<select name="ftype" >
+							<option value="Any">All Types</option>
+								<option value="Adult Day Service">Adult Day Service</option>
+								<option value="Bed and Breakfast Home">Bed and Breakfast Home</option>
+								<option value="Bed and Breakfast Inn">Bed and Breakfast Inn</option>
+								<option value="Child Day Care">Child Day Care</option>
+								<option value="Commissary (PC/MFU)">Commissary (PC/MFU)</option>
+								<option value="Commissary Preparing Food">Commissary Preparing Food</option>
+								<option value="Educational Foodservice">Educational Foodservice</option>
+								<option value="Elderly Nutrition (prep)">Elderly Nutrition (prep)</option>
+								<option value="Elderly Nutrition Sites (catered)">Elderly Nutrition Sites (catered)</option>
+								<option value="Food Stand">Food Stand</option>
+								<option value="Hospitals">Hospitals</option>
+								<option value="Institutional Food Service">Institutional Food Service</option>
+								<option value="Limited Food Service">Limited Food Service</option>
+								<option value="Local Confinement Facilities">Local Confinement Facilities</option>
+								<option value="Lodging Establishment">Lodging Establishment</option>
+								<option value="Meat Market">Meat Market</option>
+								<option value="Mobile Food Units">Mobile Food Units</option>
+								<option value="Nursing Homes">Nursing Homes</option>
+								<option value="Other Institutions">Other Institutions</option>
+								<option value="Private School Lunchrooms">Private School Lunchrooms</option>
+								<option value="Public School Lunchrooms">Public School Lunchrooms</option>
+								<option value="Pushcarts">Pushcarts</option>
+								<option value="Resident Camp">Resident Camp</option>
+								<option value="Restaurant">Restaurant</option>
+								<option value="Schools">Schools</option>
+								<option value="Seasonal Spas">Seasonal Spas</option>
+								<option value="Seasonal Swimming Pools">Seasonal Swimming Pools</option>
+								<option value="Seasonal Wading Pool">Seasonal Wading Pool</option>
+								<option value="Summer Camps">Summer Camps</option>
+								<option value="Summer Feeding Sites (Bag)">Summer Feeding Sites (Bag)</option>
+								<option value="Summer Feeding Sites (Prep)">Summer Feeding Sites (Prep)</option>
+								<option value="Tattoo">Tattoo</option>
+								<option value="Year-Round Spas">Year-Round Spas</option>
+								<option value="Year-Round Swimming Pools">Year-Round Swimming Pools</option>
+								<option value="Year-Round Wading Pools">Year-Round Wading Pools</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Zipcode:<br>
+						<select name="fzipcode" >
+							<option value="Any">Any Zipcode</option>
+							<option value="27501">27501</option>
+							<option value="27502">27502</option>
+							<option value="27511">27511</option>
+							<option value="27512">27512</option>
+							<option value="27513">27513</option>
+							<option value="27518">27518</option>
+							<option value="27519">27519</option>
+							<option value="27520">27520</option>
+							<option value="27522">27522</option>
+							<option value="27523">27523</option>
+							<option value="27526">27526</option>
+							<option value="27529">27529</option>
+							<option value="27539">27539</option>
+							<option value="27540">27540</option>
+							<option value="27543">27543</option>
+							<option value="27545">27545</option>
+							<option value="27560">27560</option>
+							<option value="27562">27562</option>
+							<option value="27571">27571</option>
+							<option value="27573">27573</option>
+							<option value="27577">27577</option>
+							<option value="27579">27579</option>
+							<option value="27585">27585</option>
+							<option value="27587">27587</option>
+							<option value="27591">27591</option>
+							<option value="27592">27592</option>
+							<option value="27595">27595</option>
+							<option value="27596">27596</option>
+							<option value="27597">27597</option>
+							<option value="27601">27601</option>
+							<option value="27602">27602</option>
+							<option value="27603">27603</option>
+							<option value="27604">27604</option>
+							<option value="27605">27605</option>
+							<option value="27606">27606</option>
+							<option value="27607">27607</option>
+							<option value="27608">27608</option>
+							<option value="27609">27609</option>
+							<option value="27610">27610</option>
+							<option value="27612">27612</option>
+							<option value="27613">27613</option>
+							<option value="27614">27614</option>
+							<option value="27615">27615</option>
+							<option value="27616">27616</option>
+							<option value="27617">27617</option>
+							<option value="27619">27619</option>
+							<option value="27620">27620</option>
+							<option value="27623">27623</option>
+							<option value="27624">27624</option>
+							<option value="27628">27628</option>
+							<option value="27650">27650</option>
+							<option value="27652">27652</option>
+							<option value="27695">27695</option>
+							<option value="27699">27699</option>
+							<option value="27709">27709</option>
+							<option value="27809">27809</option>
+							<option value="28277">28277</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Violations:<br>
+						<select name="rcritical" >
+							<option value="Any">Any Violation</option>
+							<option value="true">Critical Violations Only</option>
+							<option value="false">Non-Critical Violations Only</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav" style="">
+						Date Range:<br>
+						<input type="text" name="sMonth" value="8" size="2" >-
+						<input type="text" name="sDay" value="20" size="2" >-
+						<select name="sYear" >
+								<option value="1970" >1970</option>
+								<option value="1971" >1971</option>
+								<option value="1972" >1972</option>
+								<option value="1973" >1973</option>
+								<option value="1974" >1974</option>
+								<option value="1975" >1975</option>
+								<option value="1976" >1976</option>
+								<option value="1977" >1977</option>
+								<option value="1978" >1978</option>
+								<option value="1979" >1979</option>
+								<option value="1980" >1980</option>
+								<option value="1981" >1981</option>
+								<option value="1982" >1982</option>
+								<option value="1983" >1983</option>
+								<option value="1984" >1984</option>
+								<option value="1985" >1985</option>
+								<option value="1986" >1986</option>
+								<option value="1987" >1987</option>
+								<option value="1988" >1988</option>
+								<option value="1989" >1989</option>
+								<option value="1990" >1990</option>
+								<option value="1991" >1991</option>
+								<option value="1992" >1992</option>
+								<option value="1993" >1993</option>
+								<option value="1994" >1994</option>
+								<option value="1995" >1995</option>
+								<option value="1996" >1996</option>
+								<option value="1997" >1997</option>
+								<option value="1998" >1998</option>
+								<option value="1999" >1999</option>
+								<option value="2000" >2000</option>
+								<option value="2001" >2001</option>
+								<option value="2002" >2002</option>
+								<option value="2003" >2003</option>
+								<option value="2004" >2004</option>
+								<option value="2005" >2005</option>
+								<option value="2006" >2006</option>
+								<option value="2007" >2007</option>
+								<option value="2008" >2008</option>
+								<option value="2009" >2009</option>
+								<option value="2010" >2010</option>
+								<option value="2011" >2011</option>
+								<option value="2012" >2012</option>
+								<option value="2013" >2013</option>
+								<option value="2014" selected>2014</option>
+						</select>
+						Start
+						<br>
+						<input type="text" name="eMonth" value="12" size="2" >-
+						<input type="text" name="eDay" value="20" size="2" >-
+						<select name="eYear" >
+								<option value="1970" >1970</option>
+								<option value="1971" >1971</option>
+								<option value="1972" >1972</option>
+								<option value="1973" >1973</option>
+								<option value="1974" >1974</option>
+								<option value="1975" >1975</option>
+								<option value="1976" >1976</option>
+								<option value="1977" >1977</option>
+								<option value="1978" >1978</option>
+								<option value="1979" >1979</option>
+								<option value="1980" >1980</option>
+								<option value="1981" >1981</option>
+								<option value="1982" >1982</option>
+								<option value="1983" >1983</option>
+								<option value="1984" >1984</option>
+								<option value="1985" >1985</option>
+								<option value="1986" >1986</option>
+								<option value="1987" >1987</option>
+								<option value="1988" >1988</option>
+								<option value="1989" >1989</option>
+								<option value="1990" >1990</option>
+								<option value="1991" >1991</option>
+								<option value="1992" >1992</option>
+								<option value="1993" >1993</option>
+								<option value="1994" >1994</option>
+								<option value="1995" >1995</option>
+								<option value="1996" >1996</option>
+								<option value="1997" >1997</option>
+								<option value="1998" >1998</option>
+								<option value="1999" >1999</option>
+								<option value="2000" >2000</option>
+								<option value="2001" >2001</option>
+								<option value="2002" >2002</option>
+								<option value="2003" >2003</option>
+								<option value="2004" >2004</option>
+								<option value="2005" >2005</option>
+								<option value="2006" >2006</option>
+								<option value="2007" >2007</option>
+								<option value="2008" >2008</option>
+								<option value="2009" >2009</option>
+								<option value="2010" >2010</option>
+								<option value="2011" >2011</option>
+								<option value="2012" >2012</option>
+								<option value="2013" >2013</option>
+								<option value="2014" selected>2014</option>
+						</select>
+						End
+					</td>
+				</tr>
+				<tr>
+					<td height="5"><img alt="" src="../images/clear.gif" width="5" height="5"></td>
+				</tr>
+				<tr>
+					<td class="leftnav">
+						<table width="100%" cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td class="leftnav" colspan="2">
+									<input type="submit" name="func" value="Search" >
+									<input type="button" name="Help" value="Help?"  onclick="jm_popWinU('help.cfm?f=advsearch','advSearch','width=300,height=300,scrollbars=1')">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				</form>
+			</table>
+			<br>
+		</td>	
+	</tr>
+</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="21" class="smallnav"><img src="images/themes/white/dotted_bar_large.gif" width="750" height="21"></td>
+	</tr>
+	<tr>
+		<td height="18" bgcolor="efefef" class="smallnav">
+			<div align="right">
+	<a href="index.cfm" class="smallnav">Health Inspections Home</a> ::
+	<a href="signup.cfm" class="smallnav">Signup</a> :: 
+	<a href="faq.cfm" class="smallnav">FAQ</a> :: 
+	<a href="service.cfm" class="smallnav">Technical Support</a> 
+	&nbsp;
+</div>
+		</td>
+	</tr>
+    <tr>
+		<td height="30" class="footer">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td class="footer" width="50%" align="left">&nbsp;&copy; Copyright 2014 The Digital Health Department. All Rights Reserved.<br></td>
+					<td class="footer" width="50%" align="right">
+						<a href="http://www.wakegov.com/privacy" class="footer">Privacy</a> :
+						<a href="http://www.wakegov.com/accessibility">Accessibility</a> :
+						<a href="http://www.wakegov.com/disclaimer">Disclaimer</a> : 
+						<a href="mailto:wwwadmin@co.wake.nc.us?SUBJECT=The Digital Health Department Public Website" class="footer">Webmaster</a>
+						&nbsp;
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
