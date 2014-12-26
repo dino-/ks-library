@@ -7,6 +7,8 @@ import Network.HTTP
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
+import Ksdl.Facility
+
 
 {- A page contains 4 facilities.
    Nothing means get all pages. Takes a while!
@@ -19,15 +21,6 @@ pageLimit = Just 10
 
 urlPrefix :: String
 urlPrefix = "http://wake.digitalhealthdepartment.com/"
-
-
-data Facility = Facility
-   { name :: String
-   , score :: Double
-   , location :: String
-   , inspectionDate :: String
-   }
-   deriving Show
 
 
 main :: IO ()
