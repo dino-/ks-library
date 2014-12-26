@@ -64,7 +64,7 @@ getFacilities url = do
          , l ~== "Inspection Date:"
          ]
 
-   return $ map (\(t,s,l,d) -> Facility t s l d)
+   return $ map (\(t,s,l,d) -> Facility t s l (parseDate d))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))

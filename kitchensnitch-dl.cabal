@@ -31,6 +31,7 @@ executable           kitchensnitch-dl
    hs-source-dirs:   src
    build-depends:    base >= 3 && < 5,
                      HTTP,
+                     regex-compat,
                      tagsoup
    ghc-options:      -Wall
 
