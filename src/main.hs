@@ -3,7 +3,7 @@
 
 import Data.Aeson ( encode )
 import qualified Data.ByteString.Lazy.Char8 as BL
-import Data.List ( isPrefixOf, intercalate, tails, zip4 )
+import Data.List ( intercalate, isPrefixOf, tails, zip4 )
 import Data.Maybe ( fromMaybe )
 import Network.HTTP
 import Text.HTML.TagSoup
