@@ -4,21 +4,13 @@
 import Data.Aeson ( encode )
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.List ( intercalate, isPrefixOf, tails, zip4 )
-import Data.Maybe ( fromMaybe )
+import Data.Maybe ( fromMaybe, listToMaybe )
 import Network.HTTP
+import System.Environment ( getArgs )
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
 import Ksdl.Facility
-
-
-{- A page contains 4 facilities.
-   Nothing means get all pages. Takes a while!
--}
-pageLimit :: Maybe Int
---pageLimit = Nothing
---pageLimit = Just 3
-pageLimit = Just 10
 
 
 urlPrefix :: String
@@ -27,6 +19,13 @@ urlPrefix = "http://wake.digitalhealthdepartment.com/"
 
 main :: IO ()
 main = do
+   {- A page contains 4 facilities.
+      Invoking with no number means get all pages.
+      Careful, takes a while!
+   -}
+   m <- listToMaybe `fmap` getArgs
+   let pageLimit = read `fmap` m
+
    allPageUrls <- getPageUrls
    let pageCount = length allPageUrls
    printf "Downloading %d of %d pages\n\n"
