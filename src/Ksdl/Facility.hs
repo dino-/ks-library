@@ -15,7 +15,7 @@ data Facility = Facility
    { name :: String
    , score :: Double
    , location :: String
-   , inspectionDate :: [Int]
+   , inspection_date :: [Int]
    }
    deriving (Show, Generic)
 
