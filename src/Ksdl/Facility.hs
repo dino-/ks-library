@@ -1,9 +1,13 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
+{-# LANGUAGE DeriveGeneric #-}
+
 module Ksdl.Facility
    where
 
+import Data.Aeson ( FromJSON, ToJSON )
+import GHC.Generics ( Generic )
 import Text.Regex
 
 
@@ -13,7 +17,10 @@ data Facility = Facility
    , location :: String
    , inspectionDate :: [Int]
    }
-   deriving Show
+   deriving (Show, Generic)
+
+instance FromJSON Facility
+instance ToJSON Facility
 
 
 parseDate :: String -> [Int]

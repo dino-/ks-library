@@ -29,7 +29,9 @@ extra-source-files:  changelog.md
 executable           kitchensnitch-dl
    main-is:          main.hs
    hs-source-dirs:   src
-   build-depends:    base >= 3 && < 5,
+   build-depends:    aeson,
+                     base >= 3 && < 5,
+                     bytestring,
                      HTTP,
                      regex-compat,
                      tagsoup

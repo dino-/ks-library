@@ -1,6 +1,8 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
+import Data.Aeson ( encode )
+import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.List ( isPrefixOf, intercalate, tails, zip4 )
 import Data.Maybe ( fromMaybe )
 import Network.HTTP
@@ -31,8 +33,9 @@ main = do
       (fromMaybe pageCount pageLimit) pageCount
 
    let pageUrls = maybe allPageUrls (\n -> take n allPageUrls) pageLimit
-   mapM_ print =<< return . concat
-      =<< (sequence $ map getFacilities pageUrls)
+
+   BL.putStrLn =<< (encode . concat) `fmap`
+      (sequence $ map getFacilities pageUrls)
 
 
 -- Get all (4) facilities from a page at the supplied URL
