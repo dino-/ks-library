@@ -22,9 +22,9 @@ extra-source-files:  changelog.md
                      util/resources/searchResultsPage.html
 --                     [test suite files]
 
---source-repository    head
---   type:             darcs
---   location:         URL
+source-repository    head
+   type:             darcs
+   location:         http://hub.darcs.net/dino/kitchensnitch-dl
 
 executable           kitchensnitch-dl
    main-is:          main.hs
