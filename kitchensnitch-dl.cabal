@@ -18,8 +18,9 @@ extra-source-files:  changelog.md
                      README.md
                      TODO
                      util/gentags.sh
+                     util/resources/facilities-01
+                     util/resources/searchResultsPage.html
 --                     [test suite files]
---                     [things not under vcs]
 
 --source-repository    head
 --   type:             darcs
