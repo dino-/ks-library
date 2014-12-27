@@ -32,9 +32,11 @@ executable           kitchensnitch-dl
    build-depends:    aeson,
                      base >= 3 && < 5,
                      bytestring,
+                     filepath,
                      HTTP,
                      regex-compat,
-                     tagsoup
+                     tagsoup,
+                     uuid
    ghc-options:      -Wall
 
 --test-suite           pristine-tests

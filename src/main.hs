@@ -7,6 +7,11 @@ import Data.List ( intercalate, isPrefixOf, tails, zip4 )
 import Data.Maybe ( fromMaybe, listToMaybe )
 import Network.HTTP
 import System.Environment ( getArgs )
+import System.FilePath
+import System.IO
+   ( BufferMode ( NoBuffering )
+   , hSetBuffering, stdout, stderr
+   )
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
@@ -19,12 +24,17 @@ urlPrefix = "http://wake.digitalhealthdepartment.com/"
 
 main :: IO ()
 main = do
+   -- No buffering, it messes with the order of output
+   mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
+
+   args <- getArgs
+   let dir = head args
+
    {- A page contains 4 facilities.
       Invoking with no number means get all pages.
       Careful, takes a while!
    -}
-   m <- listToMaybe `fmap` getArgs
-   let pageLimit = read `fmap` m
+   let pageLimit = read `fmap` (listToMaybe . tail $ args)
 
    allPageUrls <- getPageUrls
    let pageCount = length allPageUrls
@@ -33,8 +43,12 @@ main = do
 
    let pageUrls = maybe allPageUrls (\n -> take n allPageUrls) pageLimit
 
-   BL.putStrLn =<< (encode . concat) `fmap`
-      (sequence $ map getFacilities pageUrls)
+   let getters = map getFacilities pageUrls  -- [IO [Facility]]
+   mapM_ (\ml -> ml >>= mapM_ (saveFacility dir)) getters
+
+
+saveFacility :: FilePath -> Facility -> IO ()
+saveFacility dir fac = BL.writeFile (dir </> (_id fac)) $ encode fac
 
 
 -- Get all (4) facilities from a page at the supplied URL
@@ -66,7 +80,7 @@ getFacilities url = do
          , l ~== "Inspection Date:"
          ]
 
-   return $ map (\(t,s,l,d) -> Facility t s l (parseDate d))
+   mapM setId $ map (\(t,s,l,d) -> Facility "" t s l (parseDate d))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))
