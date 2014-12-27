@@ -1,13 +1,10 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-import Data.Aeson ( encode )
-import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.List ( intercalate, isPrefixOf, tails, zip4 )
 import Data.Maybe ( fromMaybe, listToMaybe )
 import Network.HTTP
 import System.Environment ( getArgs )
-import System.FilePath
 import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
@@ -45,10 +42,6 @@ main = do
 
    let getters = map getFacilities pageUrls  -- [IO [Facility]]
    mapM_ (\ml -> ml >>= mapM_ (saveFacility dir)) getters
-
-
-saveFacility :: FilePath -> Facility -> IO ()
-saveFacility dir fac = BL.writeFile (dir </> (_id fac)) $ encode fac
 
 
 -- Get all (4) facilities from a page at the supplied URL
