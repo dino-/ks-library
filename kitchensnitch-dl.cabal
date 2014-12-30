@@ -26,8 +26,8 @@ source-repository    head
    type:             darcs
    location:         http://hub.darcs.net/dino/kitchensnitch-dl
 
-executable           kitchensnitch-dl
-   main-is:          main.hs
+executable           ks-inspections
+   main-is:          ks-inspections.hs
    hs-source-dirs:   src
    build-depends:    aeson,
                      base >= 3 && < 5,
