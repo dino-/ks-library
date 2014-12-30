@@ -1,5 +1,11 @@
------
-2014-12-29
+## 2014-12-30
+
+* Need to decide on how to parse JSON from the two sources (Google GEOCODE API and Google Places API). The choices are:
+   * Make data types fully expressing the JSON and auto-derive
+   * Use custom instancing, Applicative and the Aeson functions like (.:)
+
+
+## 2014-12-29
 correlating inspection data with location data
 
 * go through all JSON from health inspections (in data/)
@@ -9,14 +15,14 @@ correlating inspection data with location data
 * interested in locations with Name match and Vicinity close match
 * in those, interested in geometry location and place_id
 
-Address (from our database)"
-"location": "4121 NEW BERN AVE STE 109 RALEIGH, NC 27610"
+Address (from our database) 
+    "location": "4121 NEW BERN AVE STE 109 RALEIGH, NC 27610"
 
-Geocoder API
+Geocoder API 
 - they call this a 'forward lookup'
 - given a postal address return the geolocation
 
-https://maps.googleapis.com/maps/api/geocode/json?address=3D4121%20NEW%20BERN%20AVE%20STE%20109%20RALEIGH,%20NC%2027610
+    https://maps.googleapis.com/maps/api/geocode/json?address=3D4121%20NEW%20BERN%20AVE%20STE%20109%20RALEIGH,%20NC%2027610
 
     "geometry" : {
             "location" : {
@@ -25,10 +31,10 @@ https://maps.googleapis.com/maps/api/geocode/json?address=3D4121%20NEW%20BERN%20
             },
 
 
-Places API:
+Places API: 
 - use the lat & lng returned by Geolocator to find the restaurant
 
-https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=APIKEYGOESHERE&location=3D35.8016467,-78.5653275&radius=3D50&types=3Drestaurant
+    https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=APIKEYGOESHERE&location=3D35.8016467,-78.5653275&radius=3D50&types=3Drestaurant
 
 
 * match names 
@@ -36,5 +42,7 @@ https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=APIKEYGOESHERE&
 * note the 'score' for the string compare using your algorithm
 * note the place_id and geometry from the Places API results
 
------
+
+## first notes
+
 Starting form is here: http://wake.digitalhealthdepartment.com/reports.cfm
