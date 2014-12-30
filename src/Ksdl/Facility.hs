@@ -12,7 +12,7 @@ import Data.UUID ( toString )
 import Data.UUID.V4 ( nextRandom )
 import GHC.Generics ( Generic )
 import System.FilePath
-import Text.Regex
+import Text.Regex ( matchRegex, mkRegex )
 
 
 data Facility = Facility
