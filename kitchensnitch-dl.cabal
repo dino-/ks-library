@@ -39,6 +39,21 @@ executable           ks-inspections
                      uuid
    ghc-options:      -Wall
 
+executable           ks-location
+   main-is:          ks-location.hs
+   hs-source-dirs:   src
+   build-depends:    aeson,
+                     base >= 3 && < 5,
+                     bytestring,
+                     curl,
+                     directory,
+                     filepath,
+                     HTTP,
+                     MissingH,
+                     regex-compat,
+                     uuid
+   ghc-options:      -Wall
+
 --test-suite           pristine-tests
 --   type:             exitcode-stdio-1.0
 --   main-is:          pristine-tests.hs

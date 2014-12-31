@@ -1,0 +1,69 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "3626",
+               "short_name" : "3626",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Rogers Road",
+               "short_name" : "Rogers Rd",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Wake Forest",
+               "short_name" : "Wake Forest",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Wake Forest",
+               "short_name" : "Wake Forest",
+               "types" : [ "administrative_area_level_3", "political" ]
+            },
+            {
+               "long_name" : "Wake County",
+               "short_name" : "Wake County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "North Carolina",
+               "short_name" : "NC",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "27587",
+               "short_name" : "27587",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "3626 Rogers Road, Wake Forest, NC 27587, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.9446086,
+               "lng" : -78.50531049999999
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.94595758029151,
+                  "lng" : -78.5039615197085
+               },
+               "southwest" : {
+                  "lat" : 35.94325961970851,
+                  "lng" : -78.5066594802915
+               }
+            }
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}
+
