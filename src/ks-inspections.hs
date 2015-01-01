@@ -8,8 +8,8 @@ import System.IO
    , hSetBuffering, stdout, stderr
    )
 
-import Ksdl.Source.Common
-import qualified Ksdl.Source.NcWake as NcWake
+import Ksdl.Inspection.Common
+import qualified Ksdl.Inspection.NcWake as NcWake
 
 
 main :: IO ()
