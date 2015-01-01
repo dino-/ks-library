@@ -9,6 +9,7 @@
 - Look for Places API key file in /etc/ as well as $HOME
 - Replace usage of Network.HTTP with Network.Curl
 - Is there a different url encoding API than with Network.HTTP?
+- Rethink Facility field names or start using this data type qualified.
 
 
 in the short-term:
