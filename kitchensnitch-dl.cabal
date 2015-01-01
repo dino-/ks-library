@@ -29,30 +29,30 @@ source-repository    head
 executable           ks-inspections
    main-is:          ks-inspections.hs
    hs-source-dirs:   src
-   build-depends:    aeson,
-                     base >= 3 && < 5,
-                     bytestring,
-                     filepath,
-                     HTTP,
-                     regex-compat,
-                     tagsoup,
-                     uuid
+   build-depends:      aeson
+                     , base >= 3 && < 5
+                     , bytestring
+                     , filepath
+                     , HTTP
+                     , regex-compat
+                     , tagsoup
+                     , uuid
    ghc-options:      -Wall
 
 executable           ks-location
    main-is:          ks-location.hs
    hs-source-dirs:   src
-   build-depends:    aeson,
-                     base >= 3 && < 5,
-                     bytestring,
-                     curl,
-                     directory,
-                     edit-distance,
-                     filepath,
-                     HTTP,
-                     MissingH,
-                     regex-compat,
-                     uuid
+   build-depends:      aeson
+                     , base >= 3 && < 5
+                     , bytestring
+                     , curl
+                     , directory
+                     , edit-distance
+                     , filepath
+                     , HTTP
+                     , MissingH
+                     , regex-compat
+                     , uuid
    ghc-options:      -Wall
 
 --test-suite           pristine-tests
