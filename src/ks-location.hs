@@ -93,15 +93,15 @@ csv :: (Facility, Maybe Locations) -> IO ()
 csv (fac, Just (Locations locs)) = mapM_ (line fac) locs
    where
       line :: Facility -> Location -> IO ()
-      line fac loc = printf
+      line fac' loc = printf
             "%d,%d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n"
-            (dist (name fac) (locName loc))
-            (dist (location fac) (locVicinity loc))
-            (name fac)
+            (dist (name fac') (locName loc))
+            (dist (location fac') (locVicinity loc))
+            (name fac')
             (locName loc)
-            (location fac)
+            (location fac')
             (locVicinity loc)
-            (_id fac)
+            (_id fac')
 
       dist target input = levenshteinDistance defaultEditCosts
          (map toLower target) (map toLower input)
@@ -109,11 +109,11 @@ csv (fac, Just (Locations locs)) = mapM_ (line fac) locs
 csv (fac, Nothing) = line fac
    where
       line :: Facility -> IO ()
-      line fac = printf
+      line fac' = printf
             ",,\"%s\",\"\",\"%s\",\"\",\"%s\"\n"
-            (name fac)
-            (location fac)
-            (_id fac)
+            (name fac')
+            (location fac')
+            (_id fac')
 
 
 log :: (Facility, Maybe Locations) -> IO ()
@@ -126,8 +126,8 @@ log (fac, mlocs) = do
 
    where
       display' :: Facility -> Locations -> IO ()
-      display' fac (Locations ls) = mapM_ (outputLoc
-         (map toLower $ name fac) (map toLower $ location fac)) ls
+      display' fac' (Locations ls) = mapM_ (outputLoc
+         (map toLower $ name fac') (map toLower $ location fac')) ls
 
       outputLoc :: String -> String -> Location -> IO ()
       outputLoc fn fv l = do
