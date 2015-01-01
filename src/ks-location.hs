@@ -9,7 +9,7 @@ import Control.Monad ( mzero )
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Char ( toLower )
-import Data.List ( isPrefixOf )
+import Data.List ( intercalate, isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
 --import Debug.Trace ( trace )
@@ -26,6 +26,14 @@ import Text.EditDistance
 import Text.Printf ( printf )
 
 import Ksdl.Facility
+
+
+placesTypes = intercalate ","
+   [ "restaurant"
+   , "food"
+   --, "cafe"
+   --, "bar"
+   ]
 
 
 main :: IO ()
@@ -168,7 +176,7 @@ instance FromJSON Location where
 
 mkPlacesUrl :: String -> LatLng -> String
 mkPlacesUrl apiKey (LatLng lat lng) = printf
-   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=50&types=restaurant" apiKey lat lng
+   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=50&types=%s" apiKey lat lng placesTypes
 
 
 data LatLng = LatLng Double Double
