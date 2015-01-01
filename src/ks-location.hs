@@ -4,9 +4,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Applicative
+import Control.Concurrent ( threadDelay )
 import Control.Monad ( mzero )
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
+import Data.Char ( toLower )
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
@@ -20,6 +22,7 @@ import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
    )
+import Text.EditDistance
 import Text.Printf ( printf )
 
 import Ksdl.Facility
@@ -52,7 +55,8 @@ main = do
    --print gcUrls
 
    -- Retrieve the GeoCode results for these addresses
-   gcJSONs <- map snd `fmap` mapM (flip curlGetString []) gcUrls
+   --gcJSONs <- map snd `fmap` mapM (flip curlGetString []) gcUrls
+   gcJSONs <- map snd `fmap` mapM (\url -> threadDelay 500000 >> curlGetString url []) gcUrls
    --mapM_ putStrLn gcJSONs
 
    let locs = catMaybes $ map (decode . BL.pack) gcJSONs
@@ -74,9 +78,65 @@ main = do
    --mapM_ putStrLn plJSONs
 
    let plLocs = map (decode . BL.pack) plJSONs :: [Maybe Locations]
-   print plLocs
+   --print plLocs
 
-   putStrLn "done"
+   let ts = zip facs plLocs
+   --mapM_ log ts
+   putStrLn "\"ndist\",\"vdist\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
+   mapM_ csv ts
+
+   --putStrLn "done"
+
+
+csv :: (Facility, Maybe Locations) -> IO ()
+csv (fac, Just (Locations locs)) = mapM_ (line fac) locs
+   where
+      line :: Facility -> Location -> IO ()
+      line fac loc = printf
+            "%d,%d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n"
+            (dist (name fac) (locName loc))
+            (dist (location fac) (locVicinity loc))
+            (name fac)
+            (locName loc)
+            (location fac)
+            (locVicinity loc)
+            (_id fac)
+
+      dist target input = levenshteinDistance defaultEditCosts
+         (map toLower target) (map toLower input)
+
+csv (fac, Nothing) = line fac
+   where
+      line :: Facility -> IO ()
+      line fac = printf
+            ",,\"%s\",\"\",\"%s\",\"\",\"%s\"\n"
+            (name fac)
+            (location fac)
+            (_id fac)
+
+
+log :: (Facility, Maybe Locations) -> IO ()
+log (fac, mlocs) = do
+   putStr "\n"
+   printf "inspection location: %s\n" (name fac)
+   printf "                     %s\n" (location fac)
+   putStr "places matches:\n"
+   maybe (putStr "   NONE FOUND\n") (display' fac) mlocs
+
+   where
+      display' :: Facility -> Locations -> IO ()
+      display' fac (Locations ls) = mapM_ (outputLoc
+         (map toLower $ name fac) (map toLower $ location fac)) ls
+
+      outputLoc :: String -> String -> Location -> IO ()
+      outputLoc fn fv l = do
+         let ln = locName l
+         let lv = locVicinity l
+         printf "   %2d %s\n" (dist fn ln) ln
+         printf "   %2d %s\n\n" (dist fv lv) lv
+
+      dist target input = levenshteinDistance defaultEditCosts
+         target (map toLower input)
 
 
 data Location = Location

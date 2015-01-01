@@ -47,6 +47,7 @@ executable           ks-location
                      bytestring,
                      curl,
                      directory,
+                     edit-distance,
                      filepath,
                      HTTP,
                      MissingH,
