@@ -173,4 +173,4 @@ mkPlacesUrl apiKey (LatLng lat lng) = printf
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
-loadFacility path = decode `fmap` BL.readFile path
+loadFacility path = decode' `fmap` BL.readFile path
