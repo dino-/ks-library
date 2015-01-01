@@ -1,0 +1,27 @@
+- Change the main.downloader implementation into a (Map String
+  Downloader) so it can be used in usage output
+- Look into accessing CouchBase directly from Haskell
+- Generate deterministic UUIDs for these records (using UUID v4
+  instead of v5). See the uuid-example project for help on this.
+- Write modules for loading data from the GEOCODE and Places
+  results
+- Need a transformer stack for errors, config, logging and IO
+- Look for Places API key file in /etc/ as well as $HOME
+- Replace usage of Network.HTTP with Network.Curl
+- Is there a different url encoding API than with Network.HTTP?
+
+
+in the short-term:
+
+- Refactor all of this code into parts that are:
+   - To become part of the production downloading tool
+      - Geocode lookup is staying
+   - Are transient for this exercise
+      - Places code is possibly going away
+- Need possible string-similarity, longest substring, etc code
+- Take state and zip off of ivic
+- Need logging, especially for failure. Can't see where failures
+  are happening at all now.
+- Problem with "North Raleigh Courtyard.." 47ca55.. Getting no
+  results from something. Possibly because of trademark
+  symbol. Unicode problem?
