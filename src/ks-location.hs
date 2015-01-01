@@ -28,6 +28,7 @@ import Text.Printf ( printf )
 import Ksdl.Facility
 
 
+placesTypes :: String
 placesTypes = intercalate ","
    [ "restaurant"
    , "food"
