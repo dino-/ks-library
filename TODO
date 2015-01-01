@@ -15,7 +15,6 @@ in the short-term:
 
 - Refactor all of this code into parts that are:
    - To become part of the production downloading tool
-      - Geocode lookup is staying
    - Are transient for this exercise
       - Places code is possibly going away
 - Need possible string-similarity, longest substring, etc code

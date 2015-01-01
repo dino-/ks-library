@@ -4,7 +4,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Applicative
-import Control.Concurrent ( threadDelay )
 import Control.Monad ( mzero )
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
@@ -14,7 +13,6 @@ import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
 --import Debug.Trace ( trace )
 import Network.Curl
-import Network.HTTP ( urlEncode )
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath
@@ -26,10 +24,11 @@ import Text.EditDistance
 import Text.Printf ( printf )
 
 import Ksdl.Facility
+import Ksdl.Geocoding ( LatLng (..), addrToCoords )
 
 
 placesTypes :: String
-placesTypes = intercalate ","
+placesTypes = intercalate "|"
    [ "restaurant"
    , "food"
    --, "cafe"
@@ -60,16 +59,9 @@ main = do
    facs <- catMaybes `fmap` mapM loadFacility files
    --print facs
 
-   let gcUrls = map mkGeocodeUrl facs
-   --print gcUrls
-
-   -- Retrieve the GeoCode results for these addresses
-   --gcJSONs <- map snd `fmap` mapM (flip curlGetString []) gcUrls
-   gcJSONs <- map snd `fmap` mapM (\url -> threadDelay 500000 >> curlGetString url []) gcUrls
-   --mapM_ putStrLn gcJSONs
-
-   let locs = catMaybes $ map (decode . BL.pack) gcJSONs
-   --print locs
+   -- FIXME Need to use real error handling and knock it off with this evil catMaybes business
+   locs <- catMaybes `fmap` (mapM addrToCoords $ map location facs)
+   --mapM_ print locs
 
    placesApiKey <-
       strip `fmap`         -- ..strip any trailing whitespace
@@ -81,7 +73,7 @@ main = do
    --print placesApiKey
 
    let plUrls = map (mkPlacesUrl placesApiKey) locs
-   --print plUrls
+   --mapM_ putStrLn plUrls
 
    plJSONs <- map snd `fmap` mapM (flip curlGetString []) plUrls
    --mapM_ putStrLn plJSONs
@@ -178,23 +170,6 @@ instance FromJSON Location where
 mkPlacesUrl :: String -> LatLng -> String
 mkPlacesUrl apiKey (LatLng lat lng) = printf
    "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=50&types=%s" apiKey lat lng placesTypes
-
-
-data LatLng = LatLng Double Double
-   deriving Show
-
-instance FromJSON LatLng where
-   parseJSON (Object v) = do
-      loc <- head `fmap` (v .: "results") >>= (.: "geometry")
-         >>= (.: "location")
-      LatLng <$> (loc .: "lat") <*> (loc .: "lng")
-   parseJSON _ = mzero
-
-
-mkGeocodeUrl :: Facility -> String
-mkGeocodeUrl fac = printf
-   "http://maps.googleapis.com/maps/api/geocode/json?address=%s"
-   (urlEncode . location $ fac)
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
