@@ -8,6 +8,7 @@ import Control.Monad ( mzero )
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Char ( toLower )
+import Data.Either ( partitionEithers )
 import Data.List ( intercalate, isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
@@ -67,8 +68,14 @@ main = do
    facs <- catMaybes `fmap` mapM loadFacility files
    --print facs
 
-   -- FIXME Need to use real error handling and knock it off with this evil catMaybes business
-   locs <- catMaybes `fmap` (mapM addrToCoords $ map location facs)
+   gcResults <- mapM addrToCoords $ map location facs
+   let gcWithFacs = zipWith
+         (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
+         facs gcResults
+   let (failures, locs) = partitionEithers gcWithFacs
+   --mapM_ print failures
+   mapM_ (errorM lerror . show) failures
+   --putStrLn "\nsuccesses:"
    --mapM_ print locs
 
    placesApiKey <-
@@ -80,7 +87,7 @@ main = do
       lookupEnv "HOME")    -- Maybe $HOME directory
    --print placesApiKey
 
-   let plUrls = map (mkPlacesUrl placesApiKey) locs
+   let plUrls = map (mkPlacesUrl placesApiKey . snd) locs
    --mapM_ putStrLn plUrls
 
    plJSONs <- map snd `fmap` mapM (flip curlGetString []) plUrls
@@ -89,7 +96,7 @@ main = do
    let plLocs = map (decode . BL.pack) plJSONs :: [Maybe Locations]
    --print plLocs
 
-   let ts = zip facs plLocs
+   let ts = zipWith (\(f, _) ml -> (f, ml)) locs plLocs
    --mapM_ log ts
    putStrLn "\"ndist\",\"vdist\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
    mapM_ csv ts
