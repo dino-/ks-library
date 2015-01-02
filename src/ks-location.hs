@@ -28,6 +28,10 @@ import Ksdl.Geocoding ( LatLng (..), addrToCoords )
 import Ksdl.Log
 
 
+-- This is in meters
+placesRadius :: Int
+placesRadius = 50
+
 placesTypes :: String
 placesTypes = intercalate "|"
    [ "restaurant"
@@ -173,7 +177,7 @@ instance FromJSON Location where
 
 mkPlacesUrl :: String -> LatLng -> String
 mkPlacesUrl apiKey (LatLng lat lng) = printf
-   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=50&types=%s" apiKey lat lng placesTypes
+   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=%d&types=%s" apiKey lat lng placesRadius placesTypes
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
