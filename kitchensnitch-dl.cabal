@@ -49,6 +49,7 @@ executable           ks-location
                      , directory
                      , edit-distance
                      , filepath
+                     , hslogger
                      , HTTP
                      , MissingH
                      , regex-compat

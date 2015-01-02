@@ -25,6 +25,7 @@ import Text.Printf ( printf )
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( LatLng (..), addrToCoords )
+import Ksdl.Log
 
 
 placesTypes :: String
@@ -40,6 +41,9 @@ main :: IO ()
 main = do
    -- No buffering, it messes with the order of output
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
+
+   initLogging DEBUG
+   infoM lerror "Logging system initialized"
 
    dir <- head `fmap` getArgs
 
