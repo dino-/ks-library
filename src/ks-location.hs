@@ -3,17 +3,13 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Applicative
-import Control.Monad ( mzero )
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Char ( toLower )
 import Data.Either ( partitionEithers )
-import Data.List ( intercalate, isPrefixOf )
+import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
---import Debug.Trace ( trace )
-import Network.Curl
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath
@@ -25,21 +21,9 @@ import Text.EditDistance
 import Text.Printf ( printf )
 
 import Ksdl.Facility
-import Ksdl.Geocoding ( LatLng (..), addrToCoords )
+import Ksdl.Geocoding ( addrToCoords )
 import Ksdl.Log
-
-
--- This is in meters
-placesRadius :: Int
-placesRadius = 50
-
-placesTypes :: String
-placesTypes = intercalate "|"
-   [ "restaurant"
-   , "food"
-   --, "cafe"
-   --, "bar"
-   ]
+import Ksdl.Places
 
 
 main :: IO ()
@@ -47,37 +31,33 @@ main = do
    -- No buffering, it messes with the order of output
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
 
-   initLogging DEBUG
-   infoM lerror "Logging system initialized"
+   -- Set up logging
+   --let logLevel = DEBUG
+   let logLevel = INFO
+   initLogging logLevel
 
    dir <- head `fmap` getArgs
-
-   {-
-   print =<< (loadFacility
-      $ dir </> "ef23dfb3-e9d1-431c-af49-3cb98ee6d587")
-   -}
 
    -- Paths to all files
    files <-
       ( map (dir </>)                     -- ..relative paths
       . filter (not . isPrefixOf ".") )   -- ..minus dotfiles
       `fmap` getDirectoryContents dir     -- All files
-   --print $ take 5 files
 
    -- Loaded Facilities
    facs <- catMaybes `fmap` mapM loadFacility files
-   --print facs
+   mapM_ (debugM lerror . show) facs
 
+   -- Geocoding results
    gcResults <- mapM addrToCoords $ map location facs
    let gcWithFacs = zipWith
          (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
          facs gcResults
-   let (failures, locs) = partitionEithers gcWithFacs
-   --mapM_ print failures
-   mapM_ (errorM lerror . show) failures
-   --putStrLn "\nsuccesses:"
-   --mapM_ print locs
+   let (gcFailures, gcLocs) = partitionEithers gcWithFacs
+   mapM_ (errorM lerror . show) gcFailures
+   mapM_ (debugM lerror . show) gcLocs
 
+   -- Places API
    placesApiKey <-
       strip `fmap`         -- ..strip any trailing whitespace
       (readFile =<<        -- ..read the contents of this file
@@ -87,25 +67,21 @@ main = do
       lookupEnv "HOME")    -- Maybe $HOME directory
    --print placesApiKey
 
-   let plUrls = map (mkPlacesUrl placesApiKey . snd) locs
-   --mapM_ putStrLn plUrls
+   plResults <- mapM (coordsToPlace placesApiKey) $ map snd gcLocs
+   let plWithFacs = zipWith
+         (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
+         (map fst gcLocs) plResults
+   let (plFailures, plLocs) = partitionEithers plWithFacs
+   mapM_ (errorM lerror . show) plFailures
+   mapM_ (debugM lerror . show) plLocs
 
-   plJSONs <- map snd `fmap` mapM (flip curlGetString []) plUrls
-   --mapM_ putStrLn plJSONs
-
-   let plLocs = map (decode . BL.pack) plJSONs :: [Maybe Locations]
-   --print plLocs
-
-   let ts = zipWith (\(f, _) ml -> (f, ml)) locs plLocs
-   --mapM_ log ts
+   -- Produce output
    putStrLn "\"ndist\",\"vdist\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
-   mapM_ csv ts
-
-   --putStrLn "done"
+   mapM_ csv plLocs
 
 
-csv :: (Facility, Maybe Locations) -> IO ()
-csv (fac, Just (Locations locs)) = mapM_ (line fac) locs
+csv :: (Facility, Locations) -> IO ()
+csv (fac, Locations locs) = mapM_ (line fac) locs
    where
       line :: Facility -> Location -> IO ()
       line fac' loc = printf
@@ -121,16 +97,8 @@ csv (fac, Just (Locations locs)) = mapM_ (line fac) locs
       dist target input = levenshteinDistance defaultEditCosts
          (map toLower target) (map toLower input)
 
-csv (fac, Nothing) = line fac
-   where
-      line :: Facility -> IO ()
-      line fac' = printf
-            ",,\"%s\",\"\",\"%s\",\"\",\"%s\"\n"
-            (name fac')
-            (location fac')
-            (_id fac')
 
-
+{-
 log :: (Facility, Maybe Locations) -> IO ()
 log (fac, mlocs) = do
    putStr "\n"
@@ -153,38 +121,7 @@ log (fac, mlocs) = do
 
       dist target input = levenshteinDistance defaultEditCosts
          target (map toLower input)
-
-
-data Location = Location
-   { locName :: String
-   , locVicinity :: String
-   , locLoc :: LatLng
-   , locPlace_id :: String
-   }
-   deriving Show
-
-newtype Locations = Locations [Location]
-   deriving Show
-
-instance FromJSON Locations where
-   parseJSON (Object v) =
-      Locations <$> catMaybes `fmap` (v .: "results")
-   parseJSON _ = mzero
-
-instance FromJSON Location where
-   parseJSON (Object o) = do
-      l <- (o .: "geometry") >>= (.: "location")
-      Location
-         <$> o .: "name"
-         <*> o .: "vicinity"
-         <*> (LatLng <$> (l .: "lat") <*> (l .: "lng"))
-         <*> o .: "place_id"
-   parseJSON _ = mzero
-
-
-mkPlacesUrl :: String -> LatLng -> String
-mkPlacesUrl apiKey (LatLng lat lng) = printf
-   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=%d&types=%s" apiKey lat lng placesRadius placesTypes
+-}
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)

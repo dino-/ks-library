@@ -24,6 +24,11 @@ lerror = "error"
 -}
 initLogging :: Priority -> IO ()
 initLogging logPriority = do
+   -- Remove the root logger's default handler that writes every
+   -- message to stderr!
+   updateGlobalLogger rootLoggerName removeHandler
+
+   -- Set up our logger
    h <- streamHandler stderr logPriority >>= \lh -> return $
       setFormatter lh (simpleLogFormatter "[$time : $prio] $msg")
    updateGlobalLogger lerror $ setHandlers [h]
