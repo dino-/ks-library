@@ -5,7 +5,7 @@
 
 import Data.Aeson
 import qualified Data.ByteString as BS
-import Data.Char ( toLower )
+import Data.Char ( isAlphaNum, toLower )
 import Data.Either ( partitionEithers )
 import Data.Function ( on )
 import Data.List ( foldl', isPrefixOf, maximumBy, tails )
@@ -125,7 +125,7 @@ csv (fac, Locations locs) = do
          , map toLower
          , remove reRestaurant
          , remove reShop
-         , filter (\c -> elem c "abcdefghijklmnopqrstuvwxyz0123456789")
+         , filter isAlphaNum
          ]
 
 
