@@ -1,3 +1,15 @@
+## log levels
+
+DEBUG       - very fine debug info
+INFO        - less fine debug info
+NOTICE      - normal runtime info
+WARNING
+ERROR       - non-fatal runtime errors, missing lookups for example
+CRITICAL
+ALERT
+EMERGENCY   - fatal runtime errors
+
+
 ## 2014-12-30
 
 * Need to decide on how to parse JSON from the two sources (Google GEOCODE API and Google Places API). The choices are:
