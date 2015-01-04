@@ -10,9 +10,10 @@ module Ksdl.Places
 import Control.Applicative
 import Control.Monad.Error
 import Data.Aeson
-import qualified Data.ByteString.Lazy.Char8 as BL
-import Data.List ( intercalate )
-import Network.Curl
+import qualified Data.ByteString.Lazy.Char8 as BL8
+import qualified Data.List as L
+import Data.Text
+import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
 import Ksdl.Geocoding ( GeoLatLng (..) )
@@ -24,7 +25,7 @@ placesRadius :: Int
 placesRadius = 50
 
 placesTypes :: String
-placesTypes = intercalate "|"
+placesTypes = L.intercalate "|"
    [ "restaurant"
    , "food"
    --, "cafe"
@@ -37,10 +38,10 @@ data PlLatLng = PlLatLng Double Double
 
 
 data Location = Location
-   { locName :: String
-   , locVicinity :: String
+   { locName :: Text
+   , locVicinity :: Text
    , locLoc :: PlLatLng
-   , locPlace_id :: String
+   , locPlace_id :: Text
    }
    deriving Show
 
@@ -72,14 +73,9 @@ coordsToPlace :: String -> GeoLatLng -> IO (Either String Locations)
 coordsToPlace apiKey coords = runErrorT $ do
    let url = mkPlacesUrl apiKey coords
    liftIO $ debugM lerror url
-   plJSON <- curlE =<< (liftIO $ curlGetString url [])
-   liftIO $ debugM lerror plJSON
-   either throwError return (eitherDecode . BL.pack $ plJSON)
-
-   where
-      curlE (CurlOK, body) = return body
-      curlE (code,   body) =
-         throwError $ printf "%s\n%s" (show code) body
+   plJSON <- liftIO $ simpleHttp url
+   liftIO $ debugM lerror $ BL8.unpack plJSON
+   either throwError return (eitherDecode plJSON)
 
 
 mkPlacesUrl :: String -> GeoLatLng -> String

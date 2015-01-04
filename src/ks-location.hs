@@ -4,12 +4,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Aeson
-import qualified Data.ByteString.Lazy.Char8 as BL
+import qualified Data.ByteString.Lazy as BL
 import Data.Char ( toLower )
 import Data.Either ( partitionEithers )
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
+import qualified Data.Text as T
+import qualified Data.Text.Format as TF
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath
@@ -18,7 +20,6 @@ import System.IO
    , hSetBuffering, stdout, stderr
    )
 import Text.EditDistance
-import Text.Printf ( printf )
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( addrToCoords )
@@ -84,15 +85,16 @@ csv :: (Facility, Locations) -> IO ()
 csv (fac, Locations locs) = mapM_ (line fac) locs
    where
       line :: Facility -> Location -> IO ()
-      line fac' loc = printf
-            "%d,%d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n"
-            (dist (name fac') (locName loc))
-            (dist (location fac') (locVicinity loc))
-            (name fac')
-            (locName loc)
-            (location fac')
-            (locVicinity loc)
-            (_id fac')
+      line fac' loc = TF.print
+            "{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
+            ( (dist (name fac') (T.unpack $ locName loc))
+            , (dist (location fac') (T.unpack $ locVicinity loc))
+            , (T.pack $ name fac')
+            , (locName loc)
+            , (T.pack $ location fac')
+            , (locVicinity loc)
+            , (T.pack $ _id fac')
+            )
 
       dist target input = levenshteinDistance defaultEditCosts
          (map toLower target) (map toLower input)

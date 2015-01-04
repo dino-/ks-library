@@ -51,9 +51,12 @@ executable           ks-location
                      , filepath
                      , hslogger
                      , HTTP
+                     , http-conduit
                      , MissingH
                      , mtl
                      , regex-compat
+                     , text
+                     , text-format
                      , uuid
    ghc-options:      -Wall
 
