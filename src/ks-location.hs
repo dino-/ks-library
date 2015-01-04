@@ -4,7 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Aeson
-import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString as BS
 import Data.Char ( toLower )
 import Data.Either ( partitionEithers )
 import Data.Function ( on )
@@ -121,4 +121,4 @@ csv (fac, Locations locs) = do
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
-loadFacility path = decode' `fmap` BL.readFile path
+loadFacility path = decodeStrict' `fmap` BS.readFile path
