@@ -12,10 +12,10 @@ import Data.Function ( on )
 import Data.List ( foldl', maximumBy, sortBy, tails )
 import qualified Data.Text as T
 import qualified Data.Text.Format as TF
+--import Debug.Trace ( trace )
 import Text.Regex
 
 import Ksdl.Facility
---import Ksdl.Log
 import Ksdl.Places
 
 
@@ -60,13 +60,14 @@ computeMatchValues :: Facility -> Location
    -> (Bool, (Int, Int, Facility, Location))
 computeMatchValues fac loc = (clNfac == clNloc, (ncsl, vcsl, fac, loc))
    where
-      clNfac = clean $ name fac
-      clNloc = clean $ T.unpack $ locName loc
+      clNfac = clean nameFilters $ name fac
+      clNloc = clean nameFilters $ T.unpack $ locName loc
       ncsl = commonSubLength clNfac clNloc
-      vcsl = commonSubLength (location fac) (T.unpack $ locVicinity loc)
+      vcsl = commonSubLength (clean addrFilters $ location fac)
+         (clean addrFilters $ T.unpack $ locVicinity loc)
 
-      commonSubLength target input = length $ longestCommonSubstring
-         (clean target) (clean input)
+      commonSubLength target input =
+         length $ longestCommonSubstring target input
 
       -- Patterns for some "stop" words
       reRestaurant = mkRegex "restaurant"
@@ -74,13 +75,16 @@ computeMatchValues fac loc = (clNfac == clNloc, (ncsl, vcsl, fac, loc))
 
       remove pat s = subRegex pat s ""
 
-      clean s = foldl' (flip id) s
-         [ takeWhile (/= ',')
-         , map toLower
+      clean filters s = foldl' (flip id) s filters
+
+      nameFilters =
+         [ map toLower
          , remove reRestaurant
          , remove reShop
          , filter isAlphaNum
          ]
+
+      addrFilters = takeWhile (/= ',') : nameFilters
 
 
 csv :: [(Bool, Int, Int, Facility, Location)] -> IO ()
