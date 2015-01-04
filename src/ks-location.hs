@@ -20,6 +20,7 @@ import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
    )
+import Text.Regex
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
@@ -113,9 +114,17 @@ csv (fac, Locations locs) = do
       commonSubLength target input = length $ longestCommonSubstring
          (clean target) (clean input)
 
+      -- Patterns for some "stop" words
+      reRestaurant = mkRegex "restaurant"
+      reShop = mkRegex "shop"
+
+      remove pat s = subRegex pat s ""
+
       clean s = foldl' (flip id) s
          [ takeWhile (/= ',')
          , map toLower
+         , remove reRestaurant
+         , remove reShop
          , filter (\c -> elem c "abcdefghijklmnopqrstuvwxyz0123456789")
          ]
 
