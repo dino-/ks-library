@@ -46,7 +46,6 @@ executable           ks-location
                      , base >= 3 && < 5
                      , bytestring
                      , directory
-                     , edit-distance
                      , filepath
                      , hslogger
                      , HTTP
