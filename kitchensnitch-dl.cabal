@@ -45,7 +45,6 @@ executable           ks-location
    build-depends:      aeson
                      , base >= 3 && < 5
                      , bytestring
-                     , curl
                      , directory
                      , edit-distance
                      , filepath

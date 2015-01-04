@@ -11,9 +11,9 @@ import Control.Applicative
 import Control.Concurrent ( threadDelay )
 import Control.Monad.Error
 import Data.Aeson
-import qualified Data.ByteString.Lazy.Char8 as BL
-import Network.Curl
+import qualified Data.ByteString.Lazy.Char8 as BL8
 import Network.HTTP ( urlEncode )
+import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
 import Ksdl.Log
@@ -44,16 +44,11 @@ failParse o = fail $ printf "Geocoding results failure:\n%s" (show o)
 addrToCoords :: String -> IO (Either String GeoLatLng)
 addrToCoords addr = runErrorT $ do
    let url = mkGeocodeUrl addr
-   liftIO $ putStrLn url
+   liftIO $ debugM lerror url
    liftIO $ threadDelay 500000   -- Geocoding server is touchy
-   gcJSON <- curlE =<< (liftIO $ curlGetString url [])
-   liftIO $ debugM lerror gcJSON
-   either throwError return (eitherDecode . BL.pack $ gcJSON)
-
-   where
-      curlE (CurlOK, body) = return body
-      curlE (code,   body) =
-         throwError $ printf "%s\n%s" (show code) body
+   gcJSON <- liftIO $ simpleHttp url
+   liftIO $ debugM lerror $ BL8.unpack gcJSON
+   either throwError return (eitherDecode gcJSON)
 
 
 mkGeocodeUrl :: String -> String
