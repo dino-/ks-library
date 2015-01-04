@@ -73,6 +73,7 @@ main = do
    mapM_ (errorM lerror . show) plFailures
    mapM_ (debugM lerror . show) plLocs
 
+   -- Compute the matches between inspections and Places data
    let matchDetails = concatMap match plLocs
    csv matchDetails
 

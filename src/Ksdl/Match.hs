@@ -19,21 +19,50 @@ import Ksdl.Facility
 import Ksdl.Places
 
 
---match :: (Facility, Locations) -> [(Bool, Int, Int, Facility, Location)]
-match :: (Facility, Locations) -> [(Int, Int, Facility, Location)]
-match (fac, Locations locs) = reverse . (sortBy cmpMatchValues)
-   . (map (computeMatchValues fac)) $ locs
+match :: (Facility, Locations) -> [(Bool, Int, Int, Facility, Location)]
+match (fac, Locations locs) = markBest orderedByMatch
+   where
+      orderedByMatch = reverse . (sortBy cmpMatchValues)
+         . (map (computeMatchValues fac)) $ locs
 
 
-cmpMatchValues :: (Int, Int, a, b) -> (Int, Int, a, b) -> Ordering
-cmpMatchValues (ncsl1, vcsl1, _, _) (ncsl2, vcsl2, _, _) =
+markBest :: [(Bool, (Int, a, b, c))] -> [(Bool, Int, a, b, c)]
+markBest [] = []
+markBest (best : rest) = markMatch best : map markNot rest
+   where
+      -- First elem is the one, put the Bool inside the final tuple
+      markMatch (nameMatch, (ncsl, vcsl, fac, loc)) =
+         ((isMatch ncsl nameMatch), ncsl, vcsl, fac, loc)
+      -- All others must be marked False, they are not the one
+      markNot (_, (ncsl, vcsl, fac, loc)) =
+         (False, ncsl, vcsl, fac, loc)
+
+
+cmpMatchValues :: (a, (Int, Int, b, c)) -> (a, (Int, Int, b, c))
+   -> Ordering
+cmpMatchValues (_, (ncsl1, vcsl1, _, _)) (_, (ncsl2, vcsl2, _, _)) =
    compare (ncsl1, vcsl1) (ncsl2, vcsl2)
 
 
-computeMatchValues :: Facility -> Location -> (Int, Int, Facility, Location)
-computeMatchValues fac loc = (ncsl, vcsl, fac, loc)
+-- Determine if this is really a match between the inspection and
+-- Places data
+isMatch :: Int -> Bool -> Bool
+isMatch ncsl nameMatch
+   -- If the common substring is greater than 5, it's a match (we hope)
+   | ncsl > 4  = True
+   -- If the common substring is <= 4, are the establishment names equal?
+   | nameMatch = True
+   -- None of the above, not a match
+   | otherwise = False
+
+
+computeMatchValues :: Facility -> Location
+   -> (Bool, (Int, Int, Facility, Location))
+computeMatchValues fac loc = (clNfac == clNloc, (ncsl, vcsl, fac, loc))
    where
-      ncsl = commonSubLength (name fac) (T.unpack $ locName loc)
+      clNfac = clean $ name fac
+      clNloc = clean $ T.unpack $ locName loc
+      ncsl = commonSubLength clNfac clNloc
       vcsl = commonSubLength (location fac) (T.unpack $ locVicinity loc)
 
       commonSubLength target input = length $ longestCommonSubstring
@@ -54,17 +83,18 @@ computeMatchValues fac loc = (ncsl, vcsl, fac, loc)
          ]
 
 
-csv :: [(Int, Int, Facility, Location)] -> IO ()
+csv :: [(Bool, Int, Int, Facility, Location)] -> IO ()
 csv xs = do
-   putStrLn "\"ncsl\",\"vcsl\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
+   putStrLn "\"pl\",\"ncsl\",\"vcsl\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
    mapM_ csvOne xs
 
 
-csvOne :: (Int, Int, Facility, Location) -> IO ()
-csvOne (ncsl, vcsl, fac, loc) = do
+csvOne :: (Bool, Int, Int, Facility, Location) -> IO ()
+csvOne (isPlace, ncsl, vcsl, fac, loc) = do
    TF.print
-      "{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
-      ( ncsl
+      "\"{}\",{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
+      ( toStar isPlace
+      , ncsl
       , vcsl
       , (T.pack $ name fac)
       , (locName loc)
@@ -72,6 +102,11 @@ csvOne (ncsl, vcsl, fac, loc) = do
       , (locVicinity loc)
       , (T.pack $ _id fac)
       )
+
+   where
+      toStar :: Bool -> T.Text
+      toStar True  = "*"
+      toStar False = ""
 
 
 {- Longest Common Substring function borrowed from Wikibooks:
