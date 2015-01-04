@@ -22,7 +22,7 @@ import System.IO
 import Text.EditDistance
 
 import Ksdl.Facility
-import Ksdl.Geocoding ( addrToCoords )
+import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
 import Ksdl.Places
 
@@ -50,7 +50,7 @@ main = do
    mapM_ (debugM lerror . show) facs
 
    -- Geocoding results
-   gcResults <- mapM addrToCoords $ map location facs
+   gcResults <- mapM forwardLookup $ map location facs
    let gcWithFacs = zipWith
          (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
          facs gcResults

@@ -4,7 +4,7 @@
 {-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Geocoding
-   ( GeoLatLng (..), addrToCoords )
+   ( GeoLatLng (..), forwardLookup )
    where
 
 import Control.Applicative
@@ -41,8 +41,8 @@ failParse :: forall (m :: * -> *) a a1.
 failParse o = fail $ printf "Geocoding results failure:\n%s" (show o)
 
 
-addrToCoords :: String -> IO (Either String GeoLatLng)
-addrToCoords addr = runErrorT $ do
+forwardLookup :: String -> IO (Either String GeoLatLng)
+forwardLookup addr = runErrorT $ do
    let url = mkGeocodeUrl addr
    liftIO $ debugM lerror url
    liftIO $ threadDelay 500000   -- Geocoding server is touchy
