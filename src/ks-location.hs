@@ -5,14 +5,10 @@
 
 import Data.Aeson
 import qualified Data.ByteString as BS
-import Data.Char ( isAlphaNum, toLower )
 import Data.Either ( partitionEithers )
-import Data.Function ( on )
-import Data.List ( foldl', isPrefixOf, maximumBy, tails )
+import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
-import qualified Data.Text as T
-import qualified Data.Text.Format as TF
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath
@@ -20,11 +16,11 @@ import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
    )
-import Text.Regex
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
+import Ksdl.Match
 import Ksdl.Places
 
 
@@ -77,56 +73,10 @@ main = do
    mapM_ (errorM lerror . show) plFailures
    mapM_ (debugM lerror . show) plLocs
 
-   mapM_ csv plLocs
+   let matchDetails = concatMap match plLocs
+   csv matchDetails
 
-
-{- Longest Common Substring function borrowed from Wikibooks:
-   https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring
--}
-longestCommonSubstring :: (Eq a) => [a] -> [a] -> [a]
-longestCommonSubstring xs ys = maximumBy (compare `on` length) . concat
-   $ [f xs' ys | xs' <- tails xs] ++ [f xs ys' | ys' <- drop 1 $ tails ys]
-
-   where f xs' ys' = scanl g [] $ zip xs' ys'
-         g z (x, y) = if x == y then z ++ [x] else []
-
-
-{- Produce development output, to be imported into spreadsheet
--}
-csv :: (Facility, Locations) -> IO ()
-csv (fac, Locations locs) = do
-   putStrLn "\"ncsl\",\"vcsl\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
-   mapM_ (line fac) locs
-
-   where
-      line :: Facility -> Location -> IO ()
-      line fac' loc = TF.print
-         "{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
-         ( (commonSubLength (name fac') (T.unpack $ locName loc))
-         , (commonSubLength (location fac') (T.unpack $ locVicinity loc))
-         , (T.pack $ name fac')
-         , (locName loc)
-         , (T.pack $ location fac')
-         , (locVicinity loc)
-         , (T.pack $ _id fac')
-         )
-
-      commonSubLength target input = length $ longestCommonSubstring
-         (clean target) (clean input)
-
-      -- Patterns for some "stop" words
-      reRestaurant = mkRegex "restaurant"
-      reShop = mkRegex "shop"
-
-      remove pat s = subRegex pat s ""
-
-      clean s = foldl' (flip id) s
-         [ takeWhile (/= ',')
-         , map toLower
-         , remove reRestaurant
-         , remove reShop
-         , filter isAlphaNum
-         ]
+   return ()
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
