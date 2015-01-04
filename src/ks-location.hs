@@ -120,31 +120,5 @@ csv (fac, Locations locs) = do
          ]
 
 
-{-
-log :: (Facility, Maybe Locations) -> IO ()
-log (fac, mlocs) = do
-   putStr "\n"
-   printf "inspection location: %s\n" (name fac)
-   printf "                     %s\n" (location fac)
-   putStr "places matches:\n"
-   maybe (putStr "   NONE FOUND\n") (display' fac) mlocs
-
-   where
-      display' :: Facility -> Locations -> IO ()
-      display' fac' (Locations ls) = mapM_ (outputLoc
-         (map toLower $ name fac') (map toLower $ location fac')) ls
-
-      outputLoc :: String -> String -> Location -> IO ()
-      outputLoc fn fv l = do
-         let ln = locName l
-         let lv = locVicinity l
-         printf "   %2d %s\n" (dist fn ln) ln
-         printf "   %2d %s\n\n" (dist fv lv) lv
-
-      dist target input = levenshteinDistance defaultEditCosts
-         target (map toLower input)
--}
-
-
 loadFacility :: FilePath -> IO (Maybe Facility)
 loadFacility path = decode' `fmap` BL.readFile path
