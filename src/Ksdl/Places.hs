@@ -61,7 +61,10 @@ newtype Locations = Locations [Location]
    deriving Show
 
 instance FromJSON Locations where
-   parseJSON (Object v) = Locations <$> v .: "results"
+   parseJSON (Object v) = do
+      rs <- v .: "results"
+      when (L.null rs) $ failParse v
+      return $ Locations rs
    parseJSON o = failParse o
 
 

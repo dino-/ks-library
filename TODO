@@ -12,3 +12,4 @@
 - Redesign Facility using Data.Text as with the Places module
 - Possibly useful to make the Geocoding and Places monadic types
   (Either Text a) as opposed to (Either String a)?
+- Clean up the error reporting formatting, particularly the missing Places results.
