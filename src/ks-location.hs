@@ -16,6 +16,7 @@ import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
    )
+import Text.Printf ( printf )
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
@@ -47,7 +48,15 @@ main = do
    mapM_ (debugM lerror . show) facs
 
    -- Geocoding results
-   gcResults <- mapM forwardLookup $ map location facs
+   --gcResults <- mapM forwardLookup $ map location facs
+   gcResults <- mapM (\f -> do
+      let loc = location f
+      debugM lerror $ printf "Geocoding forward lookup for:\n%s | %s"
+         (T.unpack $ name f) (T.unpack loc)
+      r <- forwardLookup loc
+      debugM lerror $ show r
+      return r
+      ) facs
    let gcWithFacs = zipWith
          (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
          facs gcResults
