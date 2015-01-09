@@ -67,15 +67,7 @@ main = do
       ) gcFailures
    mapM_ (debugM lerror . show) gcLocs
 
-   -- Places API
-   placesApiKey <-
-      strip `fmap`         -- ..strip any trailing whitespace
-      (readFile =<<        -- ..read the contents of this file
-      ((</> ".gplaces") .  -- ..append the Places API key filename
-      -- FIXME fromJust is bad
-      fromJust) `fmap`     -- ..extracted from the Maybe
-      lookupEnv "HOME")    -- Maybe $HOME directory
-   --print placesApiKey
+   placesApiKey <- loadPlacesKey
 
    plResults <- mapM (coordsToPlace placesApiKey) $ map snd gcLocs
    let plWithFacs = zipWith
@@ -94,3 +86,14 @@ main = do
 
 loadFacility :: FilePath -> IO (Maybe Facility)
 loadFacility path = decodeStrict' `fmap` BS.readFile path
+
+
+-- Google Places API key
+loadPlacesKey :: IO String
+loadPlacesKey =
+   strip `fmap`         -- ..strip any trailing whitespace
+   (readFile =<<        -- ..read the contents of this file
+   ((</> ".gplaces") .  -- ..append the Places API key filename
+   -- FIXME fromJust is bad
+   fromJust) `fmap`     -- ..extracted from the Maybe
+   lookupEnv "HOME")    -- Maybe $HOME directory
