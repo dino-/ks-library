@@ -23,6 +23,7 @@ import Ksdl.Log
 -- This is in meters
 placesRadius :: Int
 placesRadius = 50
+--placesRadius = 200
 
 placesTypes :: String
 placesTypes = L.intercalate "|"
@@ -80,4 +81,5 @@ coordsToPlace apiKey coords = runErrorT $ do
 
 mkPlacesUrl :: String -> GeoLatLng -> String
 mkPlacesUrl apiKey (GeoLatLng lat lng) = printf
+   --"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&types=%s" apiKey lat lng placesTypes
    "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=%d&types=%s" apiKey lat lng placesRadius placesTypes
