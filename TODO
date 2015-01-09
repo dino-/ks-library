@@ -1,14 +1,26 @@
-- Change the main.downloader implementation into a (Map String
-  Downloader) so it can be used in usage output
 - Look into accessing CouchBase directly from Haskell
-- Generate deterministic UUIDs for these records (using UUID v4
-  instead of v5). See the uuid-example project for help on this.
-- Add a proper config file, possibly adding Reader monad to the
-  base IO in place now.
-- Look for Places API key file in /etc/ as well as $HOME
-- Replace usage of Network.HTTP with Network.HTTP.Conduit (http-conduit)
+- Replace usage of Network.HTTP with Network.HTTP.Conduit
+  (http-conduit)
 - Is there a different url encoding API than with Network.HTTP?
-- Rethink Facility field names or start using this data type qualified.
-- Possibly useful to make the Geocoding and Places monadic types
-  (Either Text a) as opposed to (Either String a)?
-- Clean up the error reporting formatting, particularly the missing Places results.
+- ks-inspections
+   - Change the main.downloader implementation into a (Map String
+     Downloader) so it can be used in usage output
+- ks-location
+   - Clean up the error reporting formatting, particularly the
+     missing Places results
+   - Move Places API key loading code to Places module
+   - Add a proper config file, possibly adding Reader monad to the
+     base IO in place now.
+- Ksdl.Facility
+   - Generate deterministic UUIDs for these records (using UUID v4
+     instead of v5). See the uuid-example project for help on this.
+   - Rethink field names or start using this data type qualified
+   - Should we really be using Data.ByteString.Lazy.Char8
+     saveFacility? Try with just Data.ByteString.Lazy or even
+     not lazy.
+   - Tighten up export list
+- Ksdl.Log
+   - Change log formatting to not display the date and level
+   - Add start and end log messages from mainS with date and level
+- Ksdl.Places
+   - Look for Places API key file in /etc/ as well as $HOME
