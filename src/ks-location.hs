@@ -9,7 +9,6 @@ import Data.Either ( partitionEithers )
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
-import qualified Data.Text as T
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath
@@ -52,8 +51,8 @@ main = do
    --gcResults <- mapM forwardLookup $ map location facs
    gcResults <- mapM (\f -> do
       let loc = location f
-      debugM lerror $ printf "Geocoding forward lookup for:\n%s | %s"
-         (T.unpack $ name f) (T.unpack loc)
+      debugM lerror $ printf "Geocoding forward lookup for:\n%s"
+         $ displayFacility f
       r <- forwardLookup loc
       debugM lerror $ show r
       return r
@@ -62,7 +61,10 @@ main = do
          (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
          facs gcResults
    let (gcFailures, gcLocs) = partitionEithers gcWithFacs
-   mapM_ (errorM lerror . show) gcFailures
+   mapM_ (\(f, m) -> do
+      errorM lerror $ displayFacility f
+      errorM lerror $ show m
+      ) gcFailures
    mapM_ (debugM lerror . show) gcLocs
 
    -- Places API
