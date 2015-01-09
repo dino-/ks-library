@@ -36,6 +36,7 @@ executable           ks-inspections
                      , HTTP
                      , regex-compat
                      , tagsoup
+                     , text
                      , uuid
    ghc-options:      -Wall
 

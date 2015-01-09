@@ -9,7 +9,6 @@
 - Replace usage of Network.HTTP with Network.HTTP.Conduit (http-conduit)
 - Is there a different url encoding API than with Network.HTTP?
 - Rethink Facility field names or start using this data type qualified.
-- Redesign Facility using Data.Text as with the Places module
 - Possibly useful to make the Geocoding and Places monadic types
   (Either Text a) as opposed to (Either String a)?
 - Clean up the error reporting formatting, particularly the missing Places results.

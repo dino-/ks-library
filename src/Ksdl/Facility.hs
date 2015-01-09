@@ -8,6 +8,7 @@ module Ksdl.Facility
 
 import Data.Aeson ( FromJSON, ToJSON, encode )
 import qualified Data.ByteString.Lazy.Char8 as BL
+import Data.Text hiding ( map )
 import Data.UUID ( toString )
 import Data.UUID.V4 ( nextRandom )
 import GHC.Generics ( Generic )
@@ -17,9 +18,9 @@ import Text.Regex ( matchRegex, mkRegex )
 
 data Facility = Facility
    { _id :: String
-   , name :: String
+   , name :: Text
    , score :: Double
-   , location :: String
+   , location :: Text
    , inspection_date :: [Int]
    }
    deriving (Show, Generic)

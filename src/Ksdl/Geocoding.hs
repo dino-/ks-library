@@ -12,6 +12,7 @@ import Control.Concurrent ( threadDelay )
 import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL8
+import Data.Text
 import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
@@ -41,7 +42,7 @@ failParse :: forall (m :: * -> *) a a1.
 failParse o = fail $ printf "Geocoding results failure:\n%s" (show o)
 
 
-forwardLookup :: String -> IO (Either String GeoLatLng)
+forwardLookup :: Text -> IO (Either String GeoLatLng)
 forwardLookup addr = runErrorT $ do
    let url = mkGeocodeUrl addr
    liftIO $ debugM lerror url
@@ -54,7 +55,7 @@ forwardLookup addr = runErrorT $ do
    either throwError return (eitherDecode gcJSON)
 
 
-mkGeocodeUrl :: String -> String
+mkGeocodeUrl :: Text -> String
 mkGeocodeUrl addr = printf
    "http://maps.googleapis.com/maps/api/geocode/json?address=%s"
-   (urlEncode addr)
+   (urlEncode $ unpack addr)

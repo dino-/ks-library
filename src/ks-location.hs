@@ -9,6 +9,7 @@ import Data.Either ( partitionEithers )
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
+import qualified Data.Text as T
 import System.Directory ( getDirectoryContents )
 import System.Environment ( getArgs, lookupEnv )
 import System.FilePath

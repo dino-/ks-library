@@ -60,10 +60,10 @@ computeMatchValues :: Facility -> Location
    -> (Bool, (Int, Int, Facility, Location))
 computeMatchValues fac loc = (clNfac == clNloc, (ncsl, vcsl, fac, loc))
    where
-      clNfac = clean nameFilters $ name fac
+      clNfac = clean nameFilters $ T.unpack $ name fac
       clNloc = clean nameFilters $ T.unpack $ locName loc
       ncsl = commonSubLength clNfac clNloc
-      vcsl = commonSubLength (clean addrFilters $ location fac)
+      vcsl = commonSubLength (clean addrFilters $ T.unpack $ location fac)
          (clean addrFilters $ T.unpack $ locVicinity loc)
 
       commonSubLength target input =
@@ -95,16 +95,15 @@ csv xs = do
 
 csvOne :: (Bool, Int, Int, Facility, Location) -> IO ()
 csvOne (isPlace, ncsl, vcsl, fac, loc) = do
-   TF.print
-      "\"{}\",{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
+   TF.print "\"{}\",{},{},\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
       ( toStar isPlace
       , ncsl
       , vcsl
-      , (T.pack $ name fac)
-      , (locName loc)
-      , (T.pack $ location fac)
-      , (locVicinity loc)
-      , (T.pack $ _id fac)
+      , name fac
+      , locName loc
+      , location fac
+      , locVicinity loc
+      , _id fac
       )
 
    where

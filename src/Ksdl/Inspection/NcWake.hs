@@ -6,6 +6,7 @@ module Ksdl.Inspection.NcWake
 
 import Data.List ( intercalate, isPrefixOf, tails, zip4 )
 import Data.Maybe ( fromMaybe )
+import qualified Data.Text as T
 import Network.HTTP
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
@@ -60,7 +61,8 @@ getFacilities url = do
          , l ~== "Inspection Date:"
          ]
 
-   mapM setId $ map (\(t,s,l,d) -> Facility "" t s l (parseDate d))
+   mapM setId $ map (\(t,s,l,d) ->
+      Facility "" (T.pack t) s (T.pack l) (parseDate d))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))
