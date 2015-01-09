@@ -45,7 +45,10 @@ forwardLookup :: String -> IO (Either String GeoLatLng)
 forwardLookup addr = runErrorT $ do
    let url = mkGeocodeUrl addr
    liftIO $ debugM lerror url
-   liftIO $ threadDelay 500000   -- Geocoding server is touchy
+
+   -- Geocoding API limit: 2500/day, 5/sec
+   liftIO $ threadDelay 500000
+
    gcJSON <- liftIO $ simpleHttp url
    liftIO $ debugM lerror $ BL8.unpack gcJSON
    either throwError return (eitherDecode gcJSON)
