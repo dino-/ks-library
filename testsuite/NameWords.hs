@@ -11,7 +11,7 @@ import Data.Text hiding ( map )
 import Test.HUnit
 import Text.Printf ( printf )
 
-import Ksdl.Places ( nameWords )
+import Ksdl.NameWords ( toList )
 
 
 tests :: Test
@@ -31,7 +31,7 @@ testData =
 
 testNameWords :: (Text, [Text]) -> Test
 testNameWords (input, output) = TestCase $ do
-   assertEqual label output $ nameWords input
+   assertEqual label output $ toList input
 
    where
       label = printf "name words for \"%s\"" (unpack input)
