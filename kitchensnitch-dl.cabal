@@ -53,9 +53,11 @@ executable           ks-location
                      , http-conduit
                      , MissingH
                      , mtl
+                     , old-locale
                      , regex-compat
                      , text
                      , text-format
+                     , time
                      , uuid
    ghc-options:      -Wall
 

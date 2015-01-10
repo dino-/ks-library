@@ -34,6 +34,7 @@ main = do
    --let logLevel = DEBUG
    let logLevel = INFO
    initLogging logLevel
+   logStartMsg lerror
 
    dir <- head `fmap` getArgs
 
@@ -81,7 +82,7 @@ main = do
    let matchDetails = concatMap match plLocs
    csv matchDetails
 
-   return ()
+   logStopMsg lerror
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)

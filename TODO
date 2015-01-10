@@ -19,8 +19,5 @@
      saveFacility? Try with just Data.ByteString.Lazy or even
      not lazy.
    - Tighten up export list
-- Ksdl.Log
-   - Change log formatting to not display the date and level
-   - Add start and end log messages from mainS with date and level
 - Ksdl.Places
    - Look for Places API key file in /etc/ as well as $HOME
