@@ -19,8 +19,8 @@ import Ksdl.Facility
 import Ksdl.Places
 
 
-match :: (Facility, Locations) -> [(Bool, Int, Int, Facility, Location)]
-match (fac, Locations locs) = markBest orderedByMatch
+match :: (Facility, [Location]) -> [(Bool, Int, Int, Facility, Location)]
+match (fac, locs) = markBest orderedByMatch
    where
       orderedByMatch = reverse . (sortBy cmpMatchValues)
          . (map (computeMatchValues fac)) $ locs

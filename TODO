@@ -6,8 +6,6 @@
    - Change the main.downloader implementation into a (Map String
      Downloader) so it can be used in usage output
 - ks-location
-   - Clean up the error reporting formatting, particularly the
-     missing Places results
    - Move Places API key loading code to Places module
    - Add a proper config file, possibly adding Reader monad to the
      base IO in place now.

@@ -3,6 +3,7 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
+import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.Either ( partitionEithers )
@@ -16,7 +17,6 @@ import System.IO
    ( BufferMode ( NoBuffering )
    , hSetBuffering, stdout, stderr
    )
-import Text.Printf ( printf )
 
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
@@ -32,7 +32,8 @@ main = do
 
    -- Set up logging
    --let logLevel = DEBUG
-   let logLevel = INFO
+   --let logLevel = INFO
+   let logLevel = NOTICE
    initLogging logLevel
    logStartMsg lerror
 
@@ -46,43 +47,37 @@ main = do
 
    -- Loaded Facilities
    facs <- catMaybes `fmap` mapM loadFacility files
-   mapM_ (debugM lerror . show) facs
-
-   -- Geocoding results
-   --gcResults <- mapM forwardLookup $ map location facs
-   gcResults <- mapM (\f -> do
-      let loc = location f
-      debugM lerror $ printf "Geocoding forward lookup for:\n%s"
-         $ displayFacility f
-      r <- forwardLookup loc
-      debugM lerror $ show r
-      return r
-      ) facs
-   let gcWithFacs = zipWith
-         (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
-         facs gcResults
-   let (gcFailures, gcLocs) = partitionEithers gcWithFacs
-   mapM_ (\(f, m) -> do
-      errorM lerror $ displayFacility f
-      errorM lerror $ show m
-      ) gcFailures
-   mapM_ (debugM lerror . show) gcLocs
 
    placesApiKey <- loadPlacesKey
 
-   plResults <- mapM (coordsToPlace placesApiKey) $ map snd gcLocs
-   let plWithFacs = zipWith
-         (\f e -> either (\m -> Left (f, m)) (\l -> Right (f, l)) e)
-         (map fst gcLocs) plResults
-   let (plFailures, plLocs) = partitionEithers plWithFacs
-   mapM_ (errorM lerror . show) plFailures
-   mapM_ (debugM lerror . show) plLocs
+   -- Look up each inspection facility with Geocoding and Places
+   results <- mapM (lookupFacility placesApiKey) facs
+   infoM lerror $ replicate 70 '-'
 
-   -- Compute the matches between inspections and Places data
-   let matchDetails = concatMap match plLocs
+   -- Separate the failures from the successes
+   let (failures, locs) = partitionEithers results
+
+   -- Report the failures in the error log
+   mapM_ (errorM lerror) failures
+
+   -- Try to determine, for each facility, which Google Places hit
+   -- is the best match
+   let matchDetails = concatMap match locs
    csv matchDetails
 
    logStopMsg lerror
+
+
+lookupFacility :: String -> Facility ->
+   IO (Either String (Facility, [Location]))
+lookupFacility placesApiKey fac = runErrorT $ do
+   liftIO $ do
+      infoM lerror $ replicate 70 '-'
+      infoM lerror $ show fac
+
+   locations <- forwardLookup fac >>= coordsToPlaces placesApiKey
+
+   return (fac, locations)
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)

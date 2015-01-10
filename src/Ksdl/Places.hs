@@ -1,10 +1,10 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
+{-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Places
-   ( Locations (..), Location (..), coordsToPlace )
+   ( Location (..), coordsToPlaces )
    where
 
 import Control.Applicative
@@ -73,13 +73,20 @@ failParse :: forall (m :: * -> *) a a1.
 failParse o = fail $ printf "Places results failure:\n%s" (show o)
 
 
-coordsToPlace :: String -> GeoLatLng -> IO (Either String Locations)
-coordsToPlace apiKey coords = runErrorT $ do
+coordsToPlaces :: (MonadError String m, MonadIO m) =>
+   String -> GeoLatLng -> m [Location]
+coordsToPlaces apiKey coords = do
    let url = mkPlacesUrl apiKey coords
    liftIO $ debugM lerror url
+
    plJSON <- liftIO $ simpleHttp url
    liftIO $ debugM lerror $ BL8.unpack plJSON
-   either throwError return (eitherDecode plJSON)
+
+   let parseResult = eitherDecode plJSON
+   liftIO $ either (infoM lerror)
+      (\(Locations ls) -> mapM_ (infoM lerror . show) ls)
+      parseResult
+   either throwError (\(Locations ls) -> return ls) parseResult
 
 
 mkPlacesUrl :: String -> GeoLatLng -> String
