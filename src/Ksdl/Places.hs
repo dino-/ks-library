@@ -4,7 +4,9 @@
 {-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Places
-   ( Location (..), coordsToPlaces )
+   ( Location (..), coordsToPlaces
+   , nameWords
+   )
    where
 
 import Control.Applicative
@@ -93,3 +95,7 @@ mkPlacesUrl :: String -> GeoLatLng -> String
 mkPlacesUrl apiKey (GeoLatLng lat lng) = printf
    --"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&types=%s" apiKey lat lng placesTypes
    "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=%d&types=%s" apiKey lat lng placesRadius placesTypes
+
+
+nameWords :: Text -> [Text]
+nameWords orig = ["truffle", "cat"]

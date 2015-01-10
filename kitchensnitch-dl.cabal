@@ -61,9 +61,22 @@ executable           ks-location
                      , uuid
    ghc-options:      -Wall
 
---test-suite           pristine-tests
---   type:             exitcode-stdio-1.0
---   main-is:          pristine-tests.hs
---   hs-source-dirs:   src testsuite
---   build-depends:    base
---   ghc-options:      -Wall
+test-suite           test-ks-loc
+   type:             exitcode-stdio-1.0
+   main-is:          test-ks-loc.hs
+   hs-source-dirs:   src testsuite
+   build-depends:      aeson
+                     , base >= 3 && < 5
+                     , bytestring
+                     , filepath
+                     , hslogger
+                     , HTTP
+                     , http-conduit
+                     , HUnit
+                     , mtl
+                     , old-locale
+                     , regex-compat
+                     , text
+                     , time
+                     , uuid
+   ghc-options:      -Wall
