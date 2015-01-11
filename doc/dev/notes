@@ -1,4 +1,17 @@
+## What can fail throughout the process?
+
+Trying to clean-up the error reporting
+
+- downloading and parsing the inspection data
+- call to Geocoding
+- creation of name words (can this fail? But we do need to see it)
+- call to Places
+- attempt to match ins facility with one of the Places locations
+
+
 ## log levels
+
+This info can go into the conf file when we get there.
 
 DEBUG       - very fine debug info
 INFO        - less fine debug info

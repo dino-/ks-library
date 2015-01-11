@@ -21,8 +21,8 @@ import System.IO
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
-import Ksdl.Match ( csv, match )
-import Ksdl.Places ( Location (..), coordsToPlaces )
+import Ksdl.Match ( Match, csv, match )
+import Ksdl.Places ( coordsToPlaces )
 
 
 main :: IO ()
@@ -55,29 +55,30 @@ main = do
    infoM lerror $ replicate 70 '-'
 
    -- Separate the failures from the successes
-   let (failures, locs) = partitionEithers results
+   let (failures, matches) = partitionEithers results
 
    -- Report the failures in the error log
    mapM_ (errorM lerror) failures
 
-   -- Try to determine, for each facility, which Google Places hit
-   -- is the best match
-   let matchDetails = concatMap match locs
-   csv matchDetails
+   csv . concat $ matches
 
    logStopMsg lerror
 
 
 lookupFacility :: String -> Facility ->
-   IO (Either String (Facility, [Location]))
+   IO (Either String [Match])
 lookupFacility placesApiKey fac = runErrorT $ do
    liftIO $ do
       infoM lerror $ replicate 70 '-'
       infoM lerror $ show fac
 
-   locations <- forwardLookup fac >>= coordsToPlaces placesApiKey (name fac)
+   locations <- forwardLookup fac >>=
+      coordsToPlaces placesApiKey (name fac)
 
-   return (fac, locations)
+   -- :: [Match]
+   matches <- match fac locations
+
+   return matches
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
