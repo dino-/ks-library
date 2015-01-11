@@ -28,10 +28,11 @@ testNameWords (input, output) = TestCase $ do
 
 testData :: [(Text, [Text])]
 testData =
-   [ ("BOJANGLES #15", ["bojangles"])
-   , ("K&W CAFETERIA", ["k&w"])
-   --, ("Flights Restaurant-Raleigh Renaissance", ["flights","raleigh"])
+   [ ("Belle at The Jones House", ["belle"])
+   , ("BOJANGLES #15", ["bojangles"])
    , ("Flights Restaurant-Raleigh Renaissance", ["flights"])
-   , ("Belle at The Jones House", ["belle"])
+   , ("K&W CAFETERIA", ["k&w"])
+   , ("Kadhai-The Indian Wok", ["kadhai"])
    , ("Piccola Italia", ["piccola"])
+   , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]

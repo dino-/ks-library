@@ -47,6 +47,7 @@ executable           ks-location
    build-depends:      aeson
                      , base >= 3 && < 5
                      , bytestring
+                     , containers
                      , directory
                      , filepath
                      , hslogger
@@ -67,6 +68,7 @@ test-suite           test-ks-loc
    main-is:          test-ks-loc.hs
    hs-source-dirs:   src testsuite
    build-depends:      base >= 3 && < 5
+                     , containers
                      , HUnit
                      , text
    ghc-options:      -Wall

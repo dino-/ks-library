@@ -9,15 +9,22 @@ module Ksdl.NameWords
    where
 
 import qualified Data.List as L
+import qualified Data.Map as Map
 import Data.Text
 import Prelude hiding ( map )
 
 
 toList :: Text -> [Text]
-toList = L.filter (not . isPrefixOf "#")
+toList name = Map.findWithDefault
+   (mkList name)  -- Or make a list for a normal name
+   name           -- Find this name..
+   specialCases   -- ..in these special cases
+
+
+mkList :: Text -> [Text]
+mkList = L.filter (not . isPrefixOf "#")
    . L.filter (\w -> not $ L.elem w stopwords)
    . L.take 2
-   . L.takeWhile (/= "at")
    . split (== ' ')
    . map hyphenToSpace
    . toLower
@@ -41,12 +48,19 @@ stopwords =
    , "grill"
    , "grille"
    , "in"
-   , "italia"        -- special case
    , "of"
    , "on"
-   , "raleigh"       -- special case
    , "rest"
    , "rest."
    , "restaurant"
    , "the"
+   ]
+
+
+specialCases :: Map.Map Text [Text]
+specialCases = Map.fromList
+   [ ("Belle at The Jones House", ["belle"])
+   , ("Flights Restaurant-Raleigh Renaissance", ["flights"])
+   , ("Piccola Italia", ["piccola"])
+   , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]
