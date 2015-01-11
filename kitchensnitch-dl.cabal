@@ -20,7 +20,8 @@ extra-source-files:  changelog.md
                      util/gentags.sh
                      util/resources/facilities-01
                      util/resources/searchResultsPage.html
---                     [test suite files]
+                     testsuite/NameWords.hs
+                     testsuite/test-ks-loc.hs
 
 source-repository    head
    type:             darcs
