@@ -13,17 +13,14 @@ import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL8
 import qualified Data.List as L
 import Data.Text
+import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
 import Ksdl.Geocoding ( GeoLatLng (..) )
 import Ksdl.Log
+import Ksdl.NameWords ( toList )
 
-
--- This is in meters
-placesRadius :: Int
-placesRadius = 50
---placesRadius = 200
 
 placesTypes :: String
 placesTypes = L.intercalate "|"
@@ -74,10 +71,13 @@ failParse o = fail $ printf "Places results failure:\n%s" (show o)
 
 
 coordsToPlaces :: (MonadError String m, MonadIO m) =>
-   String -> GeoLatLng -> m [Location]
-coordsToPlaces apiKey coords = do
-   let url = mkPlacesUrl apiKey coords
-   liftIO $ debugM lerror url
+   String -> Text -> GeoLatLng -> m [Location]
+coordsToPlaces apiKey name coords = do
+   let nameWords = toList name
+   liftIO $ infoM lerror $ "name words list: " ++ show nameWords
+
+   let url = mkPlacesUrl apiKey nameWords coords
+   liftIO $ infoM lerror url
 
    plJSON <- liftIO $ simpleHttp url
    liftIO $ debugM lerror $ BL8.unpack plJSON
@@ -89,7 +89,8 @@ coordsToPlaces apiKey coords = do
    either throwError (\(Locations ls) -> return ls) parseResult
 
 
-mkPlacesUrl :: String -> GeoLatLng -> String
-mkPlacesUrl apiKey (GeoLatLng lat lng) = printf
-   --"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&types=%s" apiKey lat lng placesTypes
-   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&radius=%d&types=%s" apiKey lat lng placesRadius placesTypes
+mkPlacesUrl :: String -> [Text] -> GeoLatLng -> String
+mkPlacesUrl apiKey nameWords (GeoLatLng lat lng) = printf
+   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" apiKey lat lng nameList placesTypes
+   where
+      nameList = urlEncode $ unpack $ intercalate " " $ nameWords

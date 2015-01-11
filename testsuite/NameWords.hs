@@ -18,20 +18,20 @@ tests :: Test
 tests = TestList $ map testNameWords testData
 
 
-testData :: [(Text, [Text])]
-testData =
-   [ ("Ruby Tuesday`s #3182", ["ruby", "tuesday"])
-   , ("Ruby Tuesday", ["ruby", "tuesday"])
-   , ("Panda King", ["panda", "king"])
-   , ("Panda King Chinese Restaurant", ["panda", "king"])
-   , ("Il Bacio Italian Grill and Pizzeria", ["il", "bacio"])
-   , ("Sweet CE CE's-Heritage LLC", ["sweet", "ce"])
-   ]
-
-
 testNameWords :: (Text, [Text]) -> Test
 testNameWords (input, output) = TestCase $ do
    assertEqual label output $ toList input
 
    where
       label = printf "name words for \"%s\"" (unpack input)
+
+
+testData :: [(Text, [Text])]
+testData =
+   [ ("BOJANGLES #15", ["bojangles"])
+   , ("K&W CAFETERIA", ["k&w"])
+   --, ("Flights Restaurant-Raleigh Renaissance", ["flights","raleigh"])
+   , ("Flights Restaurant-Raleigh Renaissance", ["flights"])
+   , ("Belle at The Jones House", ["belle"])
+   , ("Piccola Italia", ["piccola"])
+   ]

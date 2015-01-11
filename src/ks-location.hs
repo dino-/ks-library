@@ -21,8 +21,8 @@ import System.IO
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
-import Ksdl.Match
-import Ksdl.Places
+import Ksdl.Match ( csv, match )
+import Ksdl.Places ( Location (..), coordsToPlaces )
 
 
 main :: IO ()
@@ -75,7 +75,7 @@ lookupFacility placesApiKey fac = runErrorT $ do
       infoM lerror $ replicate 70 '-'
       infoM lerror $ show fac
 
-   locations <- forwardLookup fac >>= coordsToPlaces placesApiKey
+   locations <- forwardLookup fac >>= coordsToPlaces placesApiKey (name fac)
 
    return (fac, locations)
 
