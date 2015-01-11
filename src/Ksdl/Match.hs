@@ -9,9 +9,11 @@ module Ksdl.Match
 
 import Control.Monad.Error
 import Data.Char ( isDigit )
+import Data.List ( intercalate )
 import qualified Data.Text as T
 import qualified Data.Text.Format as TF
 --import Debug.Trace ( trace )
+import Text.Printf ( printf )
 
 import Ksdl.Facility
 import Ksdl.Log ( line )
@@ -27,8 +29,8 @@ match fac locs = do
    let ts = map combine locs
    let count = (sum . map bToI $ ts) :: Int
 
-   when (count == 0) $ err "No Places result matches" ts
-   when (count > 1) $ err "More than one Places result matched" ts
+   when (count == 0) $ err "No Places result matches" fac ts
+   when (count > 1) $ err "More than one Places result matched" fac ts
 
    return ts
 
@@ -40,9 +42,12 @@ match fac locs = do
       bToI (False, _, _) = 0
 
 
-err :: forall (m :: * -> *) a s.
-   (MonadError String m, Show s) => String -> s -> m a
-err msg ts = throwError $ line ++ "\n" ++ "Match error:\n" ++  msg ++ "\n" ++ (show ts)
+err :: forall (m :: * -> *) a.
+   (MonadError String m) => String -> Facility -> [Match] -> m a
+err msg fac ts = throwError $ printf "%s\nMatch error: %s\n%s\n%s"
+   line msg (show fac) (intercalate "\n" . map extractMatch $ ts)
+
+   where extractMatch (_, _, loc) = show loc
 
 
 isMatch :: T.Text -> T.Text -> Bool
