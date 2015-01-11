@@ -4,6 +4,7 @@
 module Ksdl.Log
    ( initLogging, lerror
    , logStartMsg, logStopMsg
+   , line
 
    -- Re-exported from System.Log
    , Priority (..), debugM, infoM, noticeM, warningM, errorM
@@ -55,3 +56,7 @@ timeStamp :: IO String
 timeStamp = do
    local <- utcToLocalZonedTime =<< getCurrentTime 
    return $ formatTime defaultTimeLocale "%F %T %Z" local
+
+
+line :: String
+line = replicate 70 '-'

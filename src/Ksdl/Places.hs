@@ -10,7 +10,6 @@ module Ksdl.Places
 import Control.Applicative
 import Control.Monad.Error
 import Data.Aeson
-import qualified Data.ByteString.Lazy.Char8 as BL8
 import qualified Data.List as L
 import Data.Text
 import Network.HTTP ( urlEncode )
@@ -67,26 +66,26 @@ instance FromJSON Locations where
 
 failParse :: forall (m :: * -> *) a a1.
    (Show a1, Monad m) => a1 -> m a
-failParse o = fail $ printf "Places results failure:\n%s" (show o)
+failParse o = fail $ show o
 
 
 coordsToPlaces :: (MonadError String m, MonadIO m) =>
    String -> Text -> GeoLatLng -> m [Location]
 coordsToPlaces apiKey name coords = do
    let nameWords = toList name
-   liftIO $ infoM lerror $ "name words list: " ++ show nameWords
 
    let url = mkPlacesUrl apiKey nameWords coords
-   liftIO $ infoM lerror url
 
    plJSON <- liftIO $ simpleHttp url
-   liftIO $ debugM lerror $ BL8.unpack plJSON
 
    let parseResult = eitherDecode plJSON
-   liftIO $ either (infoM lerror)
-      (\(Locations ls) -> mapM_ (infoM lerror . show) ls)
-      parseResult
-   either throwError (\(Locations ls) -> return ls) parseResult
+   either (err name nameWords url) (\(Locations ls) -> return ls) parseResult
+
+
+err :: forall (m :: * -> *) a.
+   (MonadError String m) => Text -> [Text] -> String -> String -> m a
+err name nameWords url placesResultJSON =
+   throwError $ printf "%s\nPlaces results failure: %s\nname words list: %s\nPlaces URL: %s\nPlaces result JSON:\n%s" line (unpack name) (show nameWords) url placesResultJSON
 
 
 mkPlacesUrl :: String -> [Text] -> GeoLatLng -> String

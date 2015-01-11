@@ -14,6 +14,7 @@ import qualified Data.Text.Format as TF
 --import Debug.Trace ( trace )
 
 import Ksdl.Facility
+import Ksdl.Log ( line )
 import Ksdl.Places ( Location (..) )
 
 
@@ -41,7 +42,7 @@ match fac locs = do
 
 err :: forall (m :: * -> *) a s.
    (MonadError String m, Show s) => String -> s -> m a
-err msg ts = throwError $ "Match error: " ++  msg ++ "\n" ++ (show ts)
+err msg ts = throwError $ line ++ "\n" ++ "Match error: " ++  msg ++ "\n" ++ (show ts)
 
 
 isMatch :: T.Text -> T.Text -> Bool

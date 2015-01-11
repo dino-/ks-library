@@ -52,7 +52,7 @@ main = do
 
    -- Look up each inspection facility with Geocoding and Places
    results <- mapM (lookupFacility placesApiKey) facs
-   infoM lerror $ replicate 70 '-'
+   infoM lerror line
 
    -- Separate the failures from the successes
    let (failures, matches) = partitionEithers results
@@ -69,7 +69,7 @@ lookupFacility :: String -> Facility ->
    IO (Either String [Match])
 lookupFacility placesApiKey fac = runErrorT $ do
    liftIO $ do
-      infoM lerror $ replicate 70 '-'
+      infoM lerror line
       infoM lerror $ show fac
 
    locations <- forwardLookup fac >>=
