@@ -42,7 +42,7 @@ match fac locs = do
 
 err :: forall (m :: * -> *) a s.
    (MonadError String m, Show s) => String -> s -> m a
-err msg ts = throwError $ line ++ "\n" ++ "Match error: " ++  msg ++ "\n" ++ (show ts)
+err msg ts = throwError $ line ++ "\n" ++ "Match error:\n" ++  msg ++ "\n" ++ (show ts)
 
 
 isMatch :: T.Text -> T.Text -> Bool

@@ -16,6 +16,7 @@ import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
+import Ksdl.Facility
 import Ksdl.Geocoding ( GeoLatLng (..) )
 import Ksdl.Log
 import Ksdl.NameWords ( toList )
@@ -70,22 +71,22 @@ failParse o = fail $ show o
 
 
 coordsToPlaces :: (MonadError String m, MonadIO m) =>
-   String -> Text -> GeoLatLng -> m [Location]
-coordsToPlaces apiKey name coords = do
-   let nameWords = toList name
+   String -> Facility -> GeoLatLng -> m [Location]
+coordsToPlaces apiKey fac coords = do
+   let nameWords = toList . name $ fac
 
    let url = mkPlacesUrl apiKey nameWords coords
 
    plJSON <- liftIO $ simpleHttp url
 
    let parseResult = eitherDecode plJSON
-   either (err name nameWords url) (\(Locations ls) -> return ls) parseResult
+   either (err fac nameWords url) (\(Locations ls) -> return ls) parseResult
 
 
 err :: forall (m :: * -> *) a.
-   (MonadError String m) => Text -> [Text] -> String -> String -> m a
-err name nameWords url placesResultJSON =
-   throwError $ printf "%s\nPlaces results failure: %s\nname words list: %s\nPlaces URL: %s\nPlaces result JSON:\n%s" line (unpack name) (show nameWords) url placesResultJSON
+   (MonadError String m) => Facility -> [Text] -> String -> String -> m a
+err fac nameWords url placesResultJSON =
+   throwError $ printf "%s\nPlaces error:\n%s\nName words list: %s\nPlaces URL: %s\nPlaces result JSON:\n%s" line (show fac) (show nameWords) url placesResultJSON
 
 
 mkPlacesUrl :: String -> [Text] -> GeoLatLng -> String

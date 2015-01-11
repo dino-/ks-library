@@ -59,6 +59,7 @@ main = do
 
    -- Report the failures in the error log
    mapM_ (errorM lerror) failures
+   errorM lerror line
 
    csv . concat $ matches
 
@@ -73,7 +74,7 @@ lookupFacility placesApiKey fac = runErrorT $ do
       infoM lerror $ show fac
 
    locations <- forwardLookup fac >>=
-      coordsToPlaces placesApiKey (name fac)
+      coordsToPlaces placesApiKey fac
 
    -- :: [Match]
    matches <- match fac locations
