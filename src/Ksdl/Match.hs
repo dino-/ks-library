@@ -12,7 +12,6 @@ import Data.Char ( isDigit )
 import Data.List ( intercalate )
 import qualified Data.Text as T
 import qualified Data.Text.Format as TF
---import Debug.Trace ( trace )
 import Text.Printf ( printf )
 
 import Ksdl.Facility
