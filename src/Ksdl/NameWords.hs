@@ -11,7 +11,7 @@ module Ksdl.NameWords
 import qualified Data.List as L
 import qualified Data.Map as Map
 import Data.Text
-import Prelude hiding ( map )
+import Prelude hiding ( filter, map )
 
 
 toList :: Text -> [Text]
@@ -26,6 +26,7 @@ mkList = L.filter (not . isPrefixOf "#")
    . L.filter (\w -> not $ L.elem w stopwords)
    . L.take 2
    . split (== ' ')
+   . filter (not . (== '.'))
    . map hyphenToSpace
    . toLower
 

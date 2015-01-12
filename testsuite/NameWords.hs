@@ -34,5 +34,6 @@ testData =
    , ("K&W CAFETERIA", ["k&w"])
    , ("Kadhai-The Indian Wok", ["kadhai"])
    , ("Piccola Italia", ["piccola"])
+   , ("R.J.`S PLACE", ["rj`s","place"])
    , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]
