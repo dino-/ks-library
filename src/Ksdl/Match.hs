@@ -46,7 +46,13 @@ err :: forall (m :: * -> *) a.
 err msg fac ts = throwError $ printf "%s\nMatch error: %s\n%s\n%s"
    line msg (show fac) (intercalate "\n" . map extractMatch $ ts)
 
-   where extractMatch (_, _, loc) = show loc
+   where
+      extractMatch (matched, _, loc) =
+         (toStar matched) : ' ' : (show loc)
+
+      toStar :: Bool -> Char
+      toStar True  = '*'
+      toStar False = ' '
 
 
 isMatch :: T.Text -> T.Text -> Bool
