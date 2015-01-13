@@ -36,7 +36,7 @@ main = do
       return $ c { placesApiKey = k }
 
    initLogging $ logPriority config
-   logStartMsg lerror
+   logStartMsg lname
 
    dir <- head `fmap` getArgs
 
@@ -51,18 +51,18 @@ main = do
 
    -- Look up each inspection facility with Geocoding and Places
    matches <- concat `fmap` mapM (lookupFacility config) facs
-   noticeM lerror line
+   noticeM lname line
    csv matches
 
-   logStopMsg lerror
+   logStopMsg lname
 
 
 lookupFacility :: Config -> Facility -> IO [Match]
 lookupFacility config fac = do
    r <- runKsdl config $ do
       liftIO $ do
-         noticeM lerror line
-         noticeM lerror $ show fac
+         noticeM lname line
+         noticeM lname $ show fac
 
       locations <- forwardLookup fac >>=
          coordsToPlaces fac
@@ -72,7 +72,7 @@ lookupFacility config fac = do
 
       return matches
 
-   either (\msg -> errorM lerror msg >> return []) return r
+   either (\msg -> errorM lname msg >> return []) return r
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)

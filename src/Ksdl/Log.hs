@@ -2,7 +2,7 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 module Ksdl.Log
-   ( initLogging, lerror
+   ( initLogging, lname
    , logStartMsg, logStopMsg
    , line
 
@@ -19,8 +19,8 @@ import System.Log.Handler.Simple ( streamHandler )
 import System.Log.Logger
 
 
-lerror :: String
-lerror = "error"
+lname :: String
+lname = "normal-output"
 
 
 {- Set up logging
@@ -33,8 +33,8 @@ initLogging logPriority = do
 
    -- Set up our logger
    h <- streamHandler stderr DEBUG
-   updateGlobalLogger lerror $ setHandlers [h]
-   updateGlobalLogger lerror $ setLevel logPriority
+   updateGlobalLogger lname $ setHandlers [h]
+   updateGlobalLogger lname $ setLevel logPriority
 
 
 logStartMsg :: String -> IO ()

@@ -42,17 +42,17 @@ forwardLookup :: Facility -> Ksdl GeoLatLng
 forwardLookup fac = do
    let addr = location fac
    let url = mkGeocodeUrl addr
-   liftIO $ noticeM lerror $ "Geocoding URL: " ++ url
+   liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 
    -- Geocoding API limit: 2500/day, 5/sec
    liftIO $ threadDelay 500000
 
    gcJSON <- liftIO $ simpleHttp url
-   liftIO $ debugM lerror $ "Geocoding result JSON: "
+   liftIO $ debugM lname $ "Geocoding result JSON: "
       ++ (BL.unpack gcJSON)
 
    let parseResult = eitherDecode gcJSON
-   liftIO $ either (noticeM lerror) (noticeM lerror . show)
+   liftIO $ either (noticeM lname) (noticeM lname . show)
       parseResult
    either (const $ throwError $ "ERROR Geocoding")
       return parseResult

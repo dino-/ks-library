@@ -31,11 +31,11 @@ match fac locs = do
       throwError "ERROR Match: No Places result matches"
 
    liftIO $ do
-      noticeM lerror "Matches:"
-      mapM_ (noticeM lerror) $ catMaybes $ map matched ts
+      noticeM lname "Matches:"
+      mapM_ (noticeM lname) $ catMaybes $ map matched ts
 
    when (count > 1) $ liftIO $ do
-      warningM lerror "WARNING Match: More than one Places result matched"
+      warningM lname "WARNING Match: More than one Places result matched"
 
    return ts
 

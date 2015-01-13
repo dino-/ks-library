@@ -19,7 +19,7 @@ import Ksdl.Config
 
 toList :: Text -> Ksdl [Text]
 toList name = do
-   specialCases <- Map.fromList `fmap` asks namewordsSpecialCases
+   specialCases <- asks namewordsSpecialCases
    list <- mkList name
 
    return $ Map.findWithDefault

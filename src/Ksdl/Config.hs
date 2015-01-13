@@ -7,6 +7,7 @@ module Ksdl.Config
    where
 
 import Data.List ( isPrefixOf )
+import qualified Data.Map as Map
 import qualified Data.Text as T
 import System.Log
 
@@ -15,7 +16,7 @@ data Config = Config
    { logPriority :: Priority
    , geocodingApiDelay :: Int
    , namewordsStopwords :: [T.Text]
-   , namewordsSpecialCases :: [(T.Text, [T.Text])]
+   , namewordsSpecialCases :: Map.Map T.Text [T.Text]
    , placesApiKey :: String
    }
    deriving (Read, Show)

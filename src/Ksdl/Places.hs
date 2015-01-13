@@ -75,18 +75,18 @@ failParse o = fail $ show o
 coordsToPlaces :: Facility -> GeoLatLng -> Ksdl [Location]
 coordsToPlaces fac coords = do
    nameWords <- toList $ name fac
-   liftIO $ noticeM lerror $ "Places name words list: "
+   liftIO $ noticeM lname $ "Places name words list: "
       ++ (show nameWords)
 
    url <- mkPlacesUrl nameWords coords `fmap` asks placesApiKey
-   liftIO $ noticeM lerror $ "Places URL: " ++ url
+   liftIO $ noticeM lname $ "Places URL: " ++ url
 
    plJSON <- liftIO $ simpleHttp url
-   liftIO $ debugM lerror $ "Places result JSON: "
+   liftIO $ debugM lname $ "Places result JSON: "
       ++ (BL.unpack plJSON)
 
    let parseResult = eitherDecode plJSON
-   liftIO $ either (noticeM lerror)
+   liftIO $ either (noticeM lname)
       displayLocations parseResult
    either (const $ throwError $ "ERROR Places API")
       (\(Locations ls) -> return ls) parseResult
@@ -94,8 +94,8 @@ coordsToPlaces fac coords = do
 
 displayLocations :: Locations -> IO ()
 displayLocations (Locations locs) = do
-   noticeM lerror "Places returned:"
-   mapM_ (noticeM lerror . show) locs
+   noticeM lname "Places returned:"
+   mapM_ (noticeM lname . show) locs
 
 
 mkPlacesUrl :: [Text] -> GeoLatLng -> String -> String
