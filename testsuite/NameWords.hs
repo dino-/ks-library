@@ -11,6 +11,8 @@ import Data.Text hiding ( map )
 import Test.HUnit
 import Text.Printf ( printf )
 
+import Ksdl
+import Ksdl.Config
 import Ksdl.NameWords ( toList )
 
 
@@ -20,10 +22,10 @@ tests = TestList $ map testNameWords testData
 
 testNameWords :: (Text, [Text]) -> Test
 testNameWords (input, output) = TestCase $ do
-   assertEqual label output $ toList input
-
-   where
-      label = printf "name words for \"%s\"" (unpack input)
+   config <- loadConfig "ksdl.conf"
+   actual <- runKsdl config $ toList input
+   let label = printf "name words for \"%s\"" (unpack input)
+   assertEqual label (Right output) actual
 
 
 testData :: [(Text, [Text])]

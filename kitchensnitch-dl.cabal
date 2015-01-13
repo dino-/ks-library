@@ -69,6 +69,10 @@ test-suite           test-ks-loc
    hs-source-dirs:   src testsuite
    build-depends:      base >= 3 && < 5
                      , containers
+                     , filepath
+                     , hslogger
                      , HUnit
+                     , mtl
+                     , regex-compat
                      , text
    ghc-options:      -Wall
