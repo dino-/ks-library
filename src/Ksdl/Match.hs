@@ -9,13 +9,13 @@ module Ksdl.Match
 
 import Control.Monad.Error
 import Data.Char ( isDigit )
-import Data.List ( intercalate )
+import Data.Maybe ( catMaybes )
 import qualified Data.Text as T
+import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Format as TF
-import Text.Printf ( printf )
 
 import Ksdl.Facility
-import Ksdl.Log ( line )
+import Ksdl.Log
 import Ksdl.Places ( Location (..) )
 
 
@@ -28,8 +28,15 @@ match fac locs = do
    let ts = map combine locs
    let count = (sum . map bToI $ ts) :: Int
 
-   when (count == 0) $ err "No Places result matches" fac ts
-   when (count > 1) $ err "More than one Places result matched" fac ts
+   when (count == 0) $ do
+      throwError "ERROR Match: No Places result matches"
+
+   liftIO $ do
+      noticeM lerror "Matches:"
+      mapM_ (noticeM lerror) $ catMaybes $ map matched ts
+
+   when (count > 1) $ liftIO $ do
+      warningM lerror "WARNING Match: More than one Places result matched"
 
    return ts
 
@@ -40,19 +47,10 @@ match fac locs = do
       bToI (True,  _, _) = 1
       bToI (False, _, _) = 0
 
-
-err :: forall (m :: * -> *) a.
-   (MonadError String m) => String -> Facility -> [Match] -> m a
-err msg fac ts = throwError $ printf "%s\nMatch error: %s\n%s\n%s"
-   line msg (show fac) (intercalate "\n" . map extractMatch $ ts)
-
-   where
-      extractMatch (matched, _, loc) =
-         (toStar matched) : ' ' : (show loc)
-
-      toStar :: Bool -> Char
-      toStar True  = '*'
-      toStar False = ' '
+      matched :: Match -> Maybe String
+      matched (True , _, loc) = Just . T.unpack . TL.toStrict $
+         TF.format "{} | {}" ((locName loc), (locVicinity loc))
+      matched (False, _, _  ) = Nothing
 
 
 isMatch :: T.Text -> T.Text -> Bool

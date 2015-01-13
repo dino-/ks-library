@@ -6,7 +6,6 @@
 import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString as BS
-import Data.Either ( partitionEithers )
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes, fromJust )
 import Data.String.Utils ( strip )
@@ -51,35 +50,29 @@ main = do
    placesApiKey <- loadPlacesKey
 
    -- Look up each inspection facility with Geocoding and Places
-   results <- mapM (lookupFacility placesApiKey) facs
-   infoM lerror line
-
-   -- Separate the failures from the successes
-   let (failures, matches) = partitionEithers results
-
-   -- Report the failures in the error log
-   mapM_ (errorM lerror) failures
-   errorM lerror line
-
-   csv . concat $ matches
+   matches <- concat `fmap` mapM (lookupFacility placesApiKey) facs
+   noticeM lerror line
+   csv matches
 
    logStopMsg lerror
 
 
-lookupFacility :: String -> Facility ->
-   IO (Either String [Match])
-lookupFacility placesApiKey fac = runErrorT $ do
-   liftIO $ do
-      infoM lerror line
-      infoM lerror $ show fac
+lookupFacility :: String -> Facility -> IO [Match]
+lookupFacility placesApiKey fac = do
+   r <- runErrorT $ do
+      liftIO $ do
+         noticeM lerror line
+         noticeM lerror $ show fac
 
-   locations <- forwardLookup fac >>=
-      coordsToPlaces placesApiKey fac
+      locations <- forwardLookup fac >>=
+         coordsToPlaces placesApiKey fac
 
-   -- :: [Match]
-   matches <- match fac locations
+      -- :: [Match]
+      matches <- match fac locations
 
-   return matches
+      return matches
+
+   either (\msg -> noticeM lerror msg >> return []) return r
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)

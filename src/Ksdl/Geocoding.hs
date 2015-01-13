@@ -11,6 +11,7 @@ import Control.Applicative
 import Control.Concurrent ( threadDelay )
 import Control.Monad.Error
 import Data.Aeson
+import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Text
 import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
@@ -42,20 +43,20 @@ forwardLookup :: (MonadError String m, MonadIO m) =>
 forwardLookup fac = do
    let addr = location fac
    let url = mkGeocodeUrl addr
+   liftIO $ noticeM lerror $ "Geocoding URL: " ++ url
 
    -- Geocoding API limit: 2500/day, 5/sec
    liftIO $ threadDelay 500000
 
    gcJSON <- liftIO $ simpleHttp url
+   liftIO $ debugM lerror $ "Geocoding result JSON: "
+      ++ (BL.unpack gcJSON)
 
    let parseResult = eitherDecode gcJSON
-   either (err fac url) return parseResult
-
-
-err :: forall (m :: * -> *) a.
-   (MonadError String m) => Facility -> String -> String -> m a
-err fac url gcResultJSON =
-   throwError $ printf "%s\nGeocoding error:\n%s\nGeocoding URL: %s\nGeocoding result JSON:\n%s" line (show fac) url gcResultJSON
+   liftIO $ either (noticeM lerror) (noticeM lerror . show)
+      parseResult
+   either (const $ throwError $ "ERROR Geocoding")
+      return parseResult
 
 
 mkGeocodeUrl :: Text -> String
