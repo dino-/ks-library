@@ -31,7 +31,7 @@ main = do
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
 
    config <- do
-      c <- loadConf
+      c <- loadConfig "ksdl.conf"
       k <- loadPlacesKey
       return $ c { placesApiKey = k }
 
@@ -77,10 +77,6 @@ lookupFacility config fac = do
 
 loadFacility :: FilePath -> IO (Maybe Facility)
 loadFacility path = decodeStrict' `fmap` BS.readFile path
-
-
-loadConf :: IO Config
-loadConf = loadConfig "ksdl.conf"
 
 
 -- Google Places API key
