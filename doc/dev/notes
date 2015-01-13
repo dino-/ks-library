@@ -9,20 +9,6 @@ Trying to clean-up the error reporting
 - attempt to match ins facility with one of the Places locations
 
 
-## log levels
-
-This info can go into the conf file when we get there.
-
-DEBUG       - very fine debug info
-INFO        - less fine debug info
-NOTICE      - normal runtime info
-WARNING
-ERROR       - non-fatal runtime errors, missing lookups for example
-CRITICAL
-ALERT
-EMERGENCY   - fatal runtime errors
-
-
 ## 2014-12-30
 
 * Need to decide on how to parse JSON from the two sources (Google GEOCODE API and Google Places API). The choices are:

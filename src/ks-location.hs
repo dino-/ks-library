@@ -72,7 +72,7 @@ lookupFacility config fac = do
 
       return matches
 
-   either (\msg -> noticeM lerror msg >> return []) return r
+   either (\msg -> errorM lerror msg >> return []) return r
 
 
 loadFacility :: FilePath -> IO (Maybe Facility)
