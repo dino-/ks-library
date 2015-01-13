@@ -24,15 +24,6 @@ import Ksdl.Log
 import Ksdl.NameWords ( toList )
 
 
-placesTypes :: String
-placesTypes = L.intercalate "|"
-   [ "restaurant"
-   , "food"
-   --, "cafe"
-   --, "bar"
-   ]
-
-
 data PlLatLng = PlLatLng Double Double
    deriving Show
 
@@ -74,11 +65,7 @@ failParse o = fail $ show o
 
 coordsToPlaces :: Facility -> GeoLatLng -> Ksdl [Location]
 coordsToPlaces fac coords = do
-   nameWords <- toList $ name fac
-   liftIO $ noticeM lname $ "Places name words list: "
-      ++ (show nameWords)
-
-   url <- mkPlacesUrl nameWords coords `fmap` asks placesApiKey
+   url <- mkPlacesUrl fac coords
    liftIO $ noticeM lname $ "Places URL: " ++ url
 
    plJSON <- liftIO $ simpleHttp url
@@ -98,8 +85,16 @@ displayLocations (Locations locs) = do
    mapM_ (noticeM lname . show) locs
 
 
-mkPlacesUrl :: [Text] -> GeoLatLng -> String -> String
-mkPlacesUrl nameWords (GeoLatLng lat lng) apiKey = printf
-   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" apiKey lat lng nameList placesTypes
-   where
-      nameList = urlEncode $ unpack $ intercalate " " $ nameWords
+mkPlacesUrl :: Facility -> GeoLatLng -> Ksdl String
+mkPlacesUrl fac (GeoLatLng lat lng) = do
+   key <- asks placesApiKey
+
+   nameWords <- toList $ name fac
+   liftIO $ noticeM lname $ "Places name words list: "
+      ++ (show nameWords)
+
+   let nameList = urlEncode $ unpack $ intercalate " " $ nameWords
+
+   types <- L.intercalate "|" `fmap` asks placesTypes
+
+   return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat lng nameList types

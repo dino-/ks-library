@@ -18,6 +18,7 @@ data Config = Config
    , namewordsStopwords :: [T.Text]
    , namewordsSpecialCases :: Map.Map T.Text [T.Text]
    , placesApiKey :: String
+   , placesTypes :: [String]
    }
    deriving (Read, Show)
 
