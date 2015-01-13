@@ -38,6 +38,7 @@ executable           ks-inspections
                      , regex-compat
                      , tagsoup
                      , text
+                     , utf8-string
                      , uuid
    ghc-options:      -Wall
 
@@ -60,6 +61,7 @@ executable           ks-location
                      , text
                      , text-format
                      , time
+                     , utf8-string
                      , uuid
    ghc-options:      -Wall
 
@@ -67,7 +69,9 @@ test-suite           test-ks-loc
    type:             exitcode-stdio-1.0
    main-is:          test-ks-loc.hs
    hs-source-dirs:   src testsuite
-   build-depends:      base >= 3 && < 5
+   build-depends:      aeson
+                     , base >= 3 && < 5
+                     , bytestring
                      , containers
                      , filepath
                      , hslogger
@@ -75,4 +79,6 @@ test-suite           test-ks-loc
                      , mtl
                      , regex-compat
                      , text
+                     , utf8-string
+                     , uuid
    ghc-options:      -Wall

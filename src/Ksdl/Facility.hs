@@ -6,11 +6,13 @@
 module Ksdl.Facility
    where
 
+import qualified Codec.Binary.UTF8.String as UTF8
 import Data.Aeson ( FromJSON, ToJSON, encode )
 import qualified Data.ByteString.Lazy.Char8 as BL
+import Data.Maybe ( fromJust )
 import Data.Text hiding ( init, map, unlines )
-import Data.UUID ( toString )
-import Data.UUID.V4 ( nextRandom )
+import Data.UUID ( UUID, fromString, toString )
+import Data.UUID.V5 ( generateNamed )
 import GHC.Generics ( Generic )
 import System.FilePath
 import Text.Printf ( printf )
@@ -40,10 +42,18 @@ parseDate dateStr =
    in maybe [] (\(m : d : y : []) -> [y, m, d]) mbParsed
 
 
-setId :: Facility -> IO Facility
-setId f = do
-   u <- nextRandom
-   return $ f { _id = toString u }
+-- This was generated from "honuapps.com" with the nil namespace
+nsUUID :: UUID
+nsUUID = fromJust . fromString $
+   "e95d936e-3845-582e-a0c5-3f53b3949b97"
+
+
+setId :: Facility -> Facility
+setId f = f { _id = toString newId }
+   where
+      newId = generateNamed nsUUID $ UTF8.encode $ printf "%s|%s|%s|%f"
+         (unpack . name $ f) (unpack . location $ f)
+         (show . inspection_date $ f) (score f)
 
 
 saveFacility :: FilePath -> Facility -> IO ()

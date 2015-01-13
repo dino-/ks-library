@@ -61,8 +61,8 @@ getFacilities url = do
          , l ~== "Inspection Date:"
          ]
 
-   mapM setId $ map (\(t,s,l,d) ->
-      Facility "" (T.pack t) s (T.pack l) (parseDate d))
+   return $ map (\(t,s,l,d) ->
+      setId (Facility "" (T.pack t) s (T.pack l) (parseDate d)))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))
