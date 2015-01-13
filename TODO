@@ -7,8 +7,6 @@
      Downloader) so it can be used in usage output
 - ks-location
    - Move Places API key loading code to Places module
-   - Add a proper config file, possibly adding Reader monad to the
-     base IO in place now.
 - Ksdl.Facility
    - Generate deterministic UUIDs for these records (using UUID v4
      instead of v5). See the uuid-example project for help on this.

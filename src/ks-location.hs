@@ -3,7 +3,6 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
@@ -17,6 +16,8 @@ import System.IO
    , hSetBuffering, stdout, stderr
    )
 
+import Ksdl
+import Ksdl.Config
 import Ksdl.Facility
 import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
@@ -29,11 +30,12 @@ main = do
    -- No buffering, it messes with the order of output
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
 
-   -- Set up logging
-   --let logLevel = DEBUG
-   --let logLevel = INFO
-   let logLevel = NOTICE
-   initLogging logLevel
+   config <- do
+      c <- loadConf
+      k <- loadPlacesKey
+      return $ c { placesApiKey = k }
+
+   initLogging $ logPriority config
    logStartMsg lerror
 
    dir <- head `fmap` getArgs
@@ -47,25 +49,23 @@ main = do
    -- Loaded Facilities
    facs <- catMaybes `fmap` mapM loadFacility files
 
-   placesApiKey <- loadPlacesKey
-
    -- Look up each inspection facility with Geocoding and Places
-   matches <- concat `fmap` mapM (lookupFacility placesApiKey) facs
+   matches <- concat `fmap` mapM (lookupFacility config) facs
    noticeM lerror line
    csv matches
 
    logStopMsg lerror
 
 
-lookupFacility :: String -> Facility -> IO [Match]
-lookupFacility placesApiKey fac = do
-   r <- runErrorT $ do
+lookupFacility :: Config -> Facility -> IO [Match]
+lookupFacility config fac = do
+   r <- runKsdl config $ do
       liftIO $ do
          noticeM lerror line
          noticeM lerror $ show fac
 
       locations <- forwardLookup fac >>=
-         coordsToPlaces placesApiKey fac
+         coordsToPlaces fac
 
       -- :: [Match]
       matches <- match fac locations
@@ -77,6 +77,10 @@ lookupFacility placesApiKey fac = do
 
 loadFacility :: FilePath -> IO (Maybe Facility)
 loadFacility path = decodeStrict' `fmap` BS.readFile path
+
+
+loadConf :: IO Config
+loadConf = loadConfig "ksdl.conf"
 
 
 -- Google Places API key

@@ -1,14 +1,13 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
+{-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Places
    ( Location (..), coordsToPlaces )
    where
 
 import Control.Applicative
-import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.List as L
@@ -17,6 +16,8 @@ import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
+import Ksdl
+import Ksdl.Config
 import Ksdl.Facility
 import Ksdl.Geocoding ( GeoLatLng (..) )
 import Ksdl.Log
@@ -71,14 +72,13 @@ failParse :: forall (m :: * -> *) a a1.
 failParse o = fail $ show o
 
 
-coordsToPlaces :: (MonadError String m, MonadIO m) =>
-   String -> Facility -> GeoLatLng -> m [Location]
-coordsToPlaces apiKey fac coords = do
-   let nameWords = toList . name $ fac
+coordsToPlaces :: Facility -> GeoLatLng -> Ksdl [Location]
+coordsToPlaces fac coords = do
+   nameWords <- toList $ name fac
    liftIO $ noticeM lerror $ "Places name words list: "
       ++ (show nameWords)
 
-   let url = mkPlacesUrl apiKey nameWords coords
+   url <- mkPlacesUrl nameWords coords `fmap` asks placesApiKey
    liftIO $ noticeM lerror $ "Places URL: " ++ url
 
    plJSON <- liftIO $ simpleHttp url
@@ -98,8 +98,8 @@ displayLocations (Locations locs) = do
    mapM_ (noticeM lerror . show) locs
 
 
-mkPlacesUrl :: String -> [Text] -> GeoLatLng -> String
-mkPlacesUrl apiKey nameWords (GeoLatLng lat lng) = printf
+mkPlacesUrl :: [Text] -> GeoLatLng -> String -> String
+mkPlacesUrl nameWords (GeoLatLng lat lng) apiKey = printf
    "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" apiKey lat lng nameList placesTypes
    where
       nameList = urlEncode $ unpack $ intercalate " " $ nameWords

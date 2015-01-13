@@ -1,7 +1,7 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
+{-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Geocoding
    ( GeoLatLng (..), forwardLookup )
@@ -9,7 +9,6 @@ module Ksdl.Geocoding
 
 import Control.Applicative
 import Control.Concurrent ( threadDelay )
-import Control.Monad.Error
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Text
@@ -17,6 +16,7 @@ import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
+import Ksdl
 import Ksdl.Facility
 import Ksdl.Log
 
@@ -38,8 +38,7 @@ headE _ (x : _) = return x
 headE v []      = fail $ show v
 
 
-forwardLookup :: (MonadError String m, MonadIO m) =>
-   Facility -> m GeoLatLng
+forwardLookup :: Facility -> Ksdl GeoLatLng
 forwardLookup fac = do
    let addr = location fac
    let url = mkGeocodeUrl addr

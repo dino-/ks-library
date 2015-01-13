@@ -7,13 +7,13 @@ module Ksdl.Match
    ( Match, csv, match )
    where
 
-import Control.Monad.Error
 import Data.Char ( isDigit )
 import Data.Maybe ( catMaybes )
 import qualified Data.Text as T
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Format as TF
 
+import Ksdl
 import Ksdl.Facility
 import Ksdl.Log
 import Ksdl.Places ( Location (..) )
@@ -22,8 +22,7 @@ import Ksdl.Places ( Location (..) )
 type Match = (Bool, Facility, Location)
 
 
-match :: (MonadError String m, MonadIO m) =>
-   Facility -> [Location] -> m [Match]
+match :: Facility -> [Location] -> Ksdl [Match]
 match fac locs = do
    let ts = map combine locs
    let count = (sum . map bToI $ ts) :: Int
