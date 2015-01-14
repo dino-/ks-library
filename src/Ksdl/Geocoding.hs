@@ -26,8 +26,12 @@ data GeoLatLng = GeoLatLng Double Double
 
 instance FromJSON GeoLatLng where
    parseJSON (Object v) = do
+      status <- v .: "status"
+      when (status /= "OK") $ fail status
+
       firstResult <- (v .: "results") >>= headE v
       loc <- (firstResult .: "geometry") >>= (.: "location")
+
       GeoLatLng <$> (loc .: "lat") <*> (loc .: "lng")
    parseJSON o = fail $ show o
 
@@ -52,10 +56,15 @@ forwardLookup fac = do
       ++ (BL.unpack gcJSON)
 
    let parseResult = eitherDecode gcJSON
-   liftIO $ either (noticeM lname) (noticeM lname . show)
-      parseResult
-   either (const $ throwError $ "ERROR Geocoding")
-      return parseResult
+   either
+      (\status -> throwError $ "ERROR Geocoding: " ++ status)
+      displayAndReturn parseResult
+
+
+displayAndReturn :: GeoLatLng -> Ksdl GeoLatLng
+displayAndReturn gll = do
+   liftIO $ noticeM lname $ show gll
+   return gll
 
 
 mkGeocodeUrl :: Text -> String
