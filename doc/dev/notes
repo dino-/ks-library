@@ -1,29 +1,36 @@
-## What can fail throughout the process?
+## 2015-01-14
 
-Trying to clean-up the error reporting
-
-- downloading and parsing the inspection data
-- call to Geocoding
-- creation of name words (can this fail? But we do need to see it)
-- call to Places
-- attempt to match ins facility with one of the Places locations
+We *do* want to continue storing inspection name and address.
 
 
-## 2014-12-30
+## Isolating subsets of inspection files
 
-* Need to decide on how to parse JSON from the two sources (Google GEOCODE API and Google Places API). The choices are:
-   * Make data types fully expressing the JSON and auto-derive
-   * Use custom instancing, Applicative and the Aeson functions like (.:)
+From within some directory full of inspection JSON files..
+
+    $ cd data/wake_2014..
+
+The first 100
+
+    $ find . type f | head -100 | xargs cp -v -t ../foo/
+
+The second 100
+
+    $ find . type f | head -200 | tail -100 | xargs cp -v -t ../foo/
+
+The third 100
+
+    $ find . type f | head -300 | tail -100 | xargs cp -v -t ../foo/
 
 
 ## 2014-12-29
+
 correlating inspection data with location data
 
 * go through all JSON from health inspections (in data/)
 * for each "location", hit GEO CODE API
 * get back doc with lat/lng in "geometry" "location"
-* pass lat/lng to Places API (REST). radius 50, types restaurant (see below)
-* interested in locations with Name match and Vicinity close match
+* pass lat/lng to Places API (REST)
+* interested in locations that match on the stree address number
 * in those, interested in geometry location and place_id
 
 Address (from our database) 

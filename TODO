@@ -9,7 +9,6 @@
    - insp_UUID.json  -- "raw" inspection data
    - ks_UUIS.json    -- document for Couch
    - ??.log          -- Log of running inspection-to-places lookups
-- Clean up doc/dev/notes, there is old info in there now
 - Write some usage docs in README.md
 - It may be time to put info in changelog.md
 - Need a new data structure for Couch combining all data from
