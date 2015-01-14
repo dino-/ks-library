@@ -17,9 +17,6 @@
   generate) and places_id at the top-level.
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than with Network.HTTP?
-- In the Aeson FromJSON instances, do we really need these failParse
-  functions? They have crazy type signatures, require KingSignatures
-  and RandNTypes, and only do this: fail . show
 - ks-inspections
    - Change the main.downloader implementation into a (Map String
      Downloader) so it can be used in usage output

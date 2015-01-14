@@ -34,13 +34,13 @@ instance FromJSON GeoLatLng where
       loc <- (firstResult .: "geometry") >>= (.: "location")
 
       GeoLatLng <$> (loc .: "lat") <*> (loc .: "lng")
-   parseJSON o = fail $ show o
+   parseJSON o = fail . show $ o
 
 
 headE :: forall (m :: * -> *) a a1.
    (Show a1, Monad m) => a1 -> [a] -> m a
 headE _ (x : _) = return x
-headE v []      = fail $ show v
+headE v []      = fail . show $ v
 
 
 forwardLookup :: Inspection -> Ksdl GeoLatLng

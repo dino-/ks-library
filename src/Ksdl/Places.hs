@@ -1,7 +1,7 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Ksdl.Places
    ( Location (..), coordsToPlaces )
@@ -44,7 +44,7 @@ instance FromJSON Location where
          <*> o .: "vicinity"
          <*> (PlLatLng <$> (l .: "lat") <*> (l .: "lng"))
          <*> o .: "place_id"
-   parseJSON o = failParse o
+   parseJSON o = fail . show $ o
 
 
 newtype Locations = Locations [Location]
@@ -56,15 +56,10 @@ instance FromJSON Locations where
       when (status /= "OK") $ fail status
 
       rs <- v .: "results"
-      when (L.null rs) $ failParse v
+      when (L.null rs) $ fail . show $ v
 
       return $ Locations rs
-   parseJSON o = failParse o
-
-
-failParse :: forall (m :: * -> *) a a1.
-   (Show a1, Monad m) => a1 -> m a
-failParse o = fail $ show o
+   parseJSON o = fail . show $ o
 
 
 coordsToPlaces :: Inspection -> GeoLatLng -> Ksdl [Location]
