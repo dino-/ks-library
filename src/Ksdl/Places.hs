@@ -52,8 +52,12 @@ newtype Locations = Locations [Location]
 
 instance FromJSON Locations where
    parseJSON (Object v) = do
+      status <- v .: "status"
+      when (status /= "OK") $ fail status
+
       rs <- v .: "results"
       when (L.null rs) $ failParse v
+
       return $ Locations rs
    parseJSON o = failParse o
 
@@ -73,16 +77,17 @@ coordsToPlaces fac coords = do
       ++ (BL.unpack plJSON)
 
    let parseResult = eitherDecode plJSON
-   liftIO $ either (noticeM lname)
-      displayLocations parseResult
-   either (const $ throwError $ "ERROR Places API")
-      (\(Locations ls) -> return ls) parseResult
+   either
+      (\status -> throwError $ "ERROR Places API: " ++ status)
+      displayAndReturn parseResult
 
 
-displayLocations :: Locations -> IO ()
-displayLocations (Locations locs) = do
-   noticeM lname "Places returned:"
-   mapM_ (noticeM lname . show) locs
+displayAndReturn :: Locations -> Ksdl [Location]
+displayAndReturn (Locations locs) = do
+   liftIO $ do
+      noticeM lname "Places returned:"
+      mapM_ (noticeM lname . show) locs
+   return locs
 
 
 mkPlacesUrl :: Facility -> GeoLatLng -> Ksdl String
