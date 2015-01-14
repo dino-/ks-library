@@ -8,7 +8,8 @@ import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes )
 import Data.String.Utils ( strip )
-import System.Directory ( getDirectoryContents, getHomeDirectory )
+import System.Directory ( doesFileExist, getDirectoryContents
+   , getHomeDirectory )
 import System.Environment ( getArgs )
 import System.FilePath
 import System.IO
@@ -38,13 +39,15 @@ main = do
    initLogging $ logPriority config
    logStartMsg lname
 
-   dir <- head `fmap` getArgs
-
-   -- Paths to all files
-   files <-
-      ( map (dir </>)                     -- ..relative paths
-      . filter (not . isPrefixOf ".") )   -- ..minus dotfiles
-      `fmap` getDirectoryContents dir     -- All files
+   -- Paths to all files we'll be processing
+   dirOrFile <- head `fmap` getArgs
+   files <- do
+      isFile <- doesFileExist dirOrFile
+      if isFile then return [dirOrFile]
+         else
+            ( map (dirOrFile </>)                  -- ..relative paths
+            . filter (not . isPrefixOf ".") )      -- ..minus dotfiles
+            `fmap` getDirectoryContents dirOrFile  -- All files
 
    -- Loaded Facilities
    insps <- catMaybes `fmap` mapM loadInspection files
