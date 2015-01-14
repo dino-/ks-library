@@ -21,7 +21,6 @@
      Downloader) so it can be used in usage output
    - Do proper usage output
 - ks-location
-   - Swap lookupEnv "HOME" for getHomeDirectory, it's less work!
    - Change the csv business (really in Ksdl.Match) to save out the
      JSON document for the db. For good AND bad, into different dirs
      (see above)

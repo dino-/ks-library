@@ -6,10 +6,10 @@
 import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
-import Data.Maybe ( catMaybes, fromJust )
+import Data.Maybe ( catMaybes )
 import Data.String.Utils ( strip )
-import System.Directory ( getDirectoryContents )
-import System.Environment ( getArgs, lookupEnv )
+import System.Directory ( getDirectoryContents, getHomeDirectory )
+import System.Environment ( getArgs )
 import System.FilePath
 import System.IO
    ( BufferMode ( NoBuffering )
@@ -82,9 +82,7 @@ loadInspection path = decodeStrict' `fmap` BS.readFile path
 -- Google Places API key
 loadPlacesKey :: IO String
 loadPlacesKey =
-   strip `fmap`         -- ..strip any trailing whitespace
-   (readFile =<<        -- ..read the contents of this file
-   ((</> ".gplaces") .  -- ..append the Places API key filename
-   -- FIXME fromJust is bad
-   fromJust) `fmap`     -- ..extracted from the Maybe
-   lookupEnv "HOME")    -- Maybe $HOME directory
+   strip `fmap`            -- ..strip any trailing whitespace
+   (readFile =<<           -- ..read the contents of this file
+   (</> ".gplaces") `fmap` -- ..append the Places API key filename
+   getHomeDirectory)
