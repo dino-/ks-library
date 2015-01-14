@@ -69,5 +69,5 @@ displayAndReturn gll = do
 
 mkGeocodeUrl :: Text -> String
 mkGeocodeUrl addr = printf
-   "http://maps.googleapis.com/maps/api/geocode/json?address=%s"
+   "https://maps.googleapis.com/maps/api/geocode/json?address=%s"
    (urlEncode $ unpack addr)
