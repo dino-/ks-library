@@ -14,16 +14,16 @@ import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Format as TF
 
 import Ksdl
-import Ksdl.Facility
+import Ksdl.Inspection
 import Ksdl.Log
 import Ksdl.Places ( Location (..) )
 
 
-type Match = (Bool, Facility, Location)
+type Match = (Bool, Inspection, Location)
 
 
-match :: Facility -> [Location] -> Ksdl [Match]
-match fac locs = do
+match :: Inspection -> [Location] -> Ksdl [Match]
+match insp locs = do
    let ts = map combine locs
    let count = (sum . map bToI $ ts) :: Int
 
@@ -40,8 +40,8 @@ match fac locs = do
    return ts
 
    where
-      combine loc = ((isMatch (location fac) (locVicinity loc)),
-         fac, loc)
+      combine loc = ((isMatch (location insp) (locVicinity loc)),
+         insp, loc)
 
       bToI (True,  _, _) = 1
       bToI (False, _, _) = 0
@@ -64,14 +64,14 @@ csv xs = do
 
 
 csvOne :: Match -> IO ()
-csvOne (isPlace, fac, loc) = do
+csvOne (isPlace, insp, loc) = do
    TF.print "\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
       ( toStar isPlace
-      , name fac
+      , name insp
       , locName loc
-      , location fac
+      , location insp
       , locVicinity loc
-      , _id fac
+      , _id insp
       )
 
    where

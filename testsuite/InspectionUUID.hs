@@ -3,30 +3,30 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module FacilityUUID
+module InspectionUUID
    ( tests )
    where
 
 import Test.HUnit
 import Text.Printf ( printf )
 
-import Ksdl.Facility
+import Ksdl.Inspection
 
 
 tests :: Test
 tests = TestList $ map testFacUUID testData
 
 
-testFacUUID :: Facility -> Test
+testFacUUID :: Inspection -> Test
 testFacUUID expected = TestCase $ do
    let label = printf "construct UUID for: %s" (show expected)
    let actual = setId expected
    assertEqual label (_id expected) (_id actual)
 
 
-testData :: [Facility]
+testData :: [Inspection]
 testData =
-   [ Facility
+   [ Inspection
       { _id = "e33231ae-b075-520e-9a29-44d3fe90a37a"
       , name = "Panda King"
       , score = 92.0

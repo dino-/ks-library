@@ -32,11 +32,10 @@
    - Determine if input path is a file or dir, do the appropriate
      thing
    - Do proper usage output
-- Ksdl.Facility
-   - Change this module name to Inspection
+- Ksdl.Inspection
    - Rethink field names or start using this data type qualified
    - Should we really be using Data.ByteString.Lazy.Char8
-     saveFacility? Try with just Data.ByteString.Lazy or even
+     saveInspection? Try with just Data.ByteString.Lazy or even
      not lazy.
    - Tighten up export list
 - Ksdl.Inspection.*

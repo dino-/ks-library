@@ -11,7 +11,7 @@ import Network.HTTP
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
-import Ksdl.Facility
+import Ksdl.Inspection
 import Ksdl.Inspection.Common
 
 
@@ -28,12 +28,12 @@ download dir pageLimit = do
 
    let pageUrls = maybe allPageUrls (\n -> take n allPageUrls) pageLimit
 
-   let getters = map getFacilities pageUrls  -- [IO [Facility]]
-   mapM_ (\ml -> ml >>= mapM_ (saveFacility dir)) getters
+   let getters = map getFacilities pageUrls  -- [IO [Inspection]]
+   mapM_ (\ml -> ml >>= mapM_ (saveInspection dir)) getters
 
 
 -- Get all (4) facilities from a page at the supplied URL
-getFacilities :: String -> IO [Facility]
+getFacilities :: String -> IO [Inspection]
 getFacilities url = do
    printf "Retrieving %s\n" url
 
@@ -62,7 +62,7 @@ getFacilities url = do
          ]
 
    return $ map (\(t,s,l,d) ->
-      setId (Facility "" (T.pack t) s (T.pack l) (parseDate d)))
+      setId (Inspection "" (T.pack t) s (T.pack l) (parseDate d)))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))

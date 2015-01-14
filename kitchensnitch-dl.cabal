@@ -20,6 +20,7 @@ extra-source-files:  changelog.md
                      util/gentags.sh
                      util/resources/facilities-01
                      util/resources/searchResultsPage.html
+                     testsuite/InspectionUUID.hs
                      testsuite/NameWords.hs
                      testsuite/test-ks-loc.hs
 

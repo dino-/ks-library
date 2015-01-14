@@ -18,7 +18,7 @@ import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
-import Ksdl.Facility
+import Ksdl.Inspection
 import Ksdl.Log
 
 
@@ -43,9 +43,9 @@ headE _ (x : _) = return x
 headE v []      = fail $ show v
 
 
-forwardLookup :: Facility -> Ksdl GeoLatLng
-forwardLookup fac = do
-   let addr = location fac
+forwardLookup :: Inspection -> Ksdl GeoLatLng
+forwardLookup insp = do
+   let addr = location insp
    let url = mkGeocodeUrl addr
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 

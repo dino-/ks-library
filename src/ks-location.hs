@@ -18,7 +18,7 @@ import System.IO
 
 import Ksdl
 import Ksdl.Config
-import Ksdl.Facility
+import Ksdl.Inspection
 import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
 import Ksdl.Match ( Match, csv, match )
@@ -47,36 +47,36 @@ main = do
       `fmap` getDirectoryContents dir     -- All files
 
    -- Loaded Facilities
-   facs <- catMaybes `fmap` mapM loadFacility files
+   insps <- catMaybes `fmap` mapM loadInspection files
 
    -- Look up each inspection facility with Geocoding and Places
-   matches <- concat `fmap` mapM (lookupFacility config) facs
+   matches <- concat `fmap` mapM (lookupInspection config) insps
    noticeM lname line
    csv matches
 
    logStopMsg lname
 
 
-lookupFacility :: Config -> Facility -> IO [Match]
-lookupFacility config fac = do
+lookupInspection :: Config -> Inspection -> IO [Match]
+lookupInspection config insp = do
    r <- runKsdl config $ do
       liftIO $ do
          noticeM lname line
-         noticeM lname $ show fac
+         noticeM lname $ show insp
 
-      locations <- forwardLookup fac >>=
-         coordsToPlaces fac
+      locations <- forwardLookup insp >>=
+         coordsToPlaces insp
 
       -- :: [Match]
-      matches <- match fac locations
+      matches <- match insp locations
 
       return matches
 
    either (\msg -> errorM lname msg >> return []) return r
 
 
-loadFacility :: FilePath -> IO (Maybe Facility)
-loadFacility path = decodeStrict' `fmap` BS.readFile path
+loadInspection :: FilePath -> IO (Maybe Inspection)
+loadInspection path = decodeStrict' `fmap` BS.readFile path
 
 
 -- Google Places API key

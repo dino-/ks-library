@@ -3,7 +3,7 @@
 
 {-# LANGUAGE DeriveGeneric #-}
 
-module Ksdl.Facility
+module Ksdl.Inspection
    where
 
 import qualified Codec.Binary.UTF8.String as UTF8
@@ -19,7 +19,7 @@ import Text.Printf ( printf )
 import Text.Regex ( matchRegex, mkRegex )
 
 
-data Facility = Facility
+data Inspection = Inspection
    { _id :: String
    , name :: Text
    , score :: Double
@@ -28,11 +28,11 @@ data Facility = Facility
    }
    deriving Generic
 
-instance Show Facility
-   where show = displayFacility
+instance Show Inspection
+   where show = displayInspection
 
-instance FromJSON Facility
-instance ToJSON Facility
+instance FromJSON Inspection
+instance ToJSON Inspection
 
 
 parseDate :: String -> [Int]
@@ -48,7 +48,7 @@ nsUUID = fromJust . fromString $
    "e95d936e-3845-582e-a0c5-3f53b3949b97"
 
 
-setId :: Facility -> Facility
+setId :: Inspection -> Inspection
 setId f = f { _id = toString newId }
    where
       newId = generateNamed nsUUID $ UTF8.encode $ printf "%s|%s|%s|%f"
@@ -56,19 +56,19 @@ setId f = f { _id = toString newId }
          (show . inspection_date $ f) (score f)
 
 
-saveFacility :: FilePath -> Facility -> IO ()
-saveFacility dir fac = BL.writeFile (dir </> (_id fac)) $ encode fac
+saveInspection :: FilePath -> Inspection -> IO ()
+saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
 
 
-displayFacility :: Facility -> String
-displayFacility fac = printf mask (_id fac) (unpack $ name fac)
-   (inspection_date fac !! 0) (inspection_date fac !! 1)
-   (inspection_date fac !! 2) (score fac)
-   (unpack $ location fac)
+displayInspection :: Inspection -> String
+displayInspection insp = printf mask (_id insp) (unpack $ name insp)
+   (inspection_date insp !! 0) (inspection_date insp !! 1)
+   (inspection_date insp !! 2) (score insp)
+   (unpack $ location insp)
 
    where
       mask = init . unlines $
-         [ "Facility %s"
+         [ "Inspection %s"
          , "   %s | %4d-%02d-%02d %f"
          , "   %s"
          ]

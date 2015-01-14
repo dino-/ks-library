@@ -18,7 +18,7 @@ import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
-import Ksdl.Facility
+import Ksdl.Inspection
 import Ksdl.Geocoding ( GeoLatLng (..) )
 import Ksdl.Log
 import Ksdl.NameWords ( toList )
@@ -67,9 +67,9 @@ failParse :: forall (m :: * -> *) a a1.
 failParse o = fail $ show o
 
 
-coordsToPlaces :: Facility -> GeoLatLng -> Ksdl [Location]
-coordsToPlaces fac coords = do
-   url <- mkPlacesUrl fac coords
+coordsToPlaces :: Inspection -> GeoLatLng -> Ksdl [Location]
+coordsToPlaces insp coords = do
+   url <- mkPlacesUrl insp coords
    liftIO $ noticeM lname $ "Places URL: " ++ url
 
    plJSON <- liftIO $ simpleHttp url
@@ -90,11 +90,11 @@ displayAndReturn (Locations locs) = do
    return locs
 
 
-mkPlacesUrl :: Facility -> GeoLatLng -> Ksdl String
-mkPlacesUrl fac (GeoLatLng lat lng) = do
+mkPlacesUrl :: Inspection -> GeoLatLng -> Ksdl String
+mkPlacesUrl insp (GeoLatLng lat lng) = do
    key <- asks placesApiKey
 
-   nameWords <- toList $ name fac
+   nameWords <- toList $ name insp
    liftIO $ noticeM lname $ "Places name words list: "
       ++ (show nameWords)
 
