@@ -1,19 +1,51 @@
+- Figure out what the top-level "tools" should be. What is the
+  progression of tasks to go from nothing to inspections scraped to
+  data inserted into the db?
+- For above, need a set of dirs input or in Config that represent
+  where data is coming from and going to.
+- IMPORTANT: we are not saving or moving the inspection files from
+  an input dir to a failed dir.
+- When saving data files, use some prefix conventions, like:
+   - insp_UUID.json  -- "raw" inspection data
+   - ks_UUIS.json    -- document for Couch
+   - ??.log          -- Log of running inspection-to-places lookups
+- Clean up doc/dev/notes, there is old info in there now
+- Write some usage docs in README.md
+- It may be time to put info in changelog.md
+- Need a new data structure for Couch combining all data from
+  inspection and Places. Nested, with _id (inspection UUID we
+  generate) and places_id at the top-level.
 - Look into accessing CouchBase directly from Haskell
-- Replace usage of Network.HTTP with Network.HTTP.Conduit
-  (http-conduit)
 - Is there a different url encoding API than with Network.HTTP?
+- In the Aeson FromJSON instances, do we really need these failParse
+  functions? They have crazy type signatures, require KingSignatures
+  and RandNTypes, and only do this: fail . show
 - ks-inspections
    - Change the main.downloader implementation into a (Map String
      Downloader) so it can be used in usage output
+   - Do proper usage output
 - ks-location
-   - Move Places API key loading code to Places module
+   - Swap lookupEnv "HOME" for getHomeDirectory, it's less work!
+   - Change the csv business (really in Ksdl.Match) to save out the
+     JSON document for the db. For good AND bad, into different dirs
+     (see above)
+   - Determine if input path is a file or dir, do the appropriate
+     thing
+   - Do proper usage output
 - Ksdl.Facility
-   - Generate deterministic UUIDs for these records (using UUID v4
-     instead of v5). See the uuid-example project for help on this.
+   - Change this module name to Inspection
    - Rethink field names or start using this data type qualified
    - Should we really be using Data.ByteString.Lazy.Char8
      saveFacility? Try with just Data.ByteString.Lazy or even
      not lazy.
    - Tighten up export list
+- Ksdl.Inspection.*
+   - Replace usage of Network.HTTP with Network.HTTP.Conduit
+     (http-conduit). See Ksdl.Geocoding/Places
+- Ksdl.Inspection.NcWake
+   - Need to get more data from here for each inspection:
+      - URL to individual inspection
+      - Violations and critical violations
+      - Whether it's an inspection or reinspection (maybe a Bool?)
 - Ksdl.Places
    - Look for Places API key file in /etc/ as well as $HOME
