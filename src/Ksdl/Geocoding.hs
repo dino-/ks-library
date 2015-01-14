@@ -17,6 +17,7 @@ import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
 
 import Ksdl
+import Ksdl.Config
 import Ksdl.Facility
 import Ksdl.Log
 
@@ -48,8 +49,7 @@ forwardLookup fac = do
    let url = mkGeocodeUrl addr
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 
-   -- Geocoding API limit: 2500/day, 5/sec
-   liftIO $ threadDelay 500000
+   asks geocodingApiDelay >>= (liftIO . threadDelay)
 
    gcJSON <- liftIO $ simpleHttp url
    liftIO $ debugM lname $ "Geocoding result JSON: "
