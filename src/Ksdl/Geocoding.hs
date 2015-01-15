@@ -44,8 +44,7 @@ headE v []      = fail . show $ v
 
 
 forwardLookup :: Inspection -> Ksdl GeoLatLng
-forwardLookup insp = do
-   let addr = location insp
+forwardLookup (Inspection _ _ addr _ _) = do
    let url = mkGeocodeUrl addr
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 

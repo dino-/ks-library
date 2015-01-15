@@ -13,7 +13,11 @@
 - It may be time to put info in changelog.md
 - Need a new data structure for Couch combining all data from
   inspection and Places. Nested, with _id (inspection UUID we
-  generate) and places_id at the top-level.
+  generate) and place_id at the top-level.
+- In this new data structure, record the inspection source
+   - Something like "NcWake" or "nc-wake" or ["nc","wake"]
+   - Maybe call it insp_source
+   - This should be at the top as well?
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
 - ks-inspections
@@ -27,7 +31,6 @@
    - Do proper usage output
    - Look for Places API key file in /etc/ as well as $HOME
 - Ksdl.Inspection
-   - Rethink field names or start using this data type qualified
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even
      not lazy.

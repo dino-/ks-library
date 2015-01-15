@@ -1,10 +1,10 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
 
 module Ksdl.Places
-   ( Location (..), coordsToPlaces )
+   ( Place (..), coordsToPlaces )
    where
 
 import Control.Applicative
@@ -12,6 +12,7 @@ import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.List as L
 import Data.Text
+import GHC.Generics ( Generic )
 import Network.HTTP ( urlEncode )
 import Network.HTTP.Conduit ( simpleHttp )
 import Text.Printf ( printf )
@@ -24,22 +25,27 @@ import Ksdl.Log
 import Ksdl.NameWords ( toList )
 
 
-data PlLatLng = PlLatLng Double Double
-   deriving Show
+data PlLatLng = PlLatLng
+   { lat :: Double
+   , lng :: Double
+   }
+   deriving (Generic, Show)
+
+instance ToJSON PlLatLng
 
 
-data Location = Location
-   { locName :: Text
-   , locVicinity :: Text
-   , locLoc :: PlLatLng
-   , locPlace_id :: Text
+data Place = Place
+   { place_name :: Text
+   , place_addr :: Text
+   , place_ll :: PlLatLng
+   , place_id :: Text
    }
    deriving Show
 
-instance FromJSON Location where
+instance FromJSON Place where
    parseJSON (Object o) = do
       l <- (o .: "geometry") >>= (.: "location")
-      Location
+      Place
          <$> o .: "name"
          <*> o .: "vicinity"
          <*> (PlLatLng <$> (l .: "lat") <*> (l .: "lng"))
@@ -47,10 +53,10 @@ instance FromJSON Location where
    parseJSON o = fail . show $ o
 
 
-newtype Locations = Locations [Location]
+newtype Places = Places [Place]
    deriving Show
 
-instance FromJSON Locations where
+instance FromJSON Places where
    parseJSON (Object v) = do
       status <- v .: "status"
       when (status /= "OK") $ fail status
@@ -58,11 +64,11 @@ instance FromJSON Locations where
       rs <- v .: "results"
       when (L.null rs) $ fail . show $ v
 
-      return $ Locations rs
+      return $ Places rs
    parseJSON o = fail . show $ o
 
 
-coordsToPlaces :: Inspection -> GeoLatLng -> Ksdl [Location]
+coordsToPlaces :: Inspection -> GeoLatLng -> Ksdl [Place]
 coordsToPlaces insp coords = do
    url <- mkPlacesUrl insp coords
    liftIO $ noticeM lname $ "Places URL: " ++ url
@@ -77,19 +83,19 @@ coordsToPlaces insp coords = do
       displayAndReturn parseResult
 
 
-displayAndReturn :: Locations -> Ksdl [Location]
-displayAndReturn (Locations locs) = do
+displayAndReturn :: Places -> Ksdl [Place]
+displayAndReturn (Places ps) = do
    liftIO $ do
       noticeM lname "Places returned:"
-      mapM_ (noticeM lname . show) locs
-   return locs
+      mapM_ (noticeM lname . show) ps
+   return ps
 
 
 mkPlacesUrl :: Inspection -> GeoLatLng -> Ksdl String
-mkPlacesUrl insp (GeoLatLng lat lng) = do
+mkPlacesUrl (Inspection _ name _ _ _) (GeoLatLng lat' lng') = do
    key <- asks placesApiKey
 
-   nameWords <- toList $ name insp
+   nameWords <- toList name
    liftIO $ noticeM lname $ "Places name words list: "
       ++ (show nameWords)
 
@@ -97,4 +103,4 @@ mkPlacesUrl insp (GeoLatLng lat lng) = do
 
    types <- L.intercalate "|" `fmap` asks placesTypes
 
-   return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat lng nameList types
+   return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat' lng' nameList types

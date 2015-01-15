@@ -67,11 +67,11 @@ lookupInspection config insp = do
          noticeM lname line
          noticeM lname $ show insp
 
-      locations <- forwardLookup insp >>=
+      places <- forwardLookup insp >>=
          coordsToPlaces insp
 
       -- :: [Match]
-      matches <- match insp locations
+      matches <- match insp places
 
       return matches
 

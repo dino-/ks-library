@@ -21,10 +21,10 @@ import Text.Regex ( matchRegex, mkRegex )
 
 data Inspection = Inspection
    { _id :: String
-   , name :: Text
-   , score :: Double
-   , location :: Text
-   , inspection_date :: [Int]
+   , insp_name :: Text
+   , insp_addr :: Text
+   , insp_date :: [Int]
+   , insp_score :: Double
    }
    deriving Generic
 
@@ -49,11 +49,11 @@ nsUUID = fromJust . fromString $
 
 
 setId :: Inspection -> Inspection
-setId f = f { _id = toString newId }
+setId i = i { _id = toString newId }
    where
       newId = generateNamed nsUUID $ UTF8.encode $ printf "%s|%s|%s|%f"
-         (unpack . name $ f) (unpack . location $ f)
-         (show . inspection_date $ f) (score f)
+         (unpack . insp_name $ i) (unpack . insp_addr $ i)
+         (show . insp_date $ i) (insp_score i)
 
 
 saveInspection :: FilePath -> Inspection -> IO ()
@@ -61,10 +61,8 @@ saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
 
 
 displayInspection :: Inspection -> String
-displayInspection insp = printf mask (_id insp) (unpack $ name insp)
-   (inspection_date insp !! 0) (inspection_date insp !! 1)
-   (inspection_date insp !! 2) (score insp)
-   (unpack $ location insp)
+displayInspection (Inspection i n a (y:m:d:_) s) =
+   printf mask i (unpack n) y m d s (unpack a)
 
    where
       mask = init . unlines $
@@ -72,3 +70,5 @@ displayInspection insp = printf mask (_id insp) (unpack $ name insp)
          , "   %s | %4d-%02d-%02d %f"
          , "   %s"
          ]
+
+displayInspection _ = undefined

@@ -62,7 +62,7 @@ getFacilities url = do
          ]
 
    return $ map (\(t,s,l,d) ->
-      setId (Inspection "" (T.pack t) s (T.pack l) (parseDate d)))
+      setId (Inspection "" (T.pack t) (T.pack l) (parseDate d) s))
       $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))

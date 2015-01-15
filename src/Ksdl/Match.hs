@@ -16,15 +16,15 @@ import qualified Data.Text.Format as TF
 import Ksdl
 import Ksdl.Inspection
 import Ksdl.Log
-import Ksdl.Places ( Location (..) )
+import Ksdl.Places ( Place (..) )
 
 
-type Match = (Bool, Inspection, Location)
+type Match = (Bool, Inspection, Place)
 
 
-match :: Inspection -> [Location] -> Ksdl [Match]
-match insp locs = do
-   let ts = map combine locs
+match :: Inspection -> [Place] -> Ksdl [Match]
+match insp ps = do
+   let ts = map combine ps
    let count = (sum . map bToI $ ts) :: Int
 
    when (count == 0) $ do
@@ -40,15 +40,15 @@ match insp locs = do
    return ts
 
    where
-      combine loc = ((isMatch (location insp) (locVicinity loc)),
-         insp, loc)
+      combine pl = ((isMatch (insp_addr insp) (place_addr pl)),
+         insp, pl)
 
       bToI (True,  _, _) = 1
       bToI (False, _, _) = 0
 
       matched :: Match -> Maybe String
-      matched (True , _, loc) = Just . T.unpack . TL.toStrict $
-         TF.format "{} | {}" ((locName loc), (locVicinity loc))
+      matched (True , _, pl) = Just . T.unpack . TL.toStrict $
+         TF.format "{} | {}" ((place_name pl), (place_addr pl))
       matched (False, _, _  ) = Nothing
 
 
@@ -64,13 +64,13 @@ csv xs = do
 
 
 csvOne :: Match -> IO ()
-csvOne (isPlace, insp, loc) = do
+csvOne (isPlace, insp, pl) = do
    TF.print "\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
       ( toStar isPlace
-      , name insp
-      , locName loc
-      , location insp
-      , locVicinity loc
+      , insp_name insp
+      , place_name pl
+      , insp_addr insp
+      , place_addr pl
       , _id insp
       )
 

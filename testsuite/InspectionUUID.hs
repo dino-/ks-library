@@ -28,9 +28,9 @@ testData :: [Inspection]
 testData =
    [ Inspection
       { _id = "e33231ae-b075-520e-9a29-44d3fe90a37a"
-      , name = "Panda King"
-      , score = 92.0
-      , location = "3626 Rogers RD WAKE FOREST, NC 27587"
-      , inspection_date = [2014,12,10]
+      , insp_name = "Panda King"
+      , insp_addr = "3626 Rogers RD WAKE FOREST, NC 27587"
+      , insp_date = [2014,12,10]
+      , insp_score = 92.0
       }
    ]
