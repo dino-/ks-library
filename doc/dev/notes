@@ -1,3 +1,27 @@
+## 2015-01-15 New CouchDB document structure
+
+{ "_id": "..."
+, "place_id": "..."
+, "inspection_source": ["nc","wake"]
+, "inspection":
+   { "insp_name": "..."
+   , "insp_addr": "..."
+   , "insp_date": [2014,12,30]
+   , "insp_score": 94.7
+   , "insp_violations": ??
+   , "insp_violations_crit": ??
+   }
+, "place":
+   { "place_name": "..."
+   , "place_addr": "..."
+   , "place_ll":
+      { "lat": 13.1856902
+      , "lng": -78.18342
+      }
+   }
+}
+
+
 ## 2015-01-14
 
 We *do* want to continue storing inspection name and address.
