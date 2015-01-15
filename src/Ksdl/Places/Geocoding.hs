@@ -3,7 +3,7 @@
 
 {-# LANGUAGE KindSignatures, OverloadedStrings, RankNTypes #-}
 
-module Ksdl.Geocoding
+module Ksdl.Places.Geocoding
    ( GeoLatLng (..), forwardLookup )
    where
 

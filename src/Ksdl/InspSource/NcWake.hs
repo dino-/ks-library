@@ -1,7 +1,7 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-module Ksdl.Inspection.NcWake
+module Ksdl.InspSource.NcWake
    where
 
 import Data.List ( intercalate, isPrefixOf, tails, zip4 )
@@ -12,7 +12,7 @@ import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
 import Ksdl.Inspection
-import Ksdl.Inspection.Common
+import Ksdl.InspSource.Common
 
 
 urlPrefix :: String

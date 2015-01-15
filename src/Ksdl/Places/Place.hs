@@ -3,7 +3,7 @@
 
 {-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
 
-module Ksdl.Places
+module Ksdl.Places.Place
    ( Place (..), coordsToPlaces )
    where
 
@@ -20,9 +20,9 @@ import Text.Printf ( printf )
 import Ksdl
 import Ksdl.Config
 import Ksdl.Inspection
-import Ksdl.Geocoding ( GeoLatLng (..) )
 import Ksdl.Log
-import Ksdl.NameWords ( toList )
+import Ksdl.Places.Geocoding ( GeoLatLng (..) )
+import Ksdl.Places.NameWords ( toList )
 
 
 data PlLatLng = PlLatLng

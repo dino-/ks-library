@@ -3,7 +3,7 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module Ksdl.NameWords
+module Ksdl.Places.NameWords
    ( toList
    )
    where

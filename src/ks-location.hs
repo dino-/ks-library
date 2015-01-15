@@ -20,10 +20,10 @@ import System.IO
 import Ksdl
 import Ksdl.Config
 import Ksdl.Inspection
-import Ksdl.Geocoding ( forwardLookup )
 import Ksdl.Log
-import Ksdl.Match ( Match, csv, match )
-import Ksdl.Places ( coordsToPlaces )
+import Ksdl.Places.Geocoding ( forwardLookup )
+import Ksdl.Places.Match ( Match, csv, match )
+import Ksdl.Places.Place ( coordsToPlaces )
 
 
 main :: IO ()

@@ -13,7 +13,7 @@ import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
-import Ksdl.NameWords ( toList )
+import Ksdl.Places.NameWords ( toList )
 
 
 tests :: Test

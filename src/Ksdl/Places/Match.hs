@@ -3,7 +3,7 @@
 
 {-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
 
-module Ksdl.Match
+module Ksdl.Places.Match
    ( Match, csv, match )
    where
 
@@ -16,7 +16,7 @@ import qualified Data.Text.Format as TF
 import Ksdl
 import Ksdl.Inspection
 import Ksdl.Log
-import Ksdl.Places ( Place (..) )
+import Ksdl.Places.Place ( Place (..) )
 
 
 type Match = (Bool, Inspection, Place)
