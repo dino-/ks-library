@@ -28,6 +28,7 @@ testData :: [Inspection]
 testData =
    [ Inspection
       { _id = "e33231ae-b075-520e-9a29-44d3fe90a37a"
+      , inspection_source = "nc_wake"
       , name = "Panda King"
       , addr = "3626 Rogers RD WAKE FOREST, NC 27587"
       , date = [2014,12,10]

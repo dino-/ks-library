@@ -21,6 +21,7 @@ import Text.Regex ( matchRegex, mkRegex )
 
 data Inspection = Inspection
    { _id :: String
+   , inspection_source :: String
    , name :: Text
    , addr :: Text
    , date :: [Int]
@@ -61,13 +62,13 @@ saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
 
 
 displayInspection :: Inspection -> String
-displayInspection (Inspection i n a (y:m:d:_) s) =
-   printf mask i (unpack n) y m d s (unpack a)
+displayInspection (Inspection i src n a (y:m:d:_) sc) =
+   printf mask i (unpack n) y m d sc src (unpack a)
 
    where
       mask = init . unlines $
          [ "Inspection %s"
-         , "   %s | %4d-%02d-%02d %f"
+         , "   %s | %4d-%02d-%02d %f | %s"
          , "   %s"
          ]
 

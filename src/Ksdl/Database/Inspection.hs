@@ -30,7 +30,7 @@ instance ToJSON Document where
       [ "_id" .= I._id insp
       , "type" .= ty
       , "place_id" .= P.place_id pl
-      , "inspection_source" .= ("FIXME" :: String)
+      , "inspection_source" .= I.inspection_source insp
       , "inspection" .= object
          [ "name" .= I.name insp
          , "addr" .= I.addr insp

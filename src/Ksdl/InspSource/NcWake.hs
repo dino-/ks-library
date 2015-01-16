@@ -19,6 +19,10 @@ urlPrefix :: String
 urlPrefix = "http://wake.digitalhealthdepartment.com/"
 
 
+inspectionSrc :: String
+inspectionSrc = "nc_wake"
+
+
 download :: Downloader
 download dir pageLimit = do
    allPageUrls <- getPageUrls
@@ -62,8 +66,8 @@ getFacilities url = do
          ]
 
    return $ map (\(t,s,l,d) ->
-      setId (Inspection "" (T.pack t) (T.pack l) (parseDate d) s))
-      $ zip4 titles scores locations dates
+      setId (Inspection "" inspectionSrc (T.pack t) (T.pack l)
+         (parseDate d) s)) $ zip4 titles scores locations dates
 
    where trim = map (dropWhile (== ' '))
 
