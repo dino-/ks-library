@@ -31,7 +31,10 @@
 
 - Is inspection.violations.id an integer or string across different
   counties?
-- Any other fields are in a violation?
+   - Found violation ids that are alphanumeric in NY state. Example: 2C, 4A
+- Any other fields in a violation?
+   - Yes, the points they cost individually against the whole score for NC
+   - No, there are no points or even scores for NY
 - Is reinspection a boolean or more values?
 
 
