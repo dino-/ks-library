@@ -21,10 +21,10 @@ import Text.Regex ( matchRegex, mkRegex )
 
 data Inspection = Inspection
    { _id :: String
-   , insp_name :: Text
-   , insp_addr :: Text
-   , insp_date :: [Int]
-   , insp_score :: Double
+   , name :: Text
+   , addr :: Text
+   , date :: [Int]
+   , score :: Double
    }
    deriving Generic
 
@@ -52,8 +52,8 @@ setId :: Inspection -> Inspection
 setId i = i { _id = toString newId }
    where
       newId = generateNamed nsUUID $ UTF8.encode $ printf "%s|%s|%s|%f"
-         (unpack . insp_name $ i) (unpack . insp_addr $ i)
-         (show . insp_date $ i) (insp_score i)
+         (unpack . name $ i) (unpack . addr $ i)
+         (show . date $ i) (score i)
 
 
 saveInspection :: FilePath -> Inspection -> IO ()

@@ -2,9 +2,11 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 {-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
+{-# OPTIONS_GHC -fno-warn-unused-binds #-}
 
 module Ksdl.Places.Place
-   ( Place (..), coordsToPlaces )
+   ( Place (..)
+   , coordsToPlaces )
    where
 
 import Control.Applicative
@@ -19,7 +21,7 @@ import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
-import Ksdl.Inspection
+import qualified Ksdl.Inspection as I
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( GeoLatLng (..) )
 import Ksdl.Places.NameWords ( toList )
@@ -31,13 +33,14 @@ data PlLatLng = PlLatLng
    }
    deriving (Generic, Show)
 
+instance FromJSON PlLatLng
 instance ToJSON PlLatLng
 
 
 data Place = Place
-   { place_name :: Text
-   , place_addr :: Text
-   , place_ll :: PlLatLng
+   { name :: Text
+   , vicinity :: Text
+   , location :: PlLatLng
    , place_id :: Text
    }
    deriving Show
@@ -68,7 +71,7 @@ instance FromJSON Places where
    parseJSON o = fail . show $ o
 
 
-coordsToPlaces :: Inspection -> GeoLatLng -> Ksdl [Place]
+coordsToPlaces :: I.Inspection -> GeoLatLng -> Ksdl [Place]
 coordsToPlaces insp coords = do
    url <- mkPlacesUrl insp coords
    liftIO $ noticeM lname $ "Places URL: " ++ url
@@ -91,11 +94,11 @@ displayAndReturn (Places ps) = do
    return ps
 
 
-mkPlacesUrl :: Inspection -> GeoLatLng -> Ksdl String
-mkPlacesUrl (Inspection _ name _ _ _) (GeoLatLng lat' lng') = do
+mkPlacesUrl :: I.Inspection -> GeoLatLng -> Ksdl String
+mkPlacesUrl insp (GeoLatLng lat' lng') = do
    key <- asks placesApiKey
 
-   nameWords <- toList name
+   nameWords <- toList . I.name $ insp
    liftIO $ noticeM lname $ "Places name words list: "
       ++ (show nameWords)
 

@@ -19,6 +19,7 @@ import System.IO
 
 import Ksdl
 import Ksdl.Config
+import Ksdl.Database.Inspection
 import Ksdl.Inspection
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( forwardLookup )
@@ -55,9 +56,17 @@ main = do
    -- Look up each inspection facility with Geocoding and Places
    matches <- concat `fmap` mapM (lookupInspection config) insps
    noticeM lname line
-   csv matches
+
+   let dbjs = map mkDoc $ filter posMatch matches
+   mapM_ (saveDoc "../data/db") dbjs
+   --csv matches
 
    logStopMsg lname
+
+
+posMatch :: Match -> Bool
+posMatch (True , _, _) = True
+posMatch (False, _, _) = False
 
 
 lookupInspection :: Config -> Inspection -> IO [Match]

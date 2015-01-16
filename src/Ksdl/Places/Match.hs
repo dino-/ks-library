@@ -14,15 +14,15 @@ import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Format as TF
 
 import Ksdl
-import Ksdl.Inspection
+import qualified Ksdl.Inspection as I
 import Ksdl.Log
-import Ksdl.Places.Place ( Place (..) )
+import qualified Ksdl.Places.Place as P
 
 
-type Match = (Bool, Inspection, Place)
+type Match = (Bool, I.Inspection, P.Place)
 
 
-match :: Inspection -> [Place] -> Ksdl [Match]
+match :: I.Inspection -> [P.Place] -> Ksdl [Match]
 match insp ps = do
    let ts = map combine ps
    let count = (sum . map bToI $ ts) :: Int
@@ -40,7 +40,7 @@ match insp ps = do
    return ts
 
    where
-      combine pl = ((isMatch (insp_addr insp) (place_addr pl)),
+      combine pl = ((isMatch (I.addr insp) (P.vicinity pl)),
          insp, pl)
 
       bToI (True,  _, _) = 1
@@ -48,7 +48,7 @@ match insp ps = do
 
       matched :: Match -> Maybe String
       matched (True , _, pl) = Just . T.unpack . TL.toStrict $
-         TF.format "{} | {}" ((place_name pl), (place_addr pl))
+         TF.format "{} | {}" ((P.name pl), (P.vicinity pl))
       matched (False, _, _  ) = Nothing
 
 
@@ -67,11 +67,11 @@ csvOne :: Match -> IO ()
 csvOne (isPlace, insp, pl) = do
    TF.print "\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
       ( toStar isPlace
-      , insp_name insp
-      , place_name pl
-      , insp_addr insp
-      , place_addr pl
-      , _id insp
+      , I.name insp
+      , P.name pl
+      , I.addr insp
+      , P.vicinity pl
+      , I._id insp
       )
 
    where

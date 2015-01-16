@@ -44,8 +44,8 @@ headE v []      = fail . show $ v
 
 
 forwardLookup :: Inspection -> Ksdl GeoLatLng
-forwardLookup (Inspection _ _ addr _ _) = do
-   let url = mkGeocodeUrl addr
+forwardLookup insp = do
+   let url = mkGeocodeUrl . addr $ insp
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 
    asks geocodingApiDelay >>= (liftIO . threadDelay)
@@ -61,12 +61,12 @@ forwardLookup (Inspection _ _ addr _ _) = do
 
 
 displayAndReturn :: GeoLatLng -> Ksdl GeoLatLng
-displayAndReturn gll = do
-   liftIO $ noticeM lname $ show gll
-   return gll
+displayAndReturn location = do
+   liftIO $ noticeM lname $ show location
+   return location
 
 
 mkGeocodeUrl :: Text -> String
-mkGeocodeUrl addr = printf
+mkGeocodeUrl addr' = printf
    "https://maps.googleapis.com/maps/api/geocode/json?address=%s"
-   (urlEncode $ unpack addr)
+   (urlEncode $ unpack addr')

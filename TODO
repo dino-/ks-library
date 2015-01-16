@@ -25,9 +25,6 @@
      Downloader) so it can be used in usage output
    - Do proper usage output
 - ks-location
-   - Change the csv business (really in Ksdl.Match) to save out the
-     JSON document for the db. For good AND bad, into different dirs
-     (see above)
    - Do proper usage output
    - Look for Places API key file in /etc/ as well as $HOME
 - Ksdl.Inspection
@@ -43,3 +40,8 @@
       - URL to individual inspection
       - Violations and critical violations
       - Whether it's an inspection or reinspection (maybe a Bool?)
+- Ksdl.Places.Match
+   - Ditch the csv business and save out the JSON documents for
+     the db. For good AND bad, into different dirs (see above)
+      - good: DbJson saved
+      - bad: Inspection saved
