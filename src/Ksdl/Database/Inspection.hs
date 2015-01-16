@@ -19,7 +19,7 @@ import qualified Ksdl.Places.Place as P
 
 
 data Document = Document
-   { doctype :: String  -- Maybe doctype or doc_type if necessary
+   { doctype :: String
    , inspection :: I.Inspection
    , place :: P.Place
    }
@@ -45,7 +45,7 @@ instance ToJSON Document where
       ]
 
 
---mkJson :: Inspection -> Place -> Document
+--mkDoc :: Inspection -> Place -> Document
 mkDoc :: Match -> Document
 mkDoc (_, i, p) = Document "inspection" i p
 
