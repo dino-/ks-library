@@ -13,7 +13,7 @@ module Ksdl.Log
    where
 
 import Data.Time ( formatTime, getCurrentTime, utcToLocalZonedTime )
-import System.IO ( stderr )
+import System.IO ( stdout )
 import System.Locale ( defaultTimeLocale )
 import System.Log.Handler.Simple ( streamHandler )
 import System.Log.Logger
@@ -32,7 +32,7 @@ initLogging logPriority = do
    updateGlobalLogger rootLoggerName removeHandler
 
    -- Set up our logger
-   h <- streamHandler stderr DEBUG
+   h <- streamHandler stdout DEBUG
    updateGlobalLogger lname $ setHandlers [h]
    updateGlobalLogger lname $ setLevel logPriority
 
