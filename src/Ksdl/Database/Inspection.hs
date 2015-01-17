@@ -47,10 +47,10 @@ instance ToJSON Document where
       ]
 
 
---mkDoc :: Inspection -> Place -> Document
 mkDoc :: Match -> Document
-mkDoc (_, i, p) = Document "inspection" i p
+mkDoc (i, p) = Document "inspection" i p
 
 
 saveDoc :: FilePath -> Document -> IO ()
-saveDoc dir doc = BL.writeFile (dir </> "ks_" ++ (I._id . inspection $ doc)) $ encode doc
+saveDoc dir doc = BL.writeFile
+   (dir </> "ks_" ++ (I._id . inspection $ doc)) $ encode doc

@@ -8,8 +8,8 @@ import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
 import Data.Maybe ( catMaybes )
 import Data.String.Utils ( strip )
-import System.Directory ( doesFileExist, getDirectoryContents
-   , getHomeDirectory )
+import System.Directory ( copyFile, doesFileExist
+   , getDirectoryContents , getHomeDirectory )
 import System.Environment ( getArgs )
 import System.FilePath
 import System.IO
@@ -41,36 +41,31 @@ main = do
    logStartMsg lname
 
    -- Paths to all files we'll be processing
-   dirOrFile <- head `fmap` getArgs
+   (srcDirOrFile : destDir : failDir : []) <- getArgs
    files <- do
-      isFile <- doesFileExist dirOrFile
-      if isFile then return [dirOrFile]
+      isFile <- doesFileExist srcDirOrFile
+      if isFile then return [srcDirOrFile]
          else
-            ( map (dirOrFile </>)                  -- ..relative paths
-            . filter (not . isPrefixOf ".") )      -- ..minus dotfiles
-            `fmap` getDirectoryContents dirOrFile  -- All files
+            ( map (srcDirOrFile </>)                  -- ..relative paths
+            . filter (not . isPrefixOf ".") )         -- ..minus dotfiles
+            `fmap` getDirectoryContents srcDirOrFile  -- All files
 
    -- Loaded Facilities
    insps <- catMaybes `fmap` mapM loadInspection files
 
    -- Look up each inspection facility with Geocoding and Places
-   matches <- concat `fmap` mapM (lookupInspection config) insps
+   matches <- catMaybes `fmap` mapM (lookupInspection config failDir) insps
    noticeM lname line
 
-   let dbjs = map mkDoc $ filter posMatch matches
-   mapM_ (saveDoc "../data/db") dbjs
-   --csv matches
+   let docs = map mkDoc matches
+   mapM_ (saveDoc destDir) docs
 
    logStopMsg lname
 
 
-posMatch :: Match -> Bool
-posMatch (True , _, _) = True
-posMatch (False, _, _) = False
-
-
-lookupInspection :: Config -> Inspection -> IO [Match]
-lookupInspection config insp = do
+lookupInspection :: Config -> FilePath -> (FilePath, Inspection)
+   -> IO (Maybe Match)
+lookupInspection config failDir (srcPath, insp) = do
    r <- runKsdl config $ do
       liftIO $ do
          noticeM lname line
@@ -79,16 +74,21 @@ lookupInspection config insp = do
       places <- forwardLookup insp >>=
          coordsToPlaces insp
 
-      -- :: [Match]
-      matches <- match insp places
+      Just `fmap` match insp places
 
-      return matches
+   either handleFailure return r
 
-   either (\msg -> errorM lname msg >> return []) return r
+   where
+      handleFailure msg = do
+         copyFile srcPath $ failDir </> takeFileName srcPath
+         errorM lname msg
+         return Nothing
 
 
-loadInspection :: FilePath -> IO (Maybe Inspection)
-loadInspection path = decodeStrict' `fmap` BS.readFile path
+loadInspection :: FilePath -> IO (Maybe (FilePath, Inspection))
+loadInspection path =
+   (maybe Nothing (\i -> Just (path, i)) . decodeStrict')
+      `fmap` BS.readFile path
 
 
 -- Google Places API key

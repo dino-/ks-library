@@ -1,14 +1,5 @@
-- Figure out what the top-level "tools" should be. What is the
-  progression of tasks to go from nothing to inspections scraped to
-  data inserted into the db?
 - For above, need a set of dirs input or in Config that represent
   where data is coming from and going to.
-- IMPORTANT: we are not saving or moving the inspection files from
-  an input dir to a failed dir.
-- When saving data files, use some prefix conventions, like:
-   - insp_UUID.json  -- "raw" inspection data
-   - ks_UUID.json    -- document for Couch
-   - ??.log          -- Log of running inspection-to-places lookups
 - Write some usage docs in README.md
 - It may be time to put info in changelog.md
 - Look into accessing CouchBase directly from Haskell
@@ -31,7 +22,6 @@
    - Need to get more data from here for each inspection:
       - Violations and critical violations
 - Ksdl.Places.Match
-   - Ditch the csv business and save out the JSON documents for
-     the db. For good AND bad, into different dirs (see above)
-      - good: DbJson saved
-      - bad: Inspection saved
+   - Look at Beasley's 083aa, replace '/'s with spaces
+   - What about names like "D & S", should they be "D&S"?
+   - More stopwords?!

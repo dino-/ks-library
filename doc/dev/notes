@@ -9,6 +9,32 @@
          , "addr": "..."
          , "date": [2014,12,30]
          , "score": 94.7
+         , "violations": 23
+         , "crit_violations": 3
+         , "reinspection": true
+         , "detail": "http:/..."
+         }
+      , "place":
+         { "name": "..."
+         , "vicinity": "..."
+         , "location":
+            { "lat": 13.1856902
+            , "lng": -78.18342
+            }
+         }
+      }
+
+With full violations data:
+
+      { "_id": "uuid"
+      , "type": "inspection"
+      , "place_id": "from G Places"
+      , "inspection_source": "nc_wake"
+      , "inspection":
+         { "name": "..."
+         , "addr": "..."
+         , "date": [2014,12,30]
+         , "score": 94.7
          , "violations":
             [ { "id": 8
               , "desc": "..."

@@ -1,7 +1,7 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Ksdl.Places.Match
    ( Match, match )
@@ -19,37 +19,45 @@ import Ksdl.Log
 import qualified Ksdl.Places.Place as P
 
 
-type Match = (Bool, I.Inspection, P.Place)
+type Match = (I.Inspection, P.Place)
+
+type MatchInternal = (Bool, Match)
 
 
-match :: I.Inspection -> [P.Place] -> Ksdl [Match]
+match :: I.Inspection -> [P.Place] -> Ksdl Match
 match insp ps = do
-   let ts = map combine ps
-   let count = (sum . map bToI $ ts) :: Int
+   let mis = map combine ps
+   let count = (sum . map bToI $ mis) :: Int
 
    when (count == 0) $ do
       throwError "ERROR Match: No Places result matches"
 
    liftIO $ do
       noticeM lname "Matches:"
-      mapM_ (noticeM lname) $ catMaybes $ map matched ts
+      mapM_ (noticeM lname) $ catMaybes $ map matched mis
 
    when (count > 1) $ liftIO $ do
       warningM lname "WARNING Match: More than one Places result matched"
 
-   return ts
+   return . head . catMaybes . map positiveMatch $ mis
 
    where
+      combine :: P.Place -> MatchInternal
       combine pl = ((isMatch (I.addr insp) (P.vicinity pl)),
-         insp, pl)
+         (insp, pl))
 
-      bToI (True,  _, _) = 1
-      bToI (False, _, _) = 0
+      bToI :: MatchInternal -> Int
+      bToI (True,  (_, _)) = 1
+      bToI (False, (_, _)) = 0
 
-      matched :: Match -> Maybe String
-      matched (True , _, pl) = Just . T.unpack . TL.toStrict $
+      matched :: MatchInternal -> Maybe String
+      matched (True , (_, pl)) = Just . T.unpack . TL.toStrict $
          TF.format "{} | {}" ((P.name pl), (P.vicinity pl))
-      matched (False, _, _  ) = Nothing
+      matched (False, (_, _ )) = Nothing
+
+      positiveMatch :: MatchInternal -> Maybe Match
+      positiveMatch (True , m) = Just m
+      positiveMatch (False, _) = Nothing
 
 
 isMatch :: T.Text -> T.Text -> Bool
