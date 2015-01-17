@@ -11,13 +11,6 @@
    - ??.log          -- Log of running inspection-to-places lookups
 - Write some usage docs in README.md
 - It may be time to put info in changelog.md
-- Need a new data structure for Couch combining all data from
-  inspection and Places. Nested, with _id (inspection UUID we
-  generate) and place_id at the top-level.
-- In this new data structure, record the inspection source
-   - Something like "NcWake" or "nc-wake" or ["nc","wake"]
-   - Maybe call it insp_source
-   - This should be at the top as well?
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
 - ks-inspections
@@ -31,15 +24,12 @@
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even
      not lazy.
-   - Tighten up export list
 - Ksdl.Inspection.*
    - Replace usage of Network.HTTP with Network.HTTP.Conduit
      (http-conduit). See Ksdl.Geocoding/Places
 - Ksdl.Inspection.NcWake
    - Need to get more data from here for each inspection:
-      - URL to individual inspection
       - Violations and critical violations
-      - Whether it's an inspection or reinspection (maybe a Bool?)
 - Ksdl.Places.Match
    - Ditch the csv business and save out the JSON documents for
      the db. For good AND bad, into different dirs (see above)

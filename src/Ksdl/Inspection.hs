@@ -4,6 +4,11 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Ksdl.Inspection
+   ( Inspection (..)
+   , parseDate
+   , setId
+   , saveInspection
+   )
    where
 
 import qualified Codec.Binary.UTF8.String as UTF8
@@ -26,6 +31,8 @@ data Inspection = Inspection
    , addr :: Text
    , date :: [Int]
    , score :: Double
+   , reinspection :: Bool
+   , detail :: String
    }
    deriving Generic
 
@@ -62,7 +69,7 @@ saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
 
 
 displayInspection :: Inspection -> String
-displayInspection (Inspection i src n a (y:m:d:_) sc) =
+displayInspection (Inspection i src n a (y:m:d:_) sc _ _) =
    printf mask i (unpack n) y m d sc src (unpack a)
 
    where

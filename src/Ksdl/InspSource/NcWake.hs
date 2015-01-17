@@ -4,9 +4,10 @@
 module Ksdl.InspSource.NcWake
    where
 
-import Data.List ( intercalate, isPrefixOf, tails, zip4 )
+import Data.List ( intercalate, isPrefixOf, tails, zip6 )
 import Data.Maybe ( fromMaybe )
 import qualified Data.Text as T
+--import Debug.Trace ( trace )
 import Network.HTTP
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
@@ -43,7 +44,7 @@ getFacilities url = do
 
    tags <- parseTags `fmap` (openURL . getRequest $ urlPrefix ++ url)
 
-   let titles =
+   let names =
          [ t | a:TagText t:_ <- tails tags
          , a ~== "<a href>"
          , isPrefixOf "facilities" $ fromAttrib "href" a
@@ -54,7 +55,7 @@ getFacilities url = do
          , bs ~== "<b>"
          , l ~== "Score:"
          ]
-   let locations = trim
+   let addresses = trim
          [ t | bs:l:_:TagText t:_ <- tails tags
          , bs ~== "<b>"
          , l ~== "Location:"
@@ -64,12 +65,27 @@ getFacilities url = do
          , bs ~== "<b>"
          , l ~== "Inspection Date:"
          ]
+   let reinspections =
+         [ (reinspToBool $ fromAttrib "value" i) | i:_ <- tails tags
+         , i ~== "<input type=button>"
+         ]
+   let details =
+         [ (extractUrl $ fromAttrib "onclick" i) | i:_ <- tails tags
+         , i ~== "<input type=button>"
+         ]
 
-   return $ map (\(t,s,l,d) ->
-      setId (Inspection "" inspectionSrc (T.pack t) (T.pack l)
-         (parseDate d) s)) $ zip4 titles scores locations dates
+   return $ map (\(name',score',addr',date',reinsp,detail') ->
+      setId (Inspection "" inspectionSrc (T.pack name') (T.pack addr')
+         (parseDate date') score' reinsp (urlPrefix ++ detail'))) $
+         zip6 names scores addresses dates reinspections details
 
-   where trim = map (dropWhile (== ' '))
+   where
+      trim = map (dropWhile (== ' '))
+
+      reinspToBool "Inspection" = False
+      reinspToBool _            = True
+
+      extractUrl = takeWhile (/= '\'') . tail . dropWhile (/= '\'')
 
 
 -- Get the URLs of all search result pages
