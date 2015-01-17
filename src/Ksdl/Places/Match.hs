@@ -24,9 +24,10 @@ type Match = (I.Inspection, P.Place)
 type MatchInternal = (Bool, Match)
 
 
-match :: I.Inspection -> [P.Place] -> Ksdl Match
-match insp ps = do
-   let mis = map combine ps
+match :: [P.Place] -> Ksdl Match
+match ps = do
+   insp <- asks getInspection
+   let mis = map (combine insp) ps
    let count = (sum . map bToI $ mis) :: Int
 
    when (count == 0) $ do
@@ -42,8 +43,8 @@ match insp ps = do
    return . head . catMaybes . map positiveMatch $ mis
 
    where
-      combine :: P.Place -> MatchInternal
-      combine pl = ((isMatch (I.addr insp) (P.vicinity pl)),
+      combine :: I.Inspection -> P.Place -> MatchInternal
+      combine insp pl = ((isMatch (I.addr insp) (P.vicinity pl)),
          (insp, pl))
 
       bToI :: MatchInternal -> Int

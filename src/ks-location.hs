@@ -66,15 +66,15 @@ main = do
 lookupInspection :: Config -> FilePath -> (FilePath, Inspection)
    -> IO (Maybe Match)
 lookupInspection config failDir (srcPath, insp) = do
-   r <- runKsdl config $ do
+   r <- runKsdl (Env config insp) $ do
       liftIO $ do
          noticeM lname line
          noticeM lname $ show insp
 
-      places <- forwardLookup insp >>=
-         coordsToPlaces insp
+      places <- forwardLookup >>=
+         coordsToPlaces
 
-      Just `fmap` match insp places
+      Just `fmap` match places
 
    either handleFailure return r
 

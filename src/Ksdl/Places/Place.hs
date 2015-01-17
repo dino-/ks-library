@@ -21,7 +21,6 @@ import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
-import qualified Ksdl.Inspection as I
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( GeoLatLng (..) )
 import Ksdl.Places.NameWords ( toList )
@@ -71,9 +70,9 @@ instance FromJSON Places where
    parseJSON o = fail . show $ o
 
 
-coordsToPlaces :: I.Inspection -> GeoLatLng -> Ksdl [Place]
-coordsToPlaces insp coords = do
-   url <- mkPlacesUrl insp coords
+coordsToPlaces :: GeoLatLng -> Ksdl [Place]
+coordsToPlaces coords = do
+   url <- mkPlacesUrl coords
    liftIO $ noticeM lname $ "Places URL: " ++ url
 
    plJSON <- liftIO $ simpleHttp url
@@ -94,16 +93,16 @@ displayAndReturn (Places ps) = do
    return ps
 
 
-mkPlacesUrl :: I.Inspection -> GeoLatLng -> Ksdl String
-mkPlacesUrl insp (GeoLatLng lat' lng') = do
-   key <- asks placesApiKey
+mkPlacesUrl :: GeoLatLng -> Ksdl String
+mkPlacesUrl (GeoLatLng lat' lng') = do
+   key <- asks (placesApiKey . getConfig)
 
-   nameWords <- toList . I.name $ insp
+   nameWords <- toList
    liftIO $ noticeM lname $ "Places name words list: "
       ++ (show nameWords)
 
    let nameList = urlEncode $ unpack $ intercalate " " $ nameWords
 
-   types <- L.intercalate "|" `fmap` asks placesTypes
+   types <- L.intercalate "|" `fmap` asks (placesTypes . getConfig)
 
    return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat' lng' nameList types

@@ -7,12 +7,14 @@ module NameWords
    ( tests )
    where
 
+import Control.Applicative
 import Data.Text hiding ( map )
 import Test.HUnit
 import Text.Printf ( printf )
 
 import Ksdl
 import Ksdl.Config
+import Ksdl.Inspection
 import Ksdl.Places.NameWords ( toList )
 
 
@@ -22,8 +24,8 @@ tests = TestList $ map testNameWords testData
 
 testNameWords :: (Text, [Text]) -> Test
 testNameWords (input, output) = TestCase $ do
-   config <- loadConfig "ksdl.conf"
-   actual <- runKsdl config $ toList input
+   env <- Env <$> loadConfig "ksdl.conf" <*> fakeInspection input
+   actual <- runKsdl env $ toList
    let label = printf "name words for \"%s\"" (unpack input)
    assertEqual label (Right output) actual
 
@@ -39,3 +41,8 @@ testData =
    , ("R.J.`S PLACE", ["rj`s","place"])
    , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]
+
+
+fakeInspection :: Text -> IO Inspection
+fakeInspection name' =
+   return $ Inspection "" "" name' "" [] 0.0 False ""

@@ -43,12 +43,12 @@ headE _ (x : _) = return x
 headE v []      = fail . show $ v
 
 
-forwardLookup :: Inspection -> Ksdl GeoLatLng
-forwardLookup insp = do
-   let url = mkGeocodeUrl . addr $ insp
+forwardLookup :: Ksdl GeoLatLng
+forwardLookup = do
+   url <- (mkGeocodeUrl . addr) `fmap` asks getInspection
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 
-   asks geocodingApiDelay >>= (liftIO . threadDelay)
+   asks (geocodingApiDelay . getConfig) >>= (liftIO . threadDelay)
 
    gcJSON <- liftIO $ simpleHttp url
    liftIO $ debugM lname $ "Geocoding result JSON: "

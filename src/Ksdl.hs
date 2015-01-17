@@ -2,7 +2,7 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 module Ksdl
-   ( Ksdl, runKsdl
+   ( Env (..), Ksdl, runKsdl
 
    -- Re-exporting
    , asks, liftIO, throwError, when
@@ -13,9 +13,15 @@ import Control.Monad.Reader
 import Control.Monad.Error
 
 import Ksdl.Config
+import Ksdl.Inspection
 
 
-type Ksdl a = ReaderT Config (ErrorT String IO) a
+data Env = Env
+   { getConfig :: Config
+   , getInspection :: Inspection
+   }
 
-runKsdl :: Config -> Ksdl a -> IO (Either String a)
+type Ksdl a = ReaderT Env (ErrorT String IO) a
+
+runKsdl :: Env -> Ksdl a -> IO (Either String a)
 runKsdl env ev = runErrorT (runReaderT ev env)

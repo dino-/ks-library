@@ -15,30 +15,32 @@ import Prelude hiding ( filter, map )
 
 import Ksdl
 import Ksdl.Config
+import Ksdl.Inspection
 
 
-toList :: Text -> Ksdl [Text]
-toList name = do
-   specialCases <- asks namewordsSpecialCases
-   list <- mkList name
+toList :: Ksdl [Text]
+toList = do
+   specialCases <- asks (namewordsSpecialCases . getConfig)
+   list <- mkList
 
+   iname <- asks (name . getInspection)
    return $ Map.findWithDefault
       list           -- Or make a list for a normal name
-      name           -- Find this name..
+      iname          -- Find this name..
       specialCases   -- ..in these special cases
 
 
-mkList :: Text -> Ksdl [Text]
-mkList name = do
-   stopwords <- asks namewordsStopwords
-   return $ L.filter (not . isPrefixOf "#")
+mkList :: Ksdl [Text]
+mkList = do
+   stopwords <- asks (namewordsStopwords . getConfig)
+   (L.filter (not . isPrefixOf "#")
       . L.filter (\w -> not $ L.elem w stopwords)
       . L.take 2
       . split (== ' ')
       . filter (not . (== '.'))
       . map hyphenToSpace
       . toLower
-      $ name
+      ) `fmap` asks (name . getInspection)
 
 
 hyphenToSpace :: Char -> Char
