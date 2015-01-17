@@ -4,7 +4,7 @@
 {-# LANGUAGE FlexibleContexts, KindSignatures, OverloadedStrings, RankNTypes #-}
 
 module Ksdl.Places.Match
-   ( Match, csv, match )
+   ( Match, match )
    where
 
 import Data.Char ( isDigit )
@@ -55,26 +55,3 @@ match insp ps = do
 isMatch :: T.Text -> T.Text -> Bool
 isMatch ivic pvic = prefix ivic == prefix pvic
    where prefix = T.takeWhile isDigit
-
-
-csv :: [Match] -> IO ()
-csv xs = do
-   putStrLn "\"pl\",\"iname\",\"pname\",\"ivic\",\"pvic\",\"_id\""
-   mapM_ csvOne xs
-
-
-csvOne :: Match -> IO ()
-csvOne (isPlace, insp, pl) = do
-   TF.print "\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}\"\n"
-      ( toStar isPlace
-      , I.name insp
-      , P.name pl
-      , I.addr insp
-      , P.vicinity pl
-      , I._id insp
-      )
-
-   where
-      toStar :: Bool -> T.Text
-      toStar True  = "*"
-      toStar False = ""

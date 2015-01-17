@@ -23,7 +23,7 @@ import Ksdl.Database.Inspection
 import Ksdl.Inspection
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( forwardLookup )
-import Ksdl.Places.Match ( Match, csv, match )
+import Ksdl.Places.Match ( Match, match )
 import Ksdl.Places.Place ( coordsToPlaces )
 
 
