@@ -47,6 +47,7 @@ executable           ks-location
    main-is:          ks-location.hs
    hs-source-dirs:   src
    build-depends:      aeson
+                     , aeson-pretty
                      , base >= 3 && < 5
                      , bytestring
                      , containers

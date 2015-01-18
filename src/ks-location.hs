@@ -10,7 +10,8 @@ import Data.Maybe ( catMaybes )
 import Data.String.Utils ( strip )
 import System.Directory ( copyFile, doesFileExist
    , getDirectoryContents , getHomeDirectory )
-import System.Environment ( getArgs )
+import System.Environment ( getArgs, getProgName )
+import System.Exit ( exitFailure )
 import System.FilePath
 import System.IO
    ( BufferMode ( NoBuffering )
@@ -38,10 +39,14 @@ main = do
       return $ c { placesApiKey = k }
 
    initLogging $ logPriority config
+
+   (srcDirOrFile, outputSpec) <- getArgs >>= parseArgs
+
+   -- Don't start with this until we know we're not bailing out
+   -- because of args
    logStartMsg lname
 
    -- Paths to all files we'll be processing
-   (srcDirOrFile : destDir : failDir : []) <- getArgs
    files <- do
       isFile <- doesFileExist srcDirOrFile
       if isFile then return [srcDirOrFile]
@@ -54,18 +59,51 @@ main = do
    insps <- catMaybes `fmap` mapM loadInspection files
 
    -- Look up each inspection facility with Geocoding and Places
-   matches <- catMaybes `fmap` mapM (lookupInspection config failDir) insps
+   matches <- catMaybes `fmap`
+      mapM (lookupInspection config outputSpec) insps
    noticeM lname line
 
    let docs = map mkDoc matches
-   mapM_ (saveDoc destDir) docs
+   mapM_ (saveDoc outputSpec) docs
 
    logStopMsg lname
 
 
-lookupInspection :: Config -> FilePath -> (FilePath, Inspection)
+parseArgs :: [String] -> IO (FilePath, Output)
+parseArgs ("-h"     : _)     = usage
+parseArgs ("--help" : _)     = usage
+parseArgs [src, dest, fail'] = return (src, ToDirs dest fail')
+parseArgs [src]              = return (src, ToStdout        )
+parseArgs _                  = usage
+
+
+usage :: IO a
+usage = do
+   appName <- getProgName
+   putStrLn $ unlines
+      [ "Look up inspections with Google Geocoding and Places"
+      , ""
+      , "Usage: " ++ appName ++ " FILE|DIR [SUCCDIR FAILDIR]"
+      , "       " ++ appName ++ " FILE|DIR"
+      , "       " ++ appName ++ " [OPTIONS]"
+      , ""
+      , "Options:"
+      , "  -h, --help  This usage information"
+      , ""
+      , "Looks up the file or dir full of files specified"
+      , "Writes successful lookups to SUCCDIR or stdout if omitted"
+      , "Writes failed lookup input files to FAILDIR"
+      , "Expects to find a ./ksdl.conf file."
+      , "Logging is written to stdout."
+      , ""
+      , "Dino Morelli <dino@ui3.info>"
+      ]
+   exitFailure
+
+
+lookupInspection :: Config -> Output -> (FilePath, Inspection)
    -> IO (Maybe Match)
-lookupInspection config failDir (srcPath, insp) = do
+lookupInspection config outputSpec (srcPath, insp) = do
    r <- runKsdl (Env config insp) $ do
       liftIO $ do
          noticeM lname line
@@ -76,11 +114,15 @@ lookupInspection config failDir (srcPath, insp) = do
 
       Just `fmap` match places
 
-   either handleFailure return r
+   either (handleFailure outputSpec) return r
 
    where
-      handleFailure msg = do
+      handleFailure (ToDirs _ failDir) msg = do
          copyFile srcPath $ failDir </> takeFileName srcPath
+         errorM lname msg
+         return Nothing
+
+      handleFailure (ToStdout) msg = do
          errorM lname msg
          return Nothing
 

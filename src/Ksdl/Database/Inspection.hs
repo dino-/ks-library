@@ -9,10 +9,12 @@ module Ksdl.Database.Inspection
    where
 
 import Data.Aeson
+import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BL
 import GHC.Generics ( Generic )
 import System.FilePath
 
+import Ksdl ( Output (..) )
 import qualified Ksdl.Inspection as I
 import Ksdl.Places.Match
 import qualified Ksdl.Places.Place as P
@@ -51,6 +53,9 @@ mkDoc :: Match -> Document
 mkDoc (i, p) = Document "inspection" i p
 
 
-saveDoc :: FilePath -> Document -> IO ()
-saveDoc dir doc = BL.writeFile
-   (dir </> "ks_" ++ (I._id . inspection $ doc)) $ encode doc
+saveDoc :: Output -> Document -> IO ()
+
+saveDoc (ToDirs destDir _) doc = BL.writeFile
+   (destDir </> "ks_" ++ (I._id . inspection $ doc)) $ encode doc
+
+saveDoc ToStdout doc = BL.putStrLn $ encodePretty doc
