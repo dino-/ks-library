@@ -4,7 +4,7 @@
 module Ksdl.InspSource.NcWake
    where
 
-import Data.List ( intercalate, isPrefixOf, tails, zip6 )
+import Data.List ( intercalate, isPrefixOf )
 import Data.Maybe ( fromMaybe )
 import qualified Data.Text as T
 --import Debug.Trace ( trace )
@@ -12,7 +12,7 @@ import Network.HTTP
 import Text.HTML.TagSoup
 import Text.Printf ( printf )
 
-import Ksdl.Inspection
+import qualified Ksdl.Inspection as I
 import Ksdl.InspSource.Common
 
 
@@ -34,58 +34,58 @@ download dir pageLimit = do
    let pageUrls = maybe allPageUrls (\n -> take n allPageUrls) pageLimit
 
    let getters = map getFacilities pageUrls  -- [IO [Inspection]]
-   mapM_ (\ml -> ml >>= mapM_ (saveInspection dir)) getters
+   mapM_ (\ml -> ml >>= mapM_ (I.saveInspection dir)) getters
 
 
 -- Get all (4) facilities from a page at the supplied URL
-getFacilities :: String -> IO [Inspection]
+getFacilities :: String -> IO [I.Inspection]
 getFacilities url = do
    printf "Retrieving %s\n" url
 
    tags <- parseTags `fmap` (openURL . getRequest $ urlPrefix ++ url)
 
-   let names =
-         [ t | a:TagText t:_ <- tails tags
-         , a ~== "<a href>"
-         , isPrefixOf "facilities" $ fromAttrib "href" a
-         , not . elem '&' $ fromAttrib "href" a
-         ]
-   let scores =
-         [ (read t) :: Double | bs:l:_:TagText t:_ <- tails tags
-         , bs ~== "<b>"
-         , l ~== "Score:"
-         ]
-   let addresses = trim
-         [ t | bs:l:_:TagText t:_ <- tails tags
-         , bs ~== "<b>"
-         , l ~== "Location:"
-         ]
-   let dates = trim
-         [ t | bs:l:_:TagText t:_ <- tails tags
-         , bs ~== "<b>"
-         , l ~== "Inspection Date:"
-         ]
-   let reinspections =
-         [ (reinspToBool $ fromAttrib "value" i) | i:_ <- tails tags
-         , i ~== "<input type=button>"
-         ]
-   let details =
-         [ (extractUrl $ fromAttrib "onclick" i) | i:_ <- tails tags
-         , i ~== "<input type=button>"
-         ]
+   let itags = isolateInspTags tags
+   let insps = map extractInsp itags
+   return $ map I.setId insps
 
-   return $ map (\(name',score',addr',date',reinsp,detail') ->
-      setId (Inspection "" inspectionSrc (T.pack name') (T.pack addr')
-         (parseDate date') score' reinsp (urlPrefix ++ detail'))) $
-         zip6 names scores addresses dates reinspections details
+
+-- Extract the block of tags containing each separate facility
+isolateInspTags :: [Tag String] -> [[Tag String]]
+isolateInspTags= partitions isFacAnchor
+   where isFacAnchor e =
+            (e ~== "<a href>") &&
+            (isPrefixOf "facilities" $ fromAttrib "href" e) &&
+            (not . elem '&' $ fromAttrib "href" e)
+
+
+-- Extract the Inspection data from a facility's tags
+extractInsp :: [Tag String] -> I.Inspection
+extractInsp tags = I.Inspection
+   ""
+   inspectionSrc
+   (T.pack name)
+   (T.pack . trim $ addr)
+   (I.parseDate date)
+   (read . trim $ score)
+   (reinspToBool reinspection)
+   (urlPrefix ++ detail)
 
    where
-      trim = map (dropWhile (== ' '))
+      name = innerText . (takeWhile (not . isTagClose)) $ tags
+      TagText addr = (dropWhile (~/= "Location:") tags) !! 2
+      TagText date = (dropWhile (~/= "Inspection Date:") tags) !! 2
+      TagText score = (dropWhile (~/= "Score:") tags) !! 2
+      detailTag = head . (dropWhile (~/= "<input type=button>")) $ tags
+      reinspection = fromAttrib "value" detailTag
+      detail = extractDetailUrl . fromAttrib "onclick" $ detailTag
+
+      trim = unwords . words
 
       reinspToBool "Inspection" = False
       reinspToBool _            = True
 
-      extractUrl = takeWhile (/= '\'') . tail . dropWhile (/= '\'')
+      extractDetailUrl =
+         takeWhile (/= '\'') . tail . dropWhile (/= '\'')
 
 
 -- Get the URLs of all search result pages
