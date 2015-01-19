@@ -16,9 +16,6 @@
 - Ksdl.InspSource.*
    - Replace usage of Network.HTTP with Network.HTTP.Conduit
      (http-conduit). See Ksdl.Geocoding/Places
-- Ksdl.InspSource.NcWake
-   - Need to get more data from here for each inspection:
-      - Violations and critical violations
 - Ksdl.Places.Match
    - Look at Beasley's 083aa, replace '/'s with spaces
    - What about names like "D & S", should they be "D&S"?

@@ -4,7 +4,7 @@
 module Ksdl.InspSource.NcWake
    where
 
-import Data.List ( intercalate, isPrefixOf )
+import Data.List ( intercalate, isInfixOf, isPrefixOf )
 import Data.Maybe ( fromMaybe )
 import qualified Data.Text as T
 --import Debug.Trace ( trace )
@@ -61,12 +61,14 @@ isolateInspTags= partitions isFacAnchor
 -- Extract the Inspection data from a facility's tags
 extractInsp :: [Tag String] -> I.Inspection
 extractInsp tags = I.Inspection
-   ""
+   ""  -- Will fill in _id later, once this record is complete
    inspectionSrc
    (T.pack name)
    (T.pack . trim $ addr)
    (I.parseDate date)
    (read . trim $ score)
+   violCount
+   critCount
    (reinspToBool reinspection)
    (urlPrefix ++ detail)
 
@@ -86,6 +88,40 @@ extractInsp tags = I.Inspection
 
       extractDetailUrl =
          takeWhile (/= '\'') . tail . dropWhile (/= '\'')
+
+
+      -- This code is for extracting the violations data. Tricky!
+
+      -- Table containing the violations
+      vtable = (dropWhile (~/= "<table cellpadding=2>")) $ tags
+
+      -- Each violations table row. Each of these has 3 tdS
+      allRowsInViolsTable = partitions (~== "<tr>") vtable
+
+      -- Discard the first row, it's display labels
+      allRowsMinusHeader = tail $ allRowsInViolsTable
+
+      -- Discard the rows after the last violation
+      vrows = takeWhile isViol allRowsMinusHeader
+      isViol tags' = length (filter (~== "General Comments") tags') == 0
+
+      -- Extract the violations and critical-ness from the remaining tags
+      vs = map extractViolation vrows
+
+      -- Count them up
+      critCount = length . filter fst $ vs
+      violCount = length vs
+
+
+{- This code is pulling the violation full text which we are
+   discarding at this time. But if we want it in the future, it's
+   already being extracted here.
+-}
+extractViolation :: [Tag String] -> (Bool, String)
+extractViolation tags = (crit, text)
+   where
+      crit = isInfixOf "red" $ fromAttrib "style" $ tags !! 6
+      text = fromTagText $ tags !! 7
 
 
 -- Get the URLs of all search result pages

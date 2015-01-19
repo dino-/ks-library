@@ -31,6 +31,8 @@ data Inspection = Inspection
    , addr :: Text
    , date :: [Int]
    , score :: Double
+   , violations :: Int
+   , crit_violations :: Int
    , reinspection :: Bool
    , detail :: String
    }
@@ -69,13 +71,13 @@ saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
 
 
 displayInspection :: Inspection -> String
-displayInspection (Inspection i src n a (y:m:d:_) sc _ _) =
-   printf mask i (unpack n) y m d sc src (unpack a)
+displayInspection (Inspection i src n a (y:m:d:_) sc viol crit _ _) =
+   printf mask i (unpack n) y m d sc viol crit src (unpack a)
 
    where
       mask = init . unlines $
          [ "Inspection %s"
-         , "   %s | %4d-%02d-%02d %f | %s"
+         , "   %s | %4d-%02d-%02d %f %d/%d | %s"
          , "   %s"
          ]
 

@@ -38,6 +38,8 @@ instance ToJSON Document where
          , "addr" .= I.addr insp
          , "date" .= (toJSON . I.date $ insp)
          , "score" .= I.score insp
+         , "violations" .= I.violations insp
+         , "crit_violations" .= I.crit_violations insp
          , "reinspection" .= I.reinspection insp
          , "detail" .= I.detail insp
          ]

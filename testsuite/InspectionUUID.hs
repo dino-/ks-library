@@ -33,6 +33,8 @@ testData =
       , addr = "3626 Rogers RD WAKE FOREST, NC 27587"
       , date = [2014,12,10]
       , score = 92.0
+      , violations = 10
+      , crit_violations = 3
       , reinspection = False
       , detail = ""
       }
