@@ -2,7 +2,6 @@
 - It may be time to put info in changelog.md
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
-- Clean up output_* files in the project root
 - ks-inspections
    - Change the main.downloader implementation into a (Map String
      Downloader) so it can be used in usage output
