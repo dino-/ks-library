@@ -17,5 +17,7 @@
      (http-conduit). See Ksdl.Geocoding/Places
 - Ksdl.Places.Match
    - Look at Beasley's 083aa, replace '/'s with spaces
-   - What about names like "D & S", should they be "D&S"?
+      - Doesn't help, ["beasley's","chuck's"] fails
+      - And anyway, it's completely shitty to not have both of
+        these as separate inspections
    - More stopwords?!
