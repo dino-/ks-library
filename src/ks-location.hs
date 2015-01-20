@@ -1,12 +1,9 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE OverloadedStrings #-}
-
 import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
-import Data.Maybe ( catMaybes )
 import Data.String.Utils ( strip )
 import System.Directory ( copyFile, doesFileExist
    , getDirectoryContents , getHomeDirectory )
@@ -55,11 +52,8 @@ main = do
             . filter (not . isPrefixOf ".") )         -- ..minus dotfiles
             `fmap` getDirectoryContents srcDirOrFile  -- All files
 
-   -- Loaded Facilities
-   insps <- catMaybes `fmap` mapM loadInspection files
-
-   -- Look up each inspection facility with Geocoding and Places
-   mapM_ (lookupInspection config outputSpec) insps
+   -- Look up each inspection with Geocoding and Places
+   mapM_ (lookupInspection config outputSpec) files
 
    noticeM lname line
 
@@ -98,17 +92,16 @@ usage = do
    exitFailure
 
 
-lookupInspection :: Config -> Output -> (FilePath, Inspection)
-   -> IO ()
-lookupInspection config outputSpec (srcPath, insp) = do
-   r <- runKsdl (Env config insp) $ do
-      liftIO $ do
-         noticeM lname line
-         noticeM lname $ show insp
+lookupInspection :: Config -> Output -> FilePath -> IO ()
+lookupInspection config outputSpec srcPath = do
+   r <- runKsdl (Env config nullInspection) $ do
+      liftIO $ noticeM lname line
 
-      geo <- forwardLookup
-      places <- coordsToPlaces geo
-      match places
+      insp <- loadInspection srcPath
+      local (\r -> r { getInspection = insp }) $ do
+         geo <- forwardLookup
+         places <- coordsToPlaces geo
+         match places
 
    either (handleFailure outputSpec) (saveDoc outputSpec . mkDoc) r
 
@@ -121,10 +114,13 @@ lookupInspection config outputSpec (srcPath, insp) = do
          errorM lname msg
 
 
-loadInspection :: FilePath -> IO (Maybe (FilePath, Inspection))
-loadInspection path =
-   (maybe Nothing (\i -> Just (path, i)) . decodeStrict')
-      `fmap` BS.readFile path
+loadInspection :: FilePath -> Ksdl Inspection
+loadInspection path = do
+   parseResult <- liftIO $ eitherDecodeStrict' `fmap` BS.readFile path
+   either
+      (\msg -> throwError $ "ERROR Inspection: " ++ path ++ "\n" ++ msg)
+      (\insp -> (liftIO $ noticeM lname $ show insp) >> return insp)
+      parseResult
 
 
 -- Google Places API key

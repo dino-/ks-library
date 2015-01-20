@@ -5,7 +5,7 @@ module Ksdl
    ( Output (..), Env (..), Ksdl, runKsdl
 
    -- Re-exporting
-   , asks, liftIO, throwError, when
+   , asks, liftIO, local, throwError, when
    )
    where
 

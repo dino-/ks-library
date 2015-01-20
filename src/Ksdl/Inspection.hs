@@ -1,10 +1,11 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
 
 module Ksdl.Inspection
    ( Inspection (..)
+   , nullInspection
    , parseDate
    , setId
    , saveInspection
@@ -43,6 +44,10 @@ instance Show Inspection
 
 instance FromJSON Inspection
 instance ToJSON Inspection
+
+
+nullInspection :: Inspection
+nullInspection = Inspection "" "" "" "" [] 0.0 0 0 False ""
 
 
 parseDate :: String -> [Int]

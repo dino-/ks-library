@@ -45,4 +45,4 @@ testData =
 
 fakeInspection :: Text -> IO Inspection
 fakeInspection name' =
-   return $ Inspection "" "" name' "" [] 0.0 0 0 False ""
+   return $ nullInspection { name = name' }
