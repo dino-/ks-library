@@ -56,7 +56,6 @@ executable           ks-location
                      , hslogger
                      , HTTP
                      , http-conduit
-                     , MissingH
                      , mtl
                      , old-locale
                      , regex-compat

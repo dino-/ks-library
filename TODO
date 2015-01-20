@@ -6,8 +6,6 @@
    - Change the main.downloader implementation into a (Map String
      Downloader) so it can be used in usage output
    - Do proper usage output
-- ks-location
-   - Look for Places API key file in /etc/ as well as $HOME
 - Ksdl.Inspection
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even

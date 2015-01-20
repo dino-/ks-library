@@ -4,9 +4,8 @@
 import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
-import Data.String.Utils ( strip )
 import System.Directory ( copyFile, doesFileExist
-   , getDirectoryContents , getHomeDirectory )
+   , getDirectoryContents )
 import System.Environment ( getArgs, getProgName )
 import System.Exit ( exitFailure )
 import System.FilePath
@@ -126,7 +125,5 @@ loadInspection path = do
 -- Google Places API key
 loadPlacesKey :: IO String
 loadPlacesKey =
-   strip `fmap`            -- ..strip any trailing whitespace
-   (readFile =<<           -- ..read the contents of this file
-   (</> ".gplaces") `fmap` -- ..append the Places API key filename
-   getHomeDirectory)
+   (unwords . words) `fmap`  -- ..strip any trailing whitespace
+   readFile "GooglePlacesAPIKey"
