@@ -24,7 +24,7 @@ import Ksdl.Database.Inspection
 import Ksdl.Inspection
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( forwardLookup )
-import Ksdl.Places.Match ( Match, match )
+import Ksdl.Places.Match ( match )
 import Ksdl.Places.Place ( coordsToPlaces )
 
 
@@ -59,12 +59,9 @@ main = do
    insps <- catMaybes `fmap` mapM loadInspection files
 
    -- Look up each inspection facility with Geocoding and Places
-   matches <- catMaybes `fmap`
-      mapM (lookupInspection config outputSpec) insps
-   noticeM lname line
+   mapM_ (lookupInspection config outputSpec) insps
 
-   let docs = map mkDoc matches
-   mapM_ (saveDoc outputSpec) docs
+   noticeM lname line
 
    logStopMsg lname
 
@@ -102,29 +99,26 @@ usage = do
 
 
 lookupInspection :: Config -> Output -> (FilePath, Inspection)
-   -> IO (Maybe Match)
+   -> IO ()
 lookupInspection config outputSpec (srcPath, insp) = do
    r <- runKsdl (Env config insp) $ do
       liftIO $ do
          noticeM lname line
          noticeM lname $ show insp
 
-      places <- forwardLookup >>=
-         coordsToPlaces
+      geo <- forwardLookup
+      places <- coordsToPlaces geo
+      match places
 
-      Just `fmap` match places
-
-   either (handleFailure outputSpec) return r
+   either (handleFailure outputSpec) (saveDoc outputSpec . mkDoc) r
 
    where
       handleFailure (ToDirs _ failDir) msg = do
          copyFile srcPath $ failDir </> takeFileName srcPath
          errorM lname msg
-         return Nothing
 
-      handleFailure (ToStdout) msg = do
+      handleFailure (ToStdout) msg =
          errorM lname msg
-         return Nothing
 
 
 loadInspection :: FilePath -> IO (Maybe (FilePath, Inspection))
