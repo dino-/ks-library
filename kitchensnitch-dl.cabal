@@ -34,6 +34,7 @@ executable           ks-inspections
    build-depends:      aeson
                      , base >= 3 && < 5
                      , bytestring
+                     , containers
                      , filepath
                      , HTTP
                      , regex-compat

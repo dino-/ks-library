@@ -3,9 +3,8 @@
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
 - ks-inspections
-   - Change the main.downloader implementation into a (Map String
-     Downloader) so it can be used in usage output
-   - Do proper usage output
+   - Parameterize the start and end dates for querying the
+     inspection data
 - Ksdl.Inspection
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even
