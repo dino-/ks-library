@@ -29,8 +29,13 @@ main = do
    -- No buffering, it messes with the order of output
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
 
+   -- Load the config file
    config <- do
       c <- loadConfig "ksdl.conf"
+
+      -- The Places API key could be packed into the above config
+      -- file if desired, but we're loading it from a different
+      -- file and slipping it into the Config data here.
       k <- loadPlacesKey
       return $ c { placesApiKey = k }
 
