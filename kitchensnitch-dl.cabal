@@ -49,6 +49,7 @@ executable           ks-location
    hs-source-dirs:   src
    build-depends:      aeson
                      , aeson-pretty
+                     , attoparsec
                      , base >= 3 && < 5
                      , bytestring
                      , containers

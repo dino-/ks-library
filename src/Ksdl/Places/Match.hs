@@ -2,16 +2,19 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 {-# LANGUAGE OverloadedStrings #-}
+{-# OPTIONS_GHC -fno-warn-unused-do-bind #-}
 
 module Ksdl.Places.Match
    ( Match, match )
    where
 
+import Data.Attoparsec.Text hiding ( count, match )
 import Data.Char ( isDigit )
 import Data.Maybe ( catMaybes )
 import qualified Data.Text as T
 import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Format as TF
+import Prelude hiding ( takeWhile )
 
 import Ksdl
 import qualified Ksdl.Inspection as I
@@ -35,7 +38,7 @@ match ps = do
 
    liftIO $ do
       noticeM lname "Matches:"
-      mapM_ (noticeM lname) $ catMaybes $ map matched mis
+      mapM_ (noticeM lname) $ catMaybes $ map fmtMatched mis
 
    when (count > 1) $ liftIO $ do
       warningM lname "WARNING Match: More than one Places result matched"
@@ -43,24 +46,64 @@ match ps = do
    return . head . catMaybes . map positiveMatch $ mis
 
    where
+      {- Combine the inspection, places result and a boolean
+         indicating whether or not we think they refer to the
+         same place.
+
+         The cleaned-up Places address is returned back to us by
+         isMatch and substituted into the Place data type here.
+      -}
       combine :: I.Inspection -> P.Place -> MatchInternal
-      combine insp pl = ((isMatch (I.addr insp) (P.vicinity pl)),
-         (insp, pl))
+      combine insp pl = (matched, (insp, pl { P.vicinity = newPvic }))
+         where
+            (matched, newPvic) = isMatch (I.addr insp) (P.vicinity pl)
 
       bToI :: MatchInternal -> Int
       bToI (True,  (_, _)) = 1
       bToI (False, (_, _)) = 0
 
-      matched :: MatchInternal -> Maybe String
-      matched (True , (_, pl)) = Just . T.unpack . TL.toStrict $
+      fmtMatched :: MatchInternal -> Maybe String
+      fmtMatched (True , (_, pl)) = Just . T.unpack . TL.toStrict $
          TF.format "{} | {}" ((P.name pl), (P.vicinity pl))
-      matched (False, (_, _ )) = Nothing
+      fmtMatched (False, (_, _ )) = Nothing
 
       positiveMatch :: MatchInternal -> Maybe Match
       positiveMatch (True , m) = Just m
       positiveMatch (False, _) = Nothing
 
 
-isMatch :: T.Text -> T.Text -> Bool
-isMatch ivic pvic = prefix ivic == prefix pvic
-   where prefix = T.takeWhile isDigit
+{- Determine if two addresses are a "match" based on the beginning
+   digits. Given how close we get with Google Place search, this
+   gets us the rest of the way to disambiguate the hits.
+
+   In addition to a True/False match status, we return the cleaned-up
+   address that was computed below with removePrefixZip. This is
+   so we can show our users the true address.
+-}
+isMatch :: T.Text -> T.Text -> (Bool, T.Text)
+isMatch iaddr pvic = (prefix iaddr == prefix newPvic, newPvic)
+   where
+      newPvic = removePrefixZip pvic
+      prefix = T.takeWhile isDigit
+
+
+{- We get these ridiculous addresses from Google Places where they've
+   clearly mistakenly put the zip code up front. They look like this:
+
+      "27603, 7900 Fayetteville Road, Raleigh"
+
+   This parser returns the address string with that zip code,
+   comma and space removed.
+-}
+removePrefixZip :: T.Text -> T.Text
+removePrefixZip =
+   either T.pack id . parseOnly (choice [prefixZip, everythingElse])
+
+   where
+      everythingElse :: Parser T.Text
+      everythingElse = takeWhile $ const True
+
+      prefixZip :: Parser T.Text
+      prefixZip = do
+         try $ manyTill digit $ string ", "
+         everythingElse
