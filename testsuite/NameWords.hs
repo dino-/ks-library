@@ -34,11 +34,17 @@ testData :: [(Text, [Text])]
 testData =
    [ ("Belle at The Jones House", ["belle"])
    , ("BOJANGLES #15", ["bojangles"])
+   , ("Cafe Tiramisu/North Ridge Pub", ["tiramisu"])
    , ("Flights Restaurant-Raleigh Renaissance", ["flights"])
+   , ("INTER-FAITH FOOD SHUTTLE @ INTERACT", ["interact"])
    , ("K&W CAFETERIA", ["k&w"])
    , ("Kadhai-The Indian Wok", ["kadhai"])
+   , ("NC Farm Bureau Cafeteria", ["farm"])
+   , ("New Wangs Kitchen", ["wangs"])
    , ("Piccola Italia", ["piccola"])
+   , ("Quiznos Sub", ["quiznos"])
    , ("R.J.`S PLACE", ["rj`s","place"])
+   , ("SAMI'S SUBS, PIZZA & MORE", ["sami's"])
    , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]
 

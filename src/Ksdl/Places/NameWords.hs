@@ -33,16 +33,27 @@ toList = do
 mkList :: Ksdl [Text]
 mkList = do
    stopwords <- asks (namewordsStopwords . getConfig)
-   (L.filter (not . isPrefixOf "#")
+   (L.filter
+        (not . isPrefixOf "#")
       . L.filter (\w -> not $ L.elem w stopwords)
       . L.take 2
       . split (== ' ')
-      . filter (not . (== '.'))
-      . map hyphenToSpace
+      . remove ','
+      . remove '.'
+      . tr '/' ' '
+      . tr '-' ' '
       . toLower
       ) `fmap` asks (name . getInspection)
 
 
-hyphenToSpace :: Char -> Char
-hyphenToSpace '-' = ' '
-hyphenToSpace c   = c
+-- Return a string with all of a certain character removed
+remove :: Char -> Text -> Text
+remove c = filter (not . (== c))
+
+
+-- Transpose a character for another in a Text string
+tr :: Char -> Char -> Text -> Text
+tr oldCh newCh src = map tr' src where
+   tr' c
+      | c == oldCh = newCh
+      | otherwise  = c
