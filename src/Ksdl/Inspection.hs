@@ -72,7 +72,8 @@ setId i = i { _id = toString newId }
 
 
 saveInspection :: FilePath -> Inspection -> IO ()
-saveInspection dir insp = BL.writeFile (dir </> (_id insp)) $ encode insp
+saveInspection dir insp =
+   BL.writeFile (dir </> ("insp_" ++ _id insp)) $ encode insp
 
 
 displayInspection :: Inspection -> String
