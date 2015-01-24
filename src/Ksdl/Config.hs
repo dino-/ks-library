@@ -24,7 +24,11 @@ data Config = Config
 
 
 loadConfig :: FilePath -> IO Config
-loadConfig path = (read . removeComments) `fmap` readFile path
+loadConfig path = do
+   parseResult <- (reads . removeComments) `fmap` readFile path
+   case parseResult of
+      [(c, _)] -> return c
+      _        -> error $ "ERROR parsing config file: " ++ path
 
 
 {- Auto-derived Read instancing has no idea how to handle Haskell source
