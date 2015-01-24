@@ -77,14 +77,18 @@ saveInspection dir insp =
 
 
 displayInspection :: Inspection -> String
-displayInspection (Inspection i src n a (y:m:d:_) sc viol crit _ _) =
-   printf mask i (unpack n) y m d sc viol crit src (unpack a)
+displayInspection (Inspection i src n a [y, m, d] sc viol crit r _) =
+   printf mask i (unpack n) y m d sc viol crit (showRe r) src (unpack a)
 
    where
       mask = init . unlines $
          [ "Inspection %s"
-         , "   %s | %4d-%02d-%02d %f %d/%d | %s"
+         , "   %s | %4d-%02d-%02d %f %d/%d %s | %s"
          , "   %s"
          ]
+
+      showRe :: Bool -> String
+      showRe True  = "Re"
+      showRe False = "Ins"
 
 displayInspection _ = undefined
