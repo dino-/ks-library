@@ -1,4 +1,4 @@
-## 2015-01-15 New CouchDB document structure
+## 2015-01-15 New Couchbase document structure
 
       { "_id": "uuid"
       , "type": "inspection"

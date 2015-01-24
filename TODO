@@ -12,6 +12,10 @@
 - Ksdl.InspSource.*
    - Replace usage of Network.HTTP with Network.HTTP.Conduit
      (http-conduit). See Ksdl.Geocoding/Places
+- ks-location
+   - Add a command-line switch to move insp_ files to the fail
+     directory instead of copying. Keep copy the default (it's
+     non-destructive)
 - Ksdl.Places.Match
    - Look at Beasley's 083aa, replace '/'s with spaces
       - Doesn't help, ["beasley's","chuck's"] fails
