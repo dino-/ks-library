@@ -38,6 +38,8 @@ mkList = do
       . L.filter (\w -> not $ L.elem w stopwords)
       . L.take 2
       . split (== ' ')
+      . remove '\''
+      . remove '`'
       . remove ','
       . remove '.'
       . tr '/' ' '
