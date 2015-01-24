@@ -1,3 +1,13 @@
+## Getting a year's worth of inspection data
+
+Need to get them in blocks:
+
+2014-01-24 2014-04-23
+2014-04-24 2014-07-23
+2014-07-24 2014-10-23
+2014-10-24 2015-01-23 (today)
+
+
 ## 2015-01-15 New Couchbase document structure
 
       { "_id": "uuid"
