@@ -2,6 +2,8 @@
 - It may be time to put info in changelog.md
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
+- Add version number to usage. Possibly wait if going to do real
+  arg parsing.
 - ks-inspections
    - Parameterize the start and end dates for querying the
      inspection data
