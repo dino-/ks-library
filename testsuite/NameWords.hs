@@ -43,7 +43,7 @@ testData =
    , ("New Wangs Kitchen", ["wangs"])
    , ("Piccola Italia", ["piccola"])
    , ("Quiznos Sub", ["quiznos"])
-   , ("R.J.`S PLACE", ["rjs","place"])
+   , ("R.J.`S PLACE", ["rjs"])
    , ("SAMI'S SUBS, PIZZA & MORE", ["samis"])
    , ("Tonys Bourbon Street Oyster Bar", ["tonys"])
    ]

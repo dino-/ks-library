@@ -33,8 +33,8 @@ toList = do
 mkList :: Ksdl [Text]
 mkList = do
    stopwords <- asks (namewordsStopwords . getConfig)
-   (L.filter
-        (not . isPrefixOf "#")
+   (headList
+      . L.filter (not . isPrefixOf "#")
       . L.filter (\w -> not $ L.elem w stopwords)
       . L.take 2
       . split (== ' ')
@@ -46,6 +46,11 @@ mkList = do
       . tr '-' ' '
       . toLower
       ) `fmap` asks (name . getInspection)
+
+
+headList :: [a] -> [a]
+headList (h : _) = [h]
+headList _       = []
 
 
 -- Return a string with all of a certain character removed
