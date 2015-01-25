@@ -59,6 +59,7 @@ mkDoc (i, p) = Document "inspection" i p
 saveDoc :: Output -> Document -> IO ()
 
 saveDoc (ToDirs destDir _) doc = BL.writeFile
-   (destDir </> "ks_" ++ (I._id . inspection $ doc)) $ encode doc
+   (destDir </> "ks_" ++ (I._id . inspection $ doc) <.> "json")
+   $ encode doc
 
 saveDoc ToStdout doc = BL.putStrLn $ encodePretty doc
