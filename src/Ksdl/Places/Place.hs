@@ -40,6 +40,7 @@ data Place = Place
    { name :: Text
    , vicinity :: Text
    , location :: PlLatLng
+   , types :: [String]
    , place_id :: Text
    }
    deriving Show
@@ -51,6 +52,7 @@ instance FromJSON Place where
          <$> o .: "name"
          <*> o .: "vicinity"
          <*> (PlLatLng <$> (l .: "lat") <*> (l .: "lng"))
+         <*> o .: "types"
          <*> o .: "place_id"
    parseJSON o = fail . show $ o
 
@@ -103,6 +105,7 @@ mkPlacesUrl (GeoLatLng lat' lng') = do
 
    let nameList = urlEncode $ unpack $ intercalate " " $ nameWords
 
-   types <- L.intercalate "|" `fmap` asks (placesTypes . getConfig)
+   searchTypes <-
+      L.intercalate "|" `fmap` asks (placesTypes . getConfig)
 
-   return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat' lng' nameList types
+   return $ printf "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=%s&location=%f,%f&rankby=distance&name=%s&types=%s" key lat' lng' nameList searchTypes

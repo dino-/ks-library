@@ -47,6 +47,7 @@ instance ToJSON Document where
          [ "name" .= P.name pl
          , "vicinity" .= P.vicinity pl
          , "location" .= (toJSON . P.location $ pl)
+         , "types" .= P.types pl
          ]
       ]
 
