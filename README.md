@@ -11,10 +11,10 @@ Data downloader and parser for the KitchenSnitch project
 
 ## Installing
 
-A file or link containing a Google Places API key is required at
+A file or link containing a Google API key is required at
 this location relative to where you run ks-location:
 
-   ./GooglePlacesAPIKey
+   ./GoogleAPIKey
 
 The key should be the only thing in the file, on a line by itself.
 

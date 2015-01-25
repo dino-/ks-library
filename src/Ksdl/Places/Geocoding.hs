@@ -45,7 +45,7 @@ headE v []      = fail . show $ v
 
 forwardLookup :: Ksdl GeoLatLng
 forwardLookup = do
-   url <- (mkGeocodeUrl . addr) `fmap` asks getInspection
+   url <- mkGeocodeUrl
    liftIO $ noticeM lname $ "Geocoding URL: " ++ url
 
    asks (geocodingApiDelay . getConfig) >>= (liftIO . threadDelay)
@@ -66,7 +66,9 @@ displayAndReturn location = do
    return location
 
 
-mkGeocodeUrl :: Text -> String
-mkGeocodeUrl addr' = printf
-   "https://maps.googleapis.com/maps/api/geocode/json?address=%s"
-   (urlEncode $ unpack addr')
+mkGeocodeUrl :: Ksdl String
+mkGeocodeUrl = do
+   addr' <- asks (addr . getInspection)
+   key <- asks (googleApiKey . getConfig)
+
+   return $ printf "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" (urlEncode $ unpack addr') key

@@ -37,7 +37,7 @@ main = do
       -- file if desired, but we're loading it from a different
       -- file and slipping it into the Config data here.
       k <- loadPlacesKey
-      return $ c { placesApiKey = k }
+      return $ c { googleApiKey = k }
 
    initLogging $ logPriority config
 
@@ -131,4 +131,4 @@ loadInspection path = do
 loadPlacesKey :: IO String
 loadPlacesKey =
    (unwords . words) `fmap`  -- ..strip any trailing whitespace
-   readFile "GooglePlacesAPIKey"
+   readFile "GoogleAPIKey"

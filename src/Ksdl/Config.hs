@@ -14,10 +14,10 @@ import System.Log
 
 data Config = Config
    { logPriority :: Priority
+   , googleApiKey :: String
    , geocodingApiDelay :: Int
    , namewordsStopwords :: [T.Text]
    , namewordsSpecialCases :: Map.Map T.Text [T.Text]
-   , placesApiKey :: String
    , placesTypes :: [String]
    }
    deriving (Read, Show)
