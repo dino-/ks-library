@@ -31,15 +31,15 @@ defaultOptions = Options
 options :: [OptDescr (Options -> Options)]
 options =
    [ Option ['s'] ["success-dir"]
-      (ReqArg (\s opts -> opts { optSuccessDir = Just s } ) "SUCCDIR") 
-      "Dir for successful lookups"
+      (ReqArg (\s opts -> opts { optSuccessDir = Just s } ) "SUCCDIR")
+      "Directory for successful lookups. Optional. If missing, JSON is sent to stdout."
    , Option ['f'] ["fail-dir"]
-      (ReqArg (\s opts -> opts { optFailDir = Just s } ) "FAILDIR") 
-      "Dir for failures"
-   , Option []    ["delete"] 
+      (ReqArg (\s opts -> opts { optFailDir = Just s } ) "FAILDIR")
+      "Directory for failures. Optional. If missing, failure JSON is not copied anywhere."
+   , Option []    ["delete"]
       (NoArg (\opts -> opts { optDelete = True } ))
-      "Delete source files as they're processed. BE CAREFUL, this will delete even if no above dest dirs are suppied."
-   , Option ['h'] ["help"] 
+      "Delete source files as they're processed. BE CAREFUL, this will delete even if no above dest dirs are supplied."
+   , Option ['h'] ["help"]
       (NoArg (\opts -> opts { optHelp = True } ))
       "This help text"
    ]
