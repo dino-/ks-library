@@ -1,0 +1,74 @@
+-- License: BSD3 (see LICENSE)
+-- Author: Dino Morelli <dino@ui3.info>
+
+module Ksdl.LocOpts
+   ( Options (..)
+   , parseOpts, usageText
+   )
+   where
+
+import Data.Version ( showVersion )
+import Paths_kitchensnitch_dl ( version )
+import System.Console.GetOpt
+
+
+data Options = Options
+   { optSuccessDir :: Maybe FilePath
+   , optFailDir :: Maybe FilePath
+   , optDelete :: Bool
+   , optHelp :: Bool
+   }
+
+defaultOptions :: Options
+defaultOptions = Options
+   { optSuccessDir = Nothing
+   , optFailDir = Nothing
+   , optDelete = False
+   , optHelp = False
+   }
+
+
+options :: [OptDescr (Options -> Options)]
+options =
+   [ Option ['s'] ["success-dir"]
+      (ReqArg (\s opts -> opts { optSuccessDir = Just s } ) "SUCCDIR") 
+      "Dir for successful lookups"
+   , Option ['f'] ["fail-dir"]
+      (ReqArg (\s opts -> opts { optFailDir = Just s } ) "FAILDIR") 
+      "Dir for failures"
+   , Option []    ["delete"] 
+      (NoArg (\opts -> opts { optDelete = True } ))
+      "Delete source files as they're processed. BE CAREFUL, this will delete even if no above dest dirs are suppied."
+   , Option ['h'] ["help"] 
+      (NoArg (\opts -> opts { optHelp = True } ))
+      "This help text"
+   ]
+
+
+{- Perform the actual parse of a [String]
+-}
+parseOpts :: [String] -> IO (Options, [String])
+parseOpts args =
+   case getOpt Permute options args of
+      (o,n,[]  ) -> return (foldl (flip id) defaultOptions o, n)
+      (_,_,errs) -> ioError $ userError (concat errs ++ usageText)
+
+
+usageText :: String
+usageText = (usageInfo header options) ++ "\n" ++ footer
+   where
+      header = init $ unlines
+         [ "Usage: ks-location [OPTIONS] FILE|DIR"
+         , "Look up inspections with Google Geocoding and Places"
+         , ""
+         , "Options:"
+         ]
+      footer = init $ unlines
+         [ "Looks up the file or dir full of files specified"
+         , "Writes successful lookups to SUCCDIR or stdout if omitted"
+         , "Writes failed lookup input files to FAILDIR"
+         , "Expects to find a ./ksdl.conf file."
+         , "Logging is written to stdout."
+         , ""
+         , "Version " ++ (showVersion version) ++ "  Dino Morelli <dino@ui3.info>"
+         ]

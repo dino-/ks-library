@@ -8,14 +8,16 @@ module Ksdl.Database.Inspection
    ( mkDoc, saveDoc )
    where
 
+import Control.Monad ( when )
 import Data.Aeson
 import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BL
 import GHC.Generics ( Generic )
+import System.Directory ( removeFile )
 import System.FilePath
 
-import Ksdl ( Output (..) )
 import qualified Ksdl.Inspection as I
+import Ksdl.LocOpts
 import Ksdl.Places.Match
 import qualified Ksdl.Places.Place as P
 
@@ -56,10 +58,12 @@ mkDoc :: Match -> Document
 mkDoc (i, p) = Document "inspection" i p
 
 
-saveDoc :: Output -> Document -> IO ()
+saveDoc :: Options -> FilePath -> Document -> IO ()
+saveDoc options srcPath doc = do
+   case (optSuccessDir options) of
+      Just successDir -> BL.writeFile
+         (successDir </> "ks_" ++ (I._id . inspection $ doc) <.> "json")
+         $ encode doc
+      Nothing -> BL.putStrLn $ encodePretty doc
 
-saveDoc (ToDirs destDir _) doc = BL.writeFile
-   (destDir </> "ks_" ++ (I._id . inspection $ doc) <.> "json")
-   $ encode doc
-
-saveDoc ToStdout doc = BL.putStrLn $ encodePretty doc
+   when (optDelete options) $ removeFile srcPath

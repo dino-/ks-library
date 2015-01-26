@@ -2,7 +2,7 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 module Ksdl
-   ( Output (..), Env (..), Ksdl, runKsdl
+   ( Env (..), Ksdl, runKsdl
 
    -- Re-exporting
    , asks, liftIO, local, throwError, when
@@ -14,11 +14,6 @@ import Control.Monad.Error
 
 import Ksdl.Config
 import Ksdl.Inspection
-
-
-data Output
-   = ToDirs FilePath FilePath
-   | ToStdout
 
 
 data Env = Env

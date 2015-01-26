@@ -2,28 +2,15 @@
 - It may be time to put info in changelog.md
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
-- Add version number to usage. Possibly wait if going to do real
-  arg parsing.
 - ks-inspections
-   - Parameterize the start and end dates for querying the
-     inspection data
+   - Need arguments for specifying what to download:
+        [-s, --start-date yyyymmdd] defaulting to today
+        -d, --days  How many days backwards from today
+     Will need to compute start/end dates from this for nc_wake
 - Ksdl.Inspection
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even
      not lazy.
-   - Should have some checking in saveInspection for file
-     existence. To do this best, probably should make saveInspection
-     :: Ksdl () or something, but this will mean changes to
-     ks-inspections as well. So, not today. Be careful.
 - Ksdl.InspSource.*
    - Replace usage of Network.HTTP with Network.HTTP.Conduit
      (http-conduit). See Ksdl.Geocoding/Places
-- ks-location
-   - Add a command-line switch to move insp_ files to the fail
-     directory instead of copying. Keep copy the default (it's
-     non-destructive)
-- Ksdl.Places.Match
-   - Look at Beasley's 083aa, replace '/'s with spaces
-      - Doesn't help, ["beasley's","chuck's"] fails
-      - And anyway, it's completely shitty to not have both of
-        these as separate inspections

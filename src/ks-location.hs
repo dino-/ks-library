@@ -5,9 +5,9 @@ import Data.Aeson
 import qualified Data.ByteString as BS
 import Data.List ( isPrefixOf )
 import System.Directory ( copyFile, doesFileExist
-   , getDirectoryContents )
-import System.Environment ( getArgs, getProgName )
-import System.Exit ( exitFailure )
+   , getDirectoryContents, removeFile )
+import System.Environment ( getArgs )
+import System.Exit ( exitSuccess )
 import System.FilePath
 import System.IO
    ( BufferMode ( NoBuffering )
@@ -18,6 +18,7 @@ import Ksdl
 import Ksdl.Config
 import Ksdl.Database.Inspection
 import Ksdl.Inspection
+import Ksdl.LocOpts
 import Ksdl.Log
 import Ksdl.Places.Geocoding ( forwardLookup )
 import Ksdl.Places.Match ( match )
@@ -28,6 +29,11 @@ main :: IO ()
 main = do
    -- No buffering, it messes with the order of output
    mapM_ (flip hSetBuffering NoBuffering) [ stdout, stderr ]
+
+   (options, srcDirsOrFiles) <- getArgs >>= parseOpts
+   when ((optHelp options) || (null srcDirsOrFiles)) $ do
+      putStrLn usageText
+      exitSuccess
 
    -- Load the config file
    config <- do
@@ -40,64 +46,32 @@ main = do
       return $ c { googleApiKey = k }
 
    initLogging $ logPriority config
-
-   (srcDirOrFile, outputSpec) <- getArgs >>= parseArgs
-
-   -- Don't start with this until we know we're not bailing out
-   -- because of args
    logStartMsg lname
 
    -- Paths to all files we'll be processing
-   files <- do
-      isFile <- doesFileExist srcDirOrFile
-      if isFile then return [srcDirOrFile]
-         else
-            ( map (srcDirOrFile </>)                  -- ..relative paths
-            . filter (not . isPrefixOf ".") )         -- ..minus dotfiles
-            `fmap` getDirectoryContents srcDirOrFile  -- All files
+   files <- concat `fmap`
+      (sequence $ map buildFileList srcDirsOrFiles)
 
    -- Look up each inspection with Geocoding and Places
-   mapM_ (lookupInspection config outputSpec) files
+   mapM_ (lookupInspection config options) files
 
    noticeM lname line
 
    logStopMsg lname
 
 
-parseArgs :: [String] -> IO (FilePath, Output)
-parseArgs ("-h"     : _)     = usage
-parseArgs ("--help" : _)     = usage
-parseArgs [src, dest, fail'] = return (src, ToDirs dest fail')
-parseArgs [src]              = return (src, ToStdout        )
-parseArgs _                  = usage
+buildFileList :: FilePath -> IO [FilePath]
+buildFileList srcDirOrFile = do
+   isFile <- doesFileExist srcDirOrFile
+   if isFile then return [srcDirOrFile]
+      else
+         ( map (srcDirOrFile </>)                  -- ..relative paths
+         . filter (not . isPrefixOf ".") )         -- ..minus dotfiles
+         `fmap` getDirectoryContents srcDirOrFile  -- All files
 
 
-usage :: IO a
-usage = do
-   appName <- getProgName
-   putStrLn $ unlines
-      [ "Look up inspections with Google Geocoding and Places"
-      , ""
-      , "Usage: " ++ appName ++ " FILE|DIR [SUCCDIR FAILDIR]"
-      , "       " ++ appName ++ " FILE|DIR"
-      , "       " ++ appName ++ " [OPTIONS]"
-      , ""
-      , "Options:"
-      , "  -h, --help  This usage information"
-      , ""
-      , "Looks up the file or dir full of files specified"
-      , "Writes successful lookups to SUCCDIR or stdout if omitted"
-      , "Writes failed lookup input files to FAILDIR"
-      , "Expects to find a ./ksdl.conf file."
-      , "Logging is written to stdout."
-      , ""
-      , "Dino Morelli <dino@ui3.info>"
-      ]
-   exitFailure
-
-
-lookupInspection :: Config -> Output -> FilePath -> IO ()
-lookupInspection config outputSpec srcPath = do
+lookupInspection :: Config -> Options -> FilePath -> IO ()
+lookupInspection config options srcPath = do
    r <- runKsdl (Env config nullInspection) $ do
       liftIO $ noticeM lname line
 
@@ -107,14 +81,19 @@ lookupInspection config outputSpec srcPath = do
          places <- coordsToPlaces geo
          match places
 
-   either (handleFailure outputSpec) (saveDoc outputSpec . mkDoc) r
+   either (handleFailure) (saveDoc options srcPath . mkDoc) r
 
    where
-      handleFailure (ToDirs _ failDir) msg = do
-         copyFile srcPath $ failDir </> takeFileName srcPath
-         errorM lname msg
+      handleFailure msg = do
+         -- Copy to FAILDIR if we have one
+         maybe (return ()) (\failDir ->
+            copyFile srcPath $ failDir </> takeFileName srcPath)
+            $ optFailDir options
 
-      handleFailure (ToStdout) msg =
+         -- Delete the original if we've been instructed to do so
+         when (optDelete options) $ removeFile srcPath
+
+         -- Log what happened
          errorM lname msg
 
 
