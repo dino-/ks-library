@@ -1,11 +1,40 @@
-## Getting a year's worth of inspection data
+## New src layout:
 
-Need to get them in blocks:
+src/
+   Ks/
+      Inspection.hs
+      InspDl/
+         Source/           was Ksdl.InspSource
+            Common.hs
+            NcWake.hs
+      Locate/
+         Config.hs         was Ksdl.Config
+         Database/         was Ksdl.Database
+            Inspection.hs
+         Locate.hs         was Ksdl.hs, the Locate monad
+         Opts.hs           was Ksdl.LocOpts
+         Places/
+            Geocoding.hs
+            Match.hs
+            NameWords.hs
+            Place.hs
+      Log.hs
+   ks-inspdl.hs            was ks-inspections.hs
+   ks-locate.hs            was ks-location.hs
 
-2014-01-24 2014-04-23
-2014-04-24 2014-07-23
-2014-07-24 2014-10-23
-2014-10-24 2015-01-23 (today)
+When changing these app names, make sure to adjust command-line usage text, README.md, doc/dev/notes, TODO
+
+
+## Getting and processing a year's worth of inspection data
+
+So many I did them in 4 blocks for quarters of the year:
+
+nc-wake data
+
+nc-wake_q1  2014-01-24 2014-04-23
+nc-wake_q2  2014-04-24 2014-07-23
+nc-wake_q3  2014-07-24 2014-10-23
+nc-wake_q4  2014-10-24 2015-01-23
 
 
 ## 2015-01-15 New Couchbase document structure
@@ -34,36 +63,6 @@ Need to get them in blocks:
          }
       }
 
-With full violations data:
-
-      { "_id": "uuid"
-      , "type": "inspection"
-      , "place_id": "from G Places"
-      , "inspection_source": "nc_wake"
-      , "inspection":
-         { "name": "..."
-         , "addr": "..."
-         , "date": [2014,12,30]
-         , "score": 94.7
-         , "violations":
-            [ { "id": 8
-              , "desc": "..."
-              , "critical": true
-              }
-            , { ... }
-            ]
-         , "reinspection": true
-         , "detail": "http:/..."
-         }
-      , "place":
-         { "name": "..."
-         , "vicinity": "..."
-         , "location":
-            { "lat": 13.1856902
-            , "lng": -78.18342
-            }
-         }
-      }
 
 - Is inspection.violations.id an integer or string across different
   counties?

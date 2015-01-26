@@ -2,6 +2,7 @@
 - It may be time to put info in changelog.md
 - Look into accessing CouchBase directly from Haskell
 - Is there a different url encoding API than what's in Network.HTTP?
+- Redesign the packaging layout (see doc/dev/notes)
 - ks-inspections
    - Need arguments for specifying what to download:
         [-s, --start-date yyyymmdd] defaulting to today
