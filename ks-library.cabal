@@ -1,0 +1,52 @@
+name:                ks-library
+version:             1.0
+cabal-version:       >= 1.10
+build-type:          Simple
+license:             BSD3
+license-file:        LICENSE
+copyright:           2015 Dino Morelli
+author:              Dino Morelli
+maintainer:          Dino Morelli <dino@ui3.info>
+stability:           experimental
+homepage:            http://hub.darcs.net/dino/ks-library
+synopsis:            Library of common modules for KitchenSnitch
+description:         Bar Baz
+category:            Data
+tested-with:         GHC >= 7.10.1
+extra-source-files:  changelog.md
+                     doc/dev/notes
+                     README.md
+                     TODO
+                     util/gentags.sh
+
+source-repository    head
+   type:             darcs
+   location:         http://hub.darcs.net/dino/ks-library
+
+library
+   exposed-modules:  KS.Data.BSON
+                     KS.Data.Document
+                     KS.Data.Inspection
+                     KS.Data.Place
+   hs-source-dirs:   src
+   build-depends:      aeson
+                     , base >= 4.8 && < 4.9
+                     , bson
+                     , bytestring
+                     , directory
+                     , filepath
+                     , geojson
+                     , text
+                     , time
+   ghc-options:      -Wall
+   default-language: Haskell2010
+
+--test-suite           test-Database
+--   type:             exitcode-stdio-1.0
+--   main-is:          test-Database.hs
+--   hs-source-dirs:   src testsuite
+--   build-depends:      base >= 3 && < 5
+--                     , bson
+--                     , HUnit
+--                     , text
+--   ghc-options:      -Wall
