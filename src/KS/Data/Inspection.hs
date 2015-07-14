@@ -19,8 +19,8 @@ import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.Char ( isAlphaNum )
 import Data.Maybe ( fromJust )
 import qualified Data.Text as T
-import Data.Time ( UTCTime (..), defaultTimeLocale, formatTime
-   , parseTimeM )
+import Data.Time ( TimeZone, UTCTime (..), defaultTimeLocale, formatTime
+   , localTimeToUTC, parseTimeM )
 import Data.Time.Clock.POSIX ( posixSecondsToUTCTime )
 import GHC.Generics ( Generic )
 import System.FilePath
@@ -51,9 +51,11 @@ nullInspection :: Inspection
 nullInspection = Inspection "" "" "" (posixSecondsToUTCTime 0) 0.0 0 0 False ""
 
 
-parseDate :: String -> UTCTime
-parseDate dateStr = fromJust $  -- FIXME Very dangerous
-   parseTimeM True defaultTimeLocale "%m/%d/%0Y" dateStr
+parseDate :: TimeZone -> String -> UTCTime
+parseDate tz dateStr = localTimeToUTC tz localTime
+   where
+      localTime = fromJust $  -- Dangerous!
+         parseTimeM True defaultTimeLocale "%m/%d/%0Y" dateStr
 
 
 -- FIXME Should this be in a common module?
