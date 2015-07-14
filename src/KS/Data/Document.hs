@@ -33,17 +33,26 @@ instance ToJSON Document
 instance FromJSON Document
 
 
-saveDoc :: FilePath -> Document -> IO (Either String ())
-saveDoc dir doc = do
+saveDoc :: FilePath -> Document -> IO String
+saveDoc = saveDocNumbered 1
+
+
+saveDocNumbered :: Int -> FilePath -> Document -> IO String
+saveDocNumbered num dir doc = do
    let datePart = (formatTime defaultTimeLocale "%Y-%m-%d")
          . I.date . inspection $ doc
-   let filename = printf "ks_%s_%s" datePart
-         (T.unpack . I.scrubName . P.name . place $ doc)
+   let namePart = T.unpack . I.scrubName . P.name . place $ doc
+   let numberPart = if num < 2 then "" else show num
+
+   let filename = printf "ks_%s_%s%s" datePart namePart numberPart
    let path = dir </> filename <.> "json"
+
    exists <- doesFileExist path
    if exists
-      then return . Left $ printf "FAILED File exists: %s" path
-      else Right <$> (BL.writeFile path $ encode doc)
+      then saveDocNumbered (num + 1) dir doc
+      else do
+         BL.writeFile path $ encode doc
+         return path
 
 
 loadDoc :: FilePath -> IO (Either String Document)
