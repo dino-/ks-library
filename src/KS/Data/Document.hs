@@ -36,6 +36,12 @@ saveDoc :: FilePath -> Document -> IO String
 saveDoc = saveDocNumbered 1
 
 
+{- The reason this is complicated is that we sometimes have
+   establishment name collision on a given day (think a city with
+   lots of fast food restaurants). This function will append numbers
+   starting with 2 to the end of the namePart until it has a name
+   it can safely save with.
+-}
 saveDocNumbered :: Int -> FilePath -> Document -> IO String
 saveDocNumbered num dir doc = do
    let datePart = (formatTime defaultTimeLocale "%Y-%m-%d")
