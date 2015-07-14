@@ -60,5 +60,9 @@ saveDocNumbered num dir doc = do
          return path
 
 
-loadDoc :: FilePath -> IO (Either String Document)
-loadDoc path = eitherDecodeStrict' `fmap` BS.readFile path
+loadDoc :: FilePath -> IO Document
+loadDoc path = do
+   bytes <- BS.readFile path
+   case eitherDecodeStrict' bytes of
+      Left msg -> ioError $ userError msg
+      Right doc -> return doc
