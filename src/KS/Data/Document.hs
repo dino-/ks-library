@@ -1,8 +1,7 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
-{-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-orphans #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 module KS.Data.Document
    ( Document (..), loadDoc, saveDoc )
