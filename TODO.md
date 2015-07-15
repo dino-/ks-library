@@ -1,3 +1,4 @@
+- Set time zone env for testsuite/Inspection.hs. This is failing on AWS where the machines are UTC
 - Add function:
    - KS.Data.BSON.bsonToDoc :: BSON.Document -> D.Document
 - KS.Data.Inspection
