@@ -92,8 +92,12 @@ saveInspNumbered mnum dir insp = do
       incrNum (Just n) = Just $ n + 1
 
 
-loadInspection :: FilePath -> IO (Either String Inspection)
-loadInspection path = eitherDecodeStrict' `fmap` BS.readFile path
+loadInspection :: FilePath -> IO Inspection
+loadInspection path = do
+   bytes <- BS.readFile path
+   case eitherDecodeStrict' bytes of
+      Left msg -> ioError $ userError msg
+      Right insp -> return insp
 
 
 formatForDisplay :: Inspection -> String
