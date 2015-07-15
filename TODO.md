@@ -1,6 +1,3 @@
-- Change KS.Data.Inspection.saveInspection to be mindful of name collision
-- Do something with that scrubName business
-- Can we factor out the formatTime stuff we're doing at least twice in this code? Make it part of the ks-library
 - Add function:
    - KS.Data.BSON.bsonToDoc :: BSON.Document -> D.Document
 - KS.Data.Inspection

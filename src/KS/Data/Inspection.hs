@@ -16,15 +16,17 @@ module KS.Data.Inspection
 import Data.Aeson ( FromJSON, ToJSON, eitherDecodeStrict', encode )
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
-import Data.Char ( isAlphaNum )
 import Data.Maybe ( fromJust )
 import qualified Data.Text as T
 import Data.Time ( TimeZone, UTCTime (..), defaultTimeLocale, formatTime
    , localTimeToUTC, parseTimeM )
 import Data.Time.Clock.POSIX ( posixSecondsToUTCTime )
 import GHC.Generics ( Generic )
+import System.Directory ( doesFileExist )
 import System.FilePath
 import Text.Printf ( printf )
+
+import KS.Data.Common ( scrubName )
 
 
 data Inspection = Inspection
@@ -58,23 +60,36 @@ parseDate tz dateStr = localTimeToUTC tz localTime
          parseTimeM True defaultTimeLocale "%m/%d/%0Y" dateStr
 
 
--- FIXME Should this be in a common module?
-scrubName :: T.Text -> T.Text
-scrubName = T.filter isAlphaNum
+saveInspection :: FilePath -> Inspection -> IO FilePath
+saveInspection = saveInspNumbered Nothing
 
 
-mkFileName :: Inspection -> String
-mkFileName insp = printf "insp_%s_%s" (formatDay . date $ insp)
-   $ T.unpack . scrubName . name $ insp
+{- The reason this is complicated is that we sometimes have
+   establishment name collision on a given day (think a city with
+   lots of fast food restaurants). This function will append numbers
+   starting with 2 to the end of the namePart until it has a name
+   it can safely save with.
+-}
+saveInspNumbered :: Maybe Int -> FilePath -> Inspection -> IO String
+saveInspNumbered mnum dir insp = do
+   let datePart = (formatTime defaultTimeLocale "%Y-%m-%d")
+         . date $ insp
+   let namePart = T.unpack . scrubName . name $ insp
+   let numberPart = maybe "" show mnum
 
+   let filename = printf "insp_%s_%s%s" datePart namePart numberPart
+   let path = dir </> filename <.> "json"
 
-formatDay :: UTCTime -> String
-formatDay = formatTime defaultTimeLocale "%Y-%m-%d"
+   exists <- doesFileExist path
+   if exists
+      then saveInspNumbered (incrNum mnum) dir insp
+      else do
+         BL.writeFile path $ encode insp
+         return path
 
-
-saveInspection :: FilePath -> Inspection -> IO ()
-saveInspection dir insp = BL.writeFile
-   (dir </> (mkFileName insp) <.> "json") $ encode insp
+   where
+      incrNum Nothing  = Just 2
+      incrNum (Just n) = Just $ n + 1
 
 
 loadInspection :: FilePath -> IO (Either String Inspection)
@@ -85,7 +100,7 @@ formatForDisplay :: Inspection -> String
 formatForDisplay
    (Inspection src n a ut sc viol crit r _) =
 
-   printf mask (T.unpack n) (formatDay ut) sc viol crit (showRe r) src (T.unpack a)
+   printf mask (T.unpack n) (show ut) sc viol crit (showRe r) src (T.unpack a)
 
    where
       mask = init . unlines $

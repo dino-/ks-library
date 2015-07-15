@@ -25,6 +25,7 @@ source-repository    head
 
 library
    exposed-modules:  KS.Data.BSON
+                     KS.Data.Common
                      KS.Data.Document
                      KS.Data.Inspection
                      KS.Data.Place
@@ -49,6 +50,7 @@ test-suite           test-Data
    build-depends:      aeson
                      , base >= 3 && < 5
                      , bytestring
+                     , directory
                      , filepath
                      , HUnit
                      , text
