@@ -1,4 +1,3 @@
-- Set time zone env for testsuite/Inspection.hs. This is failing on AWS where the machines are UTC
 - KS.Data.Inspection
    - Should we really be using Data.ByteString.Lazy.Char8 for
      saveInspection? Try with just Data.ByteString.Lazy or even

@@ -9,6 +9,7 @@ module Inspection
 
 import Data.Time
 import Data.Time.Clock.POSIX
+import System.Environment ( setEnv )
 import Test.HUnit
 
 import qualified KS.Data.Inspection as I
@@ -24,7 +25,8 @@ testParseDate :: Test
 testParseDate = TestCase $ do
    let expected = 1436241600
 
+   setEnv "TZ" "America/New_York"
    tz <- getCurrentTimeZone
    let actual = utcTimeToPOSIXSeconds . I.parseDate tz $ "07/07/2015"
 
-   assertEqual "parsing a date" expected actual
+   expected @=? actual
