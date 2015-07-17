@@ -20,7 +20,7 @@ data Place = Place
    , types :: [String]
    , place_id :: Text
    }
-   deriving (Generic, Show)
+   deriving (Eq, Generic, Show)
 
 instance FromJSON Place
 instance ToJSON Place

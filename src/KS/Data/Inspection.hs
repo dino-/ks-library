@@ -40,7 +40,7 @@ data Inspection = Inspection
    , reinspection :: Bool
    , detail :: String
    }
-   deriving Generic
+   deriving (Eq, Generic)
 
 instance Show Inspection
    where show = formatForDisplay

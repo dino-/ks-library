@@ -49,9 +49,11 @@ test-suite           test-Data
    other-modules:    Inspection
    build-depends:      aeson
                      , base >= 3 && < 5
+                     , bson
                      , bytestring
                      , directory
                      , filepath
+                     , geojson
                      , HUnit
                      , text
                      , time
