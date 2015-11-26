@@ -8,25 +8,41 @@ module Inspection
    where
 
 import Data.Time
-import Data.Time.Clock.POSIX
 import System.Environment ( setEnv )
 import Test.HUnit
+import Text.Printf ( printf )
 
 import qualified KS.Data.Inspection as I
 
 
 tests :: Test
 tests = TestList
-   [ TestLabel "testParseDate" testParseDate
+   [ TestLabel "testParseDateGood" testParseDateGood
+   , TestLabel "testParseDateBad" testParseDateBad
    ]
 
 
-testParseDate :: Test
-testParseDate = TestCase $ do
-   let expected = 1436241600
+testParseDateGood :: Test
+testParseDateGood = TestCase $ do
+   let expY = 2015
+   let expM = 7
+   let expD = 7
 
    setEnv "TZ" "America/New_York"
    tz <- getCurrentTimeZone
-   let actual = utcTimeToPOSIXSeconds . I.parseDate tz $ "07/07/2015"
+   let actual = toGregorian . utctDay <$>
+         (I.parseDate tz $ printf "%02d/%02d/%4d" expM expD expY)
+
+   Right (expY, expM, expD) @=? actual
+
+
+testParseDateBad :: Test
+testParseDateBad = TestCase $ do
+   let expected = Left "Unable to parse date: foo bar baz"
+
+   setEnv "TZ" "America/New_York"
+   tz <- getCurrentTimeZone
+   let actual = I.parseDate tz "foo bar baz"
+   print actual
 
    expected @=? actual

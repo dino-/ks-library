@@ -16,15 +16,17 @@ module KS.Data.Inspection
 import Data.Aeson ( FromJSON, ToJSON, eitherDecodeStrict', encode )
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
-import Data.Maybe ( fromJust )
 import qualified Data.Text as T
 import Data.Time ( TimeZone, UTCTime (..), defaultTimeLocale, formatTime
-   , localTimeToUTC, parseTimeM )
+   , localTimeToUTC )
+import Data.Time.Calendar ( Day, fromGregorian )
 import Data.Time.Clock.POSIX ( posixSecondsToUTCTime )
+import Data.Time.LocalTime ( LocalTime (..), midnight )
 import GHC.Generics ( Generic )
 import System.Directory ( doesFileExist )
 import System.FilePath
 import Text.Printf ( printf )
+import Text.Regex ( matchRegex, mkRegex )
 
 import KS.Data.Common ( scrubName )
 
@@ -53,11 +55,19 @@ nullInspection :: Inspection
 nullInspection = Inspection "" "" "" (posixSecondsToUTCTime 0) 0.0 0 0 False ""
 
 
-parseDate :: TimeZone -> String -> UTCTime
-parseDate tz dateStr = localTimeToUTC tz localTime
+parseDate :: TimeZone -> String -> Either String UTCTime
+parseDate tz dateStr =
+   maybe (Left $ "Unable to parse date: " ++ dateStr) (Right . localTimeToUTC tz) localTime
+
    where
-      localTime = fromJust $  -- Dangerous!
-         parseTimeM True defaultTimeLocale "%m/%d/%0Y" dateStr
+      pat = mkRegex "([0-9]{2})/([0-9]{2})/([0-9]{4})"
+      match = matchRegex pat dateStr
+
+      localTime = (\d -> LocalTime d midnight) <$> (mkDay =<< match)
+
+      mkDay :: [String] -> Maybe Day
+      mkDay (m : d : y : _) = Just $ fromGregorian (read y) (read m) (read d)
+      mkDay _               = Nothing
 
 
 saveInspection :: FilePath -> Inspection -> IO FilePath
