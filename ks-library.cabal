@@ -30,7 +30,7 @@ library
                      KS.Data.Inspection
                      KS.Data.Place
    hs-source-dirs:   src
-   build-depends:      aeson
+   build-depends:      aeson == 0.9.*
                      , base >= 4.8 && < 4.9
                      , bson
                      , bytestring
@@ -48,7 +48,7 @@ test-suite           test-Data
    main-is:          test-Data.hs
    hs-source-dirs:   src testsuite
    other-modules:    Inspection
-   build-depends:      aeson
+   build-depends:      aeson == 0.9.*
                      , base >= 3 && < 5
                      , bson
                      , bytestring
