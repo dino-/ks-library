@@ -12,6 +12,7 @@ import System.Environment ( setEnv )
 import Test.HUnit
 import Text.Printf ( printf )
 
+import           KS.Data.Common ( epochToUTCTime )
 import qualified KS.Data.Inspection as I
 
 
@@ -30,8 +31,10 @@ testParseDateGood = TestCase $ do
 
    setEnv "TZ" "America/New_York"
    tz <- getCurrentTimeZone
-   let actual = toGregorian . utctDay <$>
+   let parsedToEpoch = 
          (I.parseDate tz $ printf "%02d/%02d/%4d" expM expD expY)
+   let actual = toGregorian . utctDay . epochToUTCTime
+         <$> parsedToEpoch
 
    Right (expY, expM, expD) @=? actual
 

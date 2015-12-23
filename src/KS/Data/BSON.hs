@@ -15,8 +15,6 @@ module KS.Data.BSON
 
 import Data.Bson
 import Data.Geospatial ( GeoPoint (..) )
-import Data.Time.Clock.POSIX
-   ( posixSecondsToUTCTime, utcTimeToPOSIXSeconds )
 import qualified Data.Text as T
 
 import qualified KS.Data.Document as D
@@ -34,7 +32,7 @@ bsonToDoc bson = D.Document
       { I.inspection_source = at "inspection_source" bsonInsp
       , I.name = at "name" bsonInsp
       , I.addr = at "addr" bsonInsp
-      , I.date = (posixSecondsToUTCTime . realToFrac $ ((at "date" bsonInsp) :: Integer))
+      , I.date = at "date" bsonInsp
       , I.score = at "score" bsonInsp
       , I.violations = at "violations" bsonInsp
       , I.crit_violations = at "crit_violations" bsonInsp
@@ -70,8 +68,7 @@ docToBSON doc = bdoc
             [ "inspection_source" =: I.inspection_source insp
             , "name" =: I.name insp
             , "addr" =: I.addr insp
-            , "date" =: ((round . utcTimeToPOSIXSeconds . I.date
-               $ insp) :: Integer)
+            , "date" =: I.date insp
             , "score" =: I.score insp
             , "violations" =: I.violations insp
             , "crit_violations" =: I.crit_violations insp

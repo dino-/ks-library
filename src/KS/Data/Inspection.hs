@@ -17,10 +17,9 @@ import Data.Aeson ( FromJSON, ToJSON, eitherDecodeStrict', encode )
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
-import Data.Time ( TimeZone, UTCTime (..), defaultTimeLocale, formatTime
+import Data.Time ( TimeZone, defaultTimeLocale, formatTime
    , localTimeToUTC )
 import Data.Time.Calendar ( Day, fromGregorian )
-import Data.Time.Clock.POSIX ( posixSecondsToUTCTime )
 import Data.Time.LocalTime ( LocalTime (..), midnight )
 import GHC.Generics ( Generic )
 import System.Directory ( doesFileExist )
@@ -28,14 +27,14 @@ import System.FilePath
 import Text.Printf ( printf )
 import Text.Regex ( matchRegex, mkRegex )
 
-import KS.Data.Common ( scrubName )
+import KS.Data.Common ( epochToUTCTime, scrubName, utcTimeToEpoch )
 
 
 data Inspection = Inspection
    { inspection_source :: String
    , name :: T.Text
    , addr :: T.Text
-   , date :: UTCTime
+   , date :: Int
    , score :: Double
    , violations :: Int
    , crit_violations :: Int
@@ -52,12 +51,15 @@ instance ToJSON Inspection
 
 
 nullInspection :: Inspection
-nullInspection = Inspection "" "" "" (posixSecondsToUTCTime 0) 0.0 0 0 False ""
+nullInspection = Inspection "" "" "" 0 0.0 0 0 False ""
 
 
-parseDate :: TimeZone -> String -> Either String UTCTime
+parseDate :: TimeZone -> String -> Either String Int
 parseDate tz dateStr =
-   maybe (Left $ "Unable to parse date: " ++ dateStr) (Right . localTimeToUTC tz) localTime
+   maybe
+      (Left $ "Unable to parse date: " ++ dateStr)
+      (Right . utcTimeToEpoch . localTimeToUTC tz)
+      localTime
 
    where
       pat = mkRegex "([0-9]{2})/([0-9]{2})/([0-9]{4})"
@@ -83,7 +85,7 @@ saveInspection = saveInspNumbered Nothing
 saveInspNumbered :: Maybe Int -> FilePath -> Inspection -> IO String
 saveInspNumbered mnum dir insp = do
    let datePart = (formatTime defaultTimeLocale "%Y-%m-%d")
-         . date $ insp
+         . epochToUTCTime . date $ insp
    let namePart = T.unpack . scrubName . name $ insp
    let numberPart = maybe "" show mnum
 
