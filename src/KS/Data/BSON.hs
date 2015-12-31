@@ -14,7 +14,6 @@ module KS.Data.BSON
    where
 
 import Data.Bson
-import Data.Geospatial ( GeoPoint (..) )
 import qualified Data.Text as T
 
 import qualified KS.Data.Document as D
@@ -42,7 +41,7 @@ bsonToDoc bson = D.Document
    , D.place = P.Place
       { P.name = at "name" bsonPlace
       , P.vicinity = at "vicinity" bsonPlace
-      , P.location = GeoPoint $ "coordinates" `at` ("location" `at` bsonPlace)
+      , P.location = P.GeoPoint lat lng
       , P.types = at "types" bsonPlace
       , P.place_id = at "place_id" bsonPlace
       }
@@ -51,6 +50,7 @@ bsonToDoc bson = D.Document
    where
       bsonInsp = at "inspection" bson
       bsonPlace = at "place" bson
+      (lng : lat : _) = "coordinates" `at` ("location" `at` bsonPlace)
 
 
 {- |
@@ -61,7 +61,7 @@ docToBSON doc = bdoc
    where
       insp = D.inspection doc
       pl = D.place doc
-      (GeoPoint coords) = P.location pl
+      coords = [P.lng . P.location $ pl, P.lat . P.location $ pl]
       bdoc =
          [ "doctype" =: D.doctype doc
          , "inspection" =:
