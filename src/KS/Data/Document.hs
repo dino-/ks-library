@@ -10,18 +10,19 @@ module KS.Data.Document
    )
    where
 
-import Data.Aeson
-import Data.Bson.Generic
+import           Data.Aeson
+   ( FromJSON, ToJSON, eitherDecodeStrict', encode )
+import           Data.Bson.Generic ( FromBSON, ToBSON )
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
-import Data.Time ( getCurrentTimeZone )
-import GHC.Generics ( Generic )
-import System.Directory ( doesFileExist )
-import System.FilePath
-import Text.Printf
+import           Data.Time ( getCurrentTimeZone )
+import           GHC.Generics ( Generic )
+import           System.Directory ( doesFileExist )
+import           System.FilePath ( (</>), (<.>) )
+import           Text.Printf ( printf )
 
-import KS.Data.Common ( epochToUTCTime, formatDay, scrubName )
+import           KS.Data.Common ( epochToUTCTime, formatDay, scrubName )
 import qualified KS.Data.Inspection as I
 import qualified KS.Data.Place as P
 
