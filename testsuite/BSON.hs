@@ -7,12 +7,12 @@ module BSON
    ( tests )
    where
 
-import Data.Bson
+import Data.Bson ( (=:) )
+import Data.Bson.Generic
 import qualified Data.Text as T
-import System.FilePath
+import System.FilePath ( (</>) )
 import Test.HUnit
 
-import qualified KS.Data.BSON as B
 import qualified KS.Data.Document as D
 
 
@@ -50,7 +50,7 @@ testDocToBSON = TestCase $ do
             ]
          ]
 
-   actual <- B.docToBSON <$>
+   actual <- toBSON <$>
       (D.loadDocument $ "testsuite" </> "ks_2015-07-08_BabymoonCafe.json")
 
    expected @=? actual
@@ -59,4 +59,4 @@ testDocToBSON = TestCase $ do
 testBSONToDoc :: Test
 testBSONToDoc = TestCase $ do
    loadedDocument <- D.loadDocument $ "testsuite" </> "ks_2015-07-08_BabymoonCafe.json"
-   loadedDocument @=? (B.bsonToDoc . B.docToBSON $ loadedDocument)
+   (Just loadedDocument) @=? (fromBSON . toBSON $ loadedDocument)

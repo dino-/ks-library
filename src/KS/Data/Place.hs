@@ -11,6 +11,8 @@ module KS.Data.Place
 
 import Data.Aeson
 import Data.Aeson.Types ( typeMismatch )
+import Data.Bson ( (=:), at )
+import Data.Bson.Generic
 import Data.Text
 import GHC.Generics ( Generic )
 
@@ -27,12 +29,28 @@ data Place = Place
 instance FromJSON Place
 instance ToJSON Place
 
+instance FromBSON Place
+instance ToBSON Place
+
 
 data GeoPoint = GeoPoint
    { lat :: Double
    , lng :: Double
    }
-   deriving (Eq, Show)
+   deriving (Eq, Generic, Show)
+
+
+instance ToBSON GeoPoint where
+   toBSON (GeoPoint lat' lng') =
+      [ "type" =: ("Point" :: Text)
+      , "coordinates" =: ([lng', lat'] :: [Double])
+      ]
+
+instance FromBSON GeoPoint where
+   fromBSON bson = case ("coordinates" `at` bson) of
+      (lng' : lat' : _) -> Just $ GeoPoint lat' lng'
+      _                 -> Nothing
+
 
 instance ToJSON GeoPoint where
    toJSON (GeoPoint lat' lng') = object
@@ -41,9 +59,7 @@ instance ToJSON GeoPoint where
       ]
 
 instance FromJSON GeoPoint where
-
    parseJSON (Object o) = do
       (lng' : lat' : _) <- (o .: "coordinates")
       return $ GeoPoint lat' lng'
-
-   parseJSON invalid = typeMismatch "location" invalid
+   parseJSON invalid    = typeMismatch "location" invalid

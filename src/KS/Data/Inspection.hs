@@ -14,6 +14,7 @@ module KS.Data.Inspection
    where
 
 import Data.Aeson ( FromJSON, ToJSON, eitherDecodeStrict', encode )
+import Data.Bson.Generic
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
@@ -48,6 +49,9 @@ instance Show Inspection
 
 instance FromJSON Inspection
 instance ToJSON Inspection
+
+instance FromBSON Inspection
+instance ToBSON Inspection
 
 
 nullInspection :: Inspection

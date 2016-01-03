@@ -7,82 +7,26 @@
    This module is for working with data in MongoDB
 -}
 
-module KS.Data.BSON
-   ( bsonToDoc
-   , docToBSON
-   )
-   where
+module KS.Data.BSON ( combineId, separateId ) where
 
-import Data.Bson
-import qualified Data.Text as T
-
-import qualified KS.Data.Document as D
-import qualified KS.Data.Inspection as I
-import qualified KS.Data.Place as P
+import Data.Bson ( Document, Label, exclude, include, merge )
 
 
-{- |
-   Convert a BSON Document into a KitchenSnitch inspection Document
+-- This is a fixed value that MongoDB expects. Do not change it. Ever.
+idKey :: Label
+idKey = "_id"
+
+
+{- Separate the _id portion of a Document, returning it and the
+   rest separately
 -}
-bsonToDoc :: Document -> D.Document
-bsonToDoc bson = D.Document
-   { D.doctype = at "doctype" bson
-   , D.inspection = I.Inspection
-      { I.inspection_source = at "inspection_source" bsonInsp
-      , I.name = at "name" bsonInsp
-      , I.addr = at "addr" bsonInsp
-      , I.date = at "date" bsonInsp
-      , I.score = at "score" bsonInsp
-      , I.violations = at "violations" bsonInsp
-      , I.crit_violations = at "crit_violations" bsonInsp
-      , I.reinspection = at "reinspection" bsonInsp
-      , I.detail = at "detail" bsonInsp
-      }
-   , D.place = P.Place
-      { P.name = at "name" bsonPlace
-      , P.vicinity = at "vicinity" bsonPlace
-      , P.location = P.GeoPoint lat lng
-      , P.types = at "types" bsonPlace
-      , P.place_id = at "place_id" bsonPlace
-      }
-   }
-
-   where
-      bsonInsp = at "inspection" bson
-      bsonPlace = at "place" bson
-      (lng : lat : _) = "coordinates" `at` ("location" `at` bsonPlace)
+separateId :: Document -> (Document, Document)
+separateId wholeDoc = (include [idKey] wholeDoc, exclude [idKey] wholeDoc)
 
 
-{- |
-   Convert a KitchenSnitch inspection Document into a BSON Document
+{- Combine two documents, intended to be used as the inverse of
+   the above separateId function
 -}
-docToBSON :: D.Document -> Document
-docToBSON doc = bdoc
-   where
-      insp = D.inspection doc
-      pl = D.place doc
-      coords = [P.lng . P.location $ pl, P.lat . P.location $ pl]
-      bdoc =
-         [ "doctype" =: D.doctype doc
-         , "inspection" =:
-            [ "inspection_source" =: I.inspection_source insp
-            , "name" =: I.name insp
-            , "addr" =: I.addr insp
-            , "date" =: I.date insp
-            , "score" =: I.score insp
-            , "violations" =: I.violations insp
-            , "crit_violations" =: I.crit_violations insp
-            , "reinspection" =: I.reinspection insp
-            , "detail" =: I.detail insp
-            ]
-         , "place" =:
-            [ "name" =: P.name pl
-            , "vicinity" =: P.vicinity pl
-            , "location" =:
-               [ "type" =: ("Point" :: T.Text)
-               , "coordinates" =: coords
-               ]
-            , "types" =: P.types pl
-            , "place_id" =: P.place_id pl
-            ]
-         ]
+combineId :: (Document, Document) -> Document
+combineId (docId, docRest) = merge docId docRest
+

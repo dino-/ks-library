@@ -1,13 +1,17 @@
 -- License: BSD3 (see LICENSE)
 -- Author: Dino Morelli <dino@ui3.info>
 
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 
 module KS.Data.Document
-   ( Document (..), loadDocument, saveDocument )
+   ( Document (..)
+   , loadDocument, saveDocument
+   )
    where
 
 import Data.Aeson
+import Data.Bson.Generic
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
@@ -31,6 +35,9 @@ data Document = Document
 
 instance ToJSON Document
 instance FromJSON Document
+
+instance ToBSON Document
+instance FromBSON Document
 
 
 saveDocument :: FilePath -> Document -> IO String
