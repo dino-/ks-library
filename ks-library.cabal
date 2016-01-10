@@ -1,64 +1,70 @@
-name:                ks-library
-version:             1.4
-cabal-version:       >= 1.10
-build-type:          Simple
-license:             BSD3
-license-file:        LICENSE
-copyright:           2015 Dino Morelli
-author:              Dino Morelli
-maintainer:          Dino Morelli <dino@ui3.info>
-stability:           experimental
-homepage:            http://hub.darcs.net/dino/ks-library
-synopsis:            Library of common modules for KitchenSnitch
-description:         Bar Baz
-category:            Data
-tested-with:         GHC >= 7.10.1
-extra-source-files:  changelog.md
-                     doc/dev/notes
-                     README.md
-                     TODO
-                     util/gentags.sh
+name: ks-library
+version: 1.4
+cabal-version: >=1.10
+build-type: Simple
+license: BSD3
+license-file: LICENSE
+copyright: 2015 Dino Morelli
+maintainer: Dino Morelli <dino@ui3.info>
+stability: experimental
+homepage: http://hub.darcs.net/dino/ks-library
+synopsis: Library of common modules for KitchenSnitch
+description:
+    Bar Baz
+category: Data
+author: Dino Morelli
+tested-with: GHC >=7.10.1
+extra-source-files:
+    changelog.md
+    doc/dev/notes
+    README.md
+    TODO
+    util/gentags.sh
 
-source-repository    head
-   type:             darcs
-   location:         http://hub.darcs.net/dino/ks-library
+source-repository head
+    type: darcs
+    location: http://hub.darcs.net/dino/ks-library
 
 library
-   exposed-modules:  KS.Data.BSON
-                     KS.Data.Common
-                     KS.Data.Document
-                     KS.Data.Inspection
-                     KS.Data.Place
-   hs-source-dirs:   src
-   build-depends:      aeson == 0.9.*
-                     , base >=3 && <5
-                     , bson >=0.3.2.1 && <0.4
-                     , bson-generic >=0.0.8.1
-                     , bytestring >=0.10.6.0 && <0.11
-                     , directory >=1.2.2.0 && <1.3
-                     , filepath >=1.4.0.0 && <1.5
-                     , regex-compat >=0.95.1 && <0.96
-                     , text ==1.2.1.*
-                     , time >=1.5.0.1 && <1.6
-   ghc-options:      -Wall
-   default-language: Haskell2010
+    exposed-modules:
+        KS.Data.BSON
+        KS.Data.Common
+        KS.Data.Document
+        KS.Data.Inspection
+        KS.Data.Place
+    build-depends:
+        aeson ==0.9.*,
+        base >=3 && <5,
+        bson >=0.3.2.1 && <0.4,
+        bson-generic >=0.0.8.1 && <0.1,
+        bytestring >=0.10.6.0 && <0.11,
+        directory >=1.2.2.0 && <1.3,
+        filepath >=1.4.0.0 && <1.5,
+        regex-compat >=0.95.1 && <0.96,
+        text >=1.2.1.3 && <1.3,
+        time >=1.5.0.1 && <1.6
+    default-language: Haskell2010
+    hs-source-dirs: src
+    ghc-options: -Wall
 
-test-suite           test-Data
-   type:             exitcode-stdio-1.0
-   main-is:          test-Data.hs
-   hs-source-dirs:   src testsuite
-   other-modules:    BSON
-                     Inspection
-   build-depends:      aeson == 0.9.*
-                     , base >=3 && <5
-                     , bson >=0.3.2.1 && <0.4
-                     , bson-generic >=0.0.8.1
-                     , bytestring >=0.10.6.0 && <0.11
-                     , directory >=1.2.2.0 && <1.3
-                     , filepath >=1.4.0.0 && <1.5
-                     , HUnit >=1.3.0.0 && <1.4
-                     , regex-compat >=0.95.1 && <0.96
-                     , text ==1.2.1.*
-                     , time >=1.5.0.1 && <1.6
-   ghc-options:      -Wall
-   default-language: Haskell2010
+test-suite test-Data
+    type: exitcode-stdio-1.0
+    main-is: test-Data.hs
+    build-depends:
+        aeson ==0.9.*,
+        base >=3 && <5,
+        bson >=0.3.2.1 && <0.4,
+        bson-generic >=0.0.8.1 && <0.1,
+        bytestring >=0.10.6.0 && <0.11,
+        directory >=1.2.2.0 && <1.3,
+        filepath >=1.4.0.0 && <1.5,
+        HUnit >=1.3.0.0 && <1.4,
+        regex-compat >=0.95.1 && <0.96,
+        text >=1.2.1.3 && <1.3,
+        time >=1.5.0.1 && <1.6
+    default-language: Haskell2010
+    hs-source-dirs: src testsuite
+    other-modules:
+        BSON
+        Inspection
+    ghc-options: -Wall
