@@ -21,6 +21,7 @@ extra-source-files:
     README.md
     TODO
     util/gentags.sh
+    util/install.sh
 
 source-repository head
     type: darcs
