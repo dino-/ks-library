@@ -1,5 +1,5 @@
 name: ks-library
-version: 1.4
+version: 1.5
 cabal-version: >=1.10
 build-type: Simple
 license: BSD3
