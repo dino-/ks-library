@@ -18,10 +18,10 @@ import Data.Bson.Generic
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
-import Data.Time ( TimeZone, defaultTimeLocale, formatTime
+import Data.Time ( defaultTimeLocale, formatTime
    , localTimeToUTC )
-import Data.Time.Calendar ( Day, fromGregorian )
-import Data.Time.LocalTime ( LocalTime (..), midnight )
+import Data.Time.Calendar ( fromGregorian )
+import Data.Time.LocalTime ( LocalTime (..), getCurrentTimeZone, getTimeZone, midnight )
 import GHC.Generics ( Generic )
 import System.Directory ( doesFileExist )
 import System.FilePath
@@ -58,22 +58,35 @@ nullInspection :: Inspection
 nullInspection = Inspection "" "" "" 0 0.0 0 0 False ""
 
 
-parseDate :: TimeZone -> String -> Either String Int
-parseDate tz dateStr =
+localDayToEpoch :: (Integer, Int, Int) -> IO Int
+localDayToEpoch (y, m, d) = do
+   -- Just the local time zone, no information about daylight-savings yet
+   localTZ <- getCurrentTimeZone
+
+   -- Midnight on the supplied date
+   let localTime = LocalTime (fromGregorian y m d) midnight
+
+   -- The time zone relative to the local time we've been given
+   -- This is NOT NECESSARLY THE SAME as the localTZ
+   dstTZ <- getTimeZone $ localTimeToUTC localTZ localTime
+
+   -- The date converted to UTC using that second zone
+   return $ utcTimeToEpoch . localTimeToUTC dstTZ $ localTime
+
+
+parseDate :: String -> IO (Either String Int)
+parseDate dateStr =
    maybe
-      (Left $ "Unable to parse date: " ++ dateStr)
-      (Right . utcTimeToEpoch . localTimeToUTC tz)
-      localTime
+      (return $ Left $ "Unable to parse date: " ++ dateStr)
+      (\t -> Right <$> localDayToEpoch t)
+      (extractParts =<< match)
 
    where
-      pat = mkRegex "([0-9]{2})/([0-9]{2})/([0-9]{4})"
-      match = matchRegex pat dateStr
+      match = matchRegex (mkRegex "([0-9]{2})/([0-9]{2})/([0-9]{4})") dateStr
 
-      localTime = (\d -> LocalTime d midnight) <$> (mkDay =<< match)
-
-      mkDay :: [String] -> Maybe Day
-      mkDay (m : d : y : _) = Just $ fromGregorian (read y) (read m) (read d)
-      mkDay _               = Nothing
+      extractParts :: [String] -> Maybe (Integer, Int, Int)
+      extractParts (m : d : y : _) = Just $ ((read y), (read m), (read d))
+      extractParts _               = Nothing
 
 
 saveInspection :: FilePath -> Inspection -> IO FilePath

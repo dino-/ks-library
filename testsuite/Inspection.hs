@@ -7,45 +7,33 @@ module Inspection
    ( tests )
    where
 
-import Data.Time
 import System.Environment ( setEnv )
 import Test.HUnit
-import Text.Printf ( printf )
 
-import           KS.Data.Common ( epochToUTCTime )
 import qualified KS.Data.Inspection as I
 
 
 tests :: Test
 tests = TestList
-   [ TestLabel "testParseDateGood" testParseDateGood
+   [ TestLabel "testParseDateGoodEDT" testParseDateGoodEDT
+   , TestLabel "testParseDateGoodEST" testParseDateGoodEST
    , TestLabel "testParseDateBad" testParseDateBad
    ]
 
 
-testParseDateGood :: Test
-testParseDateGood = TestCase $ do
-   let expY = 2015
-   let expM = 7
-   let expD = 7
-
+testParseDate :: Either String Int -> String -> Test
+testParseDate expected input = TestCase $ do
    setEnv "TZ" "America/New_York"
-   tz <- getCurrentTimeZone
-   let parsedToEpoch = 
-         (I.parseDate tz $ printf "%02d/%02d/%4d" expM expD expY)
-   let actual = toGregorian . utctDay . epochToUTCTime
-         <$> parsedToEpoch
+   actual <- I.parseDate input
+   expected @=? actual
 
-   Right (expY, expM, expD) @=? actual
 
+testParseDateGoodEDT :: Test
+testParseDateGoodEDT = testParseDate (Right 1427774400) "03/31/2015"
+
+testParseDateGoodEST :: Test
+testParseDateGoodEST = testParseDate (Right 1452920400) "01/16/2016"
 
 testParseDateBad :: Test
-testParseDateBad = TestCase $ do
-   let expected = Left "Unable to parse date: foo bar baz"
-
-   setEnv "TZ" "America/New_York"
-   tz <- getCurrentTimeZone
-   let actual = I.parseDate tz "foo bar baz"
-   print actual
-
-   expected @=? actual
+testParseDateBad =
+   testParseDate (Left "Unable to parse date: foo bar baz") "foo bar baz"
