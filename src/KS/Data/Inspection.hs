@@ -82,7 +82,7 @@ parseDate dateStr =
       (extractParts =<< match)
 
    where
-      match = matchRegex (mkRegex "([0-9]{2})/([0-9]{2})/([0-9]{4})") dateStr
+      match = matchRegex (mkRegex "([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})") dateStr
 
       extractParts :: [String] -> Maybe (Integer, Int, Int)
       extractParts (m : d : y : _) = Just $ ((read y), (read m), (read d))

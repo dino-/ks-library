@@ -18,6 +18,7 @@ tests = TestList
    [ TestLabel "testParseDateGoodEDT" testParseDateGoodEDT
    , TestLabel "testParseDateGoodEST" testParseDateGoodEST
    , TestLabel "testParseDateBad" testParseDateBad
+   , TestLabel "testParseDateShort" testParseDateShort
    ]
 
 
@@ -37,3 +38,6 @@ testParseDateGoodEST = testParseDate (Right 1452920400) "01/16/2016"
 testParseDateBad :: Test
 testParseDateBad =
    testParseDate (Left "Unable to parse date: foo bar baz") "foo bar baz"
+
+testParseDateShort :: Test
+testParseDateShort = testParseDate (Right 1462334400) "5/4/2016"
