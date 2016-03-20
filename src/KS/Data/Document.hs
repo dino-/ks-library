@@ -16,13 +16,12 @@ import           Data.Bson.Generic ( FromBSON, ToBSON )
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
-import           Data.Time ( getCurrentTimeZone )
 import           GHC.Generics ( Generic )
 import           System.Directory ( doesFileExist )
 import           System.FilePath ( (</>), (<.>) )
 import           Text.Printf ( printf )
 
-import           KS.Data.Common ( epochToUTCTime, formatDay, scrubName )
+import           KS.Data.Common ( formatDay, scrubName )
 import qualified KS.Data.Inspection as I
 import qualified KS.Data.Place as P
 
@@ -53,8 +52,7 @@ saveDocument = saveDocNumbered Nothing
 -}
 saveDocNumbered :: Maybe Int -> FilePath -> Document -> IO String
 saveDocNumbered mnum dir doc = do
-   tz <- getCurrentTimeZone
-   let datePart = formatDay tz . epochToUTCTime . I.date . inspection $ doc
+   let datePart = formatDay . I.date . inspection $ doc
    let namePart = T.unpack . scrubName . P.name . place $ doc
    let numberPart = maybe "" show mnum
 

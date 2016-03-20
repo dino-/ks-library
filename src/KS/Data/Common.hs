@@ -2,31 +2,24 @@
 -- Author: Dino Morelli <dino@ui3.info>
 
 module KS.Data.Common
-   ( epochToUTCTime
-   , formatDay
+   ( formatDay
    , scrubName
-   , utcTimeToEpoch
    )
    where
 
 import Data.Char ( isAlphaNum )
 import qualified Data.Text as T
-import Data.Time ( TimeZone, UTCTime, defaultTimeLocale, formatTime
-   , utcToLocalTime )
-import Data.Time.Clock.POSIX ( posixSecondsToUTCTime, utcTimeToPOSIXSeconds )
+import Text.Printf ( printf )
 
 
 scrubName :: T.Text -> T.Text
 scrubName = T.filter isAlphaNum
 
 
-formatDay :: TimeZone -> UTCTime -> String
-formatDay tz = formatTime defaultTimeLocale "%Y-%m-%d" . utcToLocalTime tz
-
-
-epochToUTCTime :: Int -> UTCTime
-epochToUTCTime = posixSecondsToUTCTime . realToFrac
-
-
-utcTimeToEpoch :: UTCTime -> Int
-utcTimeToEpoch = round . utcTimeToPOSIXSeconds
+formatDay :: Int -> String
+formatDay dateInt = printf "%s-%s-%s" y m d
+   where
+      dateStr = show dateInt
+      y = take 4 dateStr
+      m = take 2 . drop 4 $ dateStr
+      d = drop 6 dateStr

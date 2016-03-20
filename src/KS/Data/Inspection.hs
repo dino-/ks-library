@@ -18,17 +18,13 @@ import Data.Bson.Generic
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Text as T
-import Data.Time ( defaultTimeLocale, formatTime
-   , localTimeToUTC )
-import Data.Time.Calendar ( fromGregorian )
-import Data.Time.LocalTime ( LocalTime (..), getCurrentTimeZone, getTimeZone, midnight )
 import GHC.Generics ( Generic )
 import System.Directory ( doesFileExist )
 import System.FilePath
 import Text.Printf ( printf )
 import Text.Regex ( matchRegex, mkRegex )
 
-import KS.Data.Common ( epochToUTCTime, scrubName, utcTimeToEpoch )
+import KS.Data.Common ( formatDay, scrubName )
 
 
 data Inspection = Inspection
@@ -55,38 +51,25 @@ instance ToBSON Inspection
 
 
 nullInspection :: Inspection
-nullInspection = Inspection "" "" "" 0 0.0 0 0 False ""
-
-
-localDayToEpoch :: (Integer, Int, Int) -> IO Int
-localDayToEpoch (y, m, d) = do
-   -- Just the local time zone, no information about daylight-savings yet
-   localTZ <- getCurrentTimeZone
-
-   -- Midnight on the supplied date
-   let localTime = LocalTime (fromGregorian y m d) midnight
-
-   -- The time zone relative to the local time we've been given
-   -- This is NOT NECESSARLY THE SAME as the localTZ
-   dstTZ <- getTimeZone $ localTimeToUTC localTZ localTime
-
-   -- The date converted to UTC using that second zone
-   return $ utcTimeToEpoch . localTimeToUTC dstTZ $ localTime
+nullInspection = Inspection "" "" "" 20140101 0.0 0 0 False ""
 
 
 parseDate :: String -> IO (Either String Int)
 parseDate dateStr =
    maybe
       (return $ Left $ "Unable to parse date: " ++ dateStr)
-      (\t -> Right <$> localDayToEpoch t)
+      (return . Right . ymdToInt)
       (extractParts =<< match)
 
    where
       match = matchRegex (mkRegex "([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})") dateStr
 
-      extractParts :: [String] -> Maybe (Integer, Int, Int)
+      extractParts :: [String] -> Maybe (Int, Int, Int)
       extractParts (m : d : y : _) = Just $ ((read y), (read m), (read d))
       extractParts _               = Nothing
+
+      ymdToInt :: (Int, Int, Int) -> Int
+      ymdToInt (y, m, d) = read $ printf "%d%02d%02d" y m d
 
 
 saveInspection :: FilePath -> Inspection -> IO FilePath
@@ -101,8 +84,7 @@ saveInspection = saveInspNumbered Nothing
 -}
 saveInspNumbered :: Maybe Int -> FilePath -> Inspection -> IO String
 saveInspNumbered mnum dir insp = do
-   let datePart = (formatTime defaultTimeLocale "%Y-%m-%d")
-         . epochToUTCTime . date $ insp
+   let datePart = formatDay . date $ insp
    let namePart = T.unpack . scrubName . name $ insp
    let numberPart = maybe "" show mnum
 

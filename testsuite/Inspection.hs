@@ -7,7 +7,6 @@ module Inspection
    ( tests )
    where
 
-import System.Environment ( setEnv )
 import Test.HUnit
 
 import qualified KS.Data.Inspection as I
@@ -24,20 +23,19 @@ tests = TestList
 
 testParseDate :: Either String Int -> String -> Test
 testParseDate expected input = TestCase $ do
-   setEnv "TZ" "America/New_York"
    actual <- I.parseDate input
    expected @=? actual
 
 
 testParseDateGoodEDT :: Test
-testParseDateGoodEDT = testParseDate (Right 1427774400) "03/31/2015"
+testParseDateGoodEDT = testParseDate (Right 20150331) "03/31/2015"
 
 testParseDateGoodEST :: Test
-testParseDateGoodEST = testParseDate (Right 1452920400) "01/16/2016"
+testParseDateGoodEST = testParseDate (Right 20160116) "01/16/2016"
 
 testParseDateBad :: Test
 testParseDateBad =
    testParseDate (Left "Unable to parse date: foo bar baz") "foo bar baz"
 
 testParseDateShort :: Test
-testParseDateShort = testParseDate (Right 1462334400) "5/4/2016"
+testParseDateShort = testParseDate (Right 20160504) "5/4/2016"
