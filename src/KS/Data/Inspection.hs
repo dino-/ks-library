@@ -54,11 +54,11 @@ nullInspection :: Inspection
 nullInspection = Inspection "" "" "" 20140101 0.0 0 0 False ""
 
 
-parseDate :: String -> IO (Either String Int)
+parseDate :: String -> Either String Int
 parseDate dateStr =
    maybe
-      (return $ Left $ "Unable to parse date: " ++ dateStr)
-      (return . Right . ymdToInt)
+      (Left $ "Unable to parse date: " ++ dateStr)
+      (Right . ymdToInt)
       (extractParts =<< match)
 
    where

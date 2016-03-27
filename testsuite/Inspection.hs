@@ -23,7 +23,7 @@ tests = TestList
 
 testParseDate :: Either String Int -> String -> Test
 testParseDate expected input = TestCase $ do
-   actual <- I.parseDate input
+   let actual = I.parseDate input
    expected @=? actual
 
 
