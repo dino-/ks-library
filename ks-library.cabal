@@ -37,7 +37,7 @@ library
         KS.Data.Inspection
         KS.Data.Place
     build-depends:
-        aeson ==0.9.*,
+        aeson,
         array,
         base >=3 && <5,
         bson,
@@ -50,7 +50,7 @@ library
         mtl,
         regex-compat,
         scientific,
-        text ==1.2.1.*,
+        text,
         time,
         unordered-containers,
         vector
@@ -62,7 +62,7 @@ test-suite test-Data
     type: exitcode-stdio-1.0
     main-is: test-Data.hs
     build-depends:
-        aeson ==0.9.*,
+        aeson,
         base >=3 && <5,
         bson,
         bson-generic,
@@ -71,7 +71,7 @@ test-suite test-Data
         filepath,
         HUnit,
         regex-compat,
-        text ==1.2.1.*,
+        text,
         time
     default-language: Haskell2010
     hs-source-dirs: src testsuite
@@ -93,7 +93,7 @@ test-suite test-Database
         HUnit,
         mongoDB,
         mtl,
-        text ==1.2.1.*
+        text
     default-language: Haskell2010
     hs-source-dirs: src testsuite
     other-modules:
