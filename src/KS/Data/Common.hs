@@ -7,13 +7,14 @@ module KS.Data.Common
    )
    where
 
-import Data.Char ( isAlphaNum )
+import Data.Char ( isAlphaNum, isSpace )
 import qualified Data.Text as T
 import Text.Printf ( printf )
 
 
 scrubName :: T.Text -> T.Text
-scrubName = T.filter isAlphaNum
+scrubName = T.filter isAlphaNum .  T.toTitle .  T.filter isAlphaNumOrSpace
+   where isAlphaNumOrSpace c = isAlphaNum c || isSpace c
 
 
 formatDay :: Int -> String
