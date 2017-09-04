@@ -34,6 +34,7 @@ library
         KS.Data.BSON
         KS.Data.Common
         KS.Data.Document
+        KS.Data.Feedback
         KS.Data.Inspection
         KS.Data.Place
     build-depends:
