@@ -60,8 +60,11 @@ library
     ghc-options: -Wall
 
 test-suite test-Data
-    type: exitcode-stdio-1.0
+    hs-source-dirs: tests src
     main-is: test-Data.hs
+    ghc-options: -Wall -fwarn-tabs
+    default-language: Haskell2010
+    type: exitcode-stdio-1.0
     build-depends:
         aeson,
         base >=3 && <5,
@@ -70,12 +73,10 @@ test-suite test-Data
         bytestring,
         directory,
         filepath,
-        HUnit,
+        hspec,
         regex-compat,
         text,
         time
-    default-language: Haskell2010
-    hs-source-dirs: src testsuite
     other-modules:
         BSON
         Common
@@ -84,21 +85,20 @@ test-suite test-Data
         KS.Data.Document
         KS.Data.Inspection
         KS.Data.Place
-    ghc-options: -Wall
 
 test-suite test-Database
-    type: exitcode-stdio-1.0
+    hs-source-dirs: tests src
     main-is: test-Database.hs
+    ghc-options: -Wall -fwarn-tabs
+    default-language: Haskell2010
+    type: exitcode-stdio-1.0
     build-depends:
         base >=3 && <5,
         bson,
-        HUnit,
+        hspec,
         mongoDB,
         mtl,
         text
-    default-language: Haskell2010
-    hs-source-dirs: src testsuite
     other-modules:
         Database.Mongo.Util
         Mongo
-    ghc-options: -Wall

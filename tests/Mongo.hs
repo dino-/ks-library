@@ -9,19 +9,18 @@ module Mongo
 
 import Data.Bson
 import Data.Text hiding ( map )
-import Test.HUnit
+import Test.Hspec
 
 import Database.Mongo.Util
 
 
-tests :: Test
-tests = TestList $ map testLastError testData
+tests :: SpecWith ()
+tests = describe "parsing MongoDB errors" $ mapM_ testLastError testData
 
 
-testLastError :: (String, Document, Either String String) -> Test
-testLastError (label', doc, expected) = TestCase $ do
-   let actual = parseLastError doc
-   assertEqual label' expected actual
+testLastError :: (String, Document, Either String String) -> SpecWith ()
+testLastError (label', doc, expected) =
+   it label' $ parseLastError doc `shouldBe` expected
 
 
 testData :: [(String, Document, Either String String)]

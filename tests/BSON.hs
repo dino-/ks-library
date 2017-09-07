@@ -11,20 +11,19 @@ import Data.Bson ( (=:) )
 import Data.Bson.Generic
 import qualified Data.Text as T
 import System.FilePath ( (</>) )
-import Test.HUnit
+import Test.Hspec
 
 import qualified KS.Data.Document as D
 
 
-tests :: Test
-tests = TestList
-   [ TestLabel "Converting a Document to BSON" testDocToBSON
-   , TestLabel "Converting BSON to a Document" testBSONToDoc
-   ]
+tests :: SpecWith ()
+tests = describe "Converting a KS Document (inspection + place) to BSON and back" $ do
+   testDocToBSON
+   testBSONToDoc
 
 
-testDocToBSON :: Test
-testDocToBSON = TestCase $ do
+testDocToBSON :: SpecWith ()
+testDocToBSON = do
    let expected =
          [ "doctype" =: ("inspection" :: T.Text)
          , "inspection" =:
@@ -50,13 +49,14 @@ testDocToBSON = TestCase $ do
             ]
          ]
 
-   actual <- toBSON <$>
-      (D.loadDocument $ "testsuite" </> "ks_2015-07-08_BabymoonCafe.json")
+   let actual = toBSON <$>
+         (D.loadDocument $ "tests" </> "ks_2015-07-08_BabymoonCafe.json")
 
-   expected @=? actual
+   it "Document to BSON" $ actual `shouldReturn` expected
 
 
-testBSONToDoc :: Test
-testBSONToDoc = TestCase $ do
-   loadedDocument <- D.loadDocument $ "testsuite" </> "ks_2015-07-08_BabymoonCafe.json"
-   (Just loadedDocument) @=? (fromBSON . toBSON $ loadedDocument)
+testBSONToDoc :: SpecWith ()
+testBSONToDoc = do
+   loadedDocument <- runIO $ D.loadDocument $ "tests" </> "ks_2015-07-08_BabymoonCafe.json"
+   it "BSON to Document" $
+      (fromBSON . toBSON $ loadedDocument) `shouldBe` (Just loadedDocument)
