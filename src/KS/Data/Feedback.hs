@@ -23,8 +23,11 @@ data Status = New | Duplicate | Resolved
 instance FromJSON Status
 instance ToJSON Status
 
-instance FromBSON Status
-instance ToBSON Status
+instance FromBSON Status where
+   fromBSON doc = Just (read ("status" `at` doc))
+
+instance ToBSON Status where
+   toBSON adt = [ "status" =: show adt ]
 
 
 data IssueType
@@ -34,8 +37,11 @@ data IssueType
 instance FromJSON IssueType
 instance ToJSON IssueType
 
-instance FromBSON IssueType
-instance ToBSON IssueType
+instance FromBSON IssueType where
+   fromBSON doc = Just (read ("issue_type" `at` doc))
+
+instance ToBSON IssueType where
+   toBSON adt = [ "issue_type" =: show adt ]
 
 
 data Feedback = Feedback
