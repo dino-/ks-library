@@ -26,8 +26,8 @@ import Data.Scientific
 instance ToJSON BSON.Value where
   toJSON = aesonifyValue
 
-instance ToJSON Document where
-  toJSON = Object . toAeson
+instance ToJSON BSON.Field where
+  toJSON (_ := v) = aesonifyValue v
 
 bsonifyValue :: AESON.Value -> BSON.Value
 bsonifyValue (Object obj) = Doc $ toBson obj
@@ -45,7 +45,7 @@ instance ToJSON ByteString where
 aesonifyValue :: BSON.Value -> AESON.Value
 aesonifyValue (Float f) = toJSON f
 aesonifyValue (BSON.String s) = toJSON s
-aesonifyValue (Doc doc) = toJSON doc
+aesonifyValue (Doc doc) = Object . toAeson $ doc
 aesonifyValue (BSON.Array list) = toJSON list
 aesonifyValue (Bin (Binary binary)) = toJSON binary
 aesonifyValue (Fun (Function function)) = toJSON function
