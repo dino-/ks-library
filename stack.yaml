@@ -1,8 +1,8 @@
-resolver: lts-9.4
+resolver: lts-24.11
 
 packages:
 - '.'
-- location:
-   git: https://github.com/Palmik/bson-generic.git
-   commit: e078def65d0dee1ea7e3205f445e47d5937851f3
-  extra-dep: True
+
+extra-deps:
+- git: https://github.com/dino-/bson-generic.git
+  commit: 36a7a4deefe87fa79943b3d232872ffe3cb8d6a2
