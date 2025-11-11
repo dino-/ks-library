@@ -17,7 +17,6 @@ tested-with: GHC >=7.10.1
 extra-source-files:
     changelog.md
     doc/dev/notes
-    LICENSE_aeson-bson
     README.md
     TODO.md
     util/gentags.sh
@@ -29,7 +28,6 @@ source-repository head
 
 library
     exposed-modules:
-        Data.Aeson.Bson
         Database.Mongo.Util
         KS.Data.BSON
         KS.Data.Common
@@ -39,6 +37,7 @@ library
         KS.Data.Place
     build-depends:
         aeson,
+        AesonBson,
         array,
         base >=3 && <5,
         bson,
