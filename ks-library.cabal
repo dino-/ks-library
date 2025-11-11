@@ -17,7 +17,6 @@ extra-source-files:
   doc/dev/notes
   README.md
   TODO.md
-  util/gentags.sh
   util/install.sh
 extra-doc-files:
   changelog.md

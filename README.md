@@ -67,6 +67,10 @@ Later, to install into the sandbox (so other project can use this library):
 
     $ cabal install
 
+Also, to generate the `tags` file:
+
+    $ hasktags --ctags .
+
 
 ## Contact
 
