@@ -1,5 +1,12 @@
 # ks-library
 
+## NOTICE: This software is no longer maintained on Github
+
+Its new home is Codeberg: <https://codeberg.org/dinofp/ks-library>
+
+If you wish to contribute, please get a Codeberg account and do it from there.
+Thanks!
+
 
 ## Synopsis
 
